@@ -2,7 +2,7 @@
     //getting data from forms
     //$email = $_POST['email'];
     //$password = $_POST['password'];
-
+    //echo "email: " . $email . " and password: " . $password .;
     //database connection
     $conn = new mysqli("localhost", "root", "", "tempstore");
     if($conn->connect_error){

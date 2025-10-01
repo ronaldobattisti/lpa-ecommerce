@@ -13,7 +13,7 @@
 
     <div class="product-screen">
         <div class="product">
-            <img src="../images/MouseLogitechLiftVerticalErgonomicBlack.png" alt="Mouse Logitech Lift Vertical Ergonomic Black" class="container-img">
+            <img src="images/MouseLogitechLiftVerticalErgonomicBlack.png" alt="Mouse Logitech Lift Vertical Ergonomic Black" class="container-img">
             <div class="container-price">
                 AUD 19,90
             </div>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="product">
-            <img src="../images/MouseLogitechLiftVerticalErgonomicBlack.png" alt="Mouse Logitech Lift Vertical Ergonomic Black" class="container-img">
+            <img src="images/MouseLogitechLiftVerticalErgonomicBlack.png" alt="Mouse Logitech Lift Vertical Ergonomic Black" class="container-img">
             <div class="container-price">
                 AUD 19,90
             </div>
@@ -40,19 +40,19 @@
 
 <script>
     function loadContent(){
-        fetch('../../header.html')
+        fetch('header.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
         });
 
-        fetch('../../menu.html')
+        fetch('menu.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
-        fetch('../../footer.html')
+        fetch('footer.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
