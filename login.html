@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+</style>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="login-container">
+        <div class="grid-container">
+            <form action="login.php" method="post">
+                <div class="grid-item fields-merge"><!--cells 1 to 3-->
+                    <label for="email">E-mail:</label>
+                </div>
+
+                <div class="grid-item fields-merge"><!--cells 6 to 8-->
+                    <input type="text" id="email" class="input-field" name="email" autocomplete="email" placeholder="Enter your e-mail here" required>
+                </div>
+
+                <div class="grid-item fields-merge">
+                    <label for="password">Password:</label>
+                </div>
+
+                <div class="grid-item fields-merge">
+                    <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
+                </div>
+                
+                <div class="grid-item forgot-password-merge help-text">
+                    <p>Forgot your password?<br>
+                    Click here and follow the instructions</p>
+                </div>
+
+                <div class="grid-item create-account-merge help-text">
+                    <p>Don't have an accout?<br>
+                    Click here to sign up</p>
+                </div>
+
+                <div class="grid-item submit-merge">
+                    <button type="submit" class="button-submit">Login</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function loadContent(){
+        fetch('../../header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadContent);
+</script>
