@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <style>
@@ -17,7 +17,14 @@
     <div id="header-placeholder"></div>
 
     <div>
-        <form action="login.php" method="post">
+        <form action="register.php" method="post">
+            <div>
+                <label for="name">Name:</label>
+            </div>
+
+            <div>
+                <input type="text" id="name" class="input-field" name="name" autocomplete="Name" placeholder="John Doe" required>
+            </div>
             <div>
                 <label for="email">E-mail:</label>
             </div>
@@ -35,13 +42,8 @@
             </div>
             
             <div>
-                <p>Forgot your password?<br>
-                Click <a href="recover-password.html">here</a> and follow the instructions</p>
-            </div>
-
-            <div>
-                <p>Don't have an accout?<br>
-                Click <a href="register.html">here</a> to sign up</p>
+                <p>Do you already have an account?<br>
+                Click <a href="login.html">here</a> to sign in</p>
             </div>
 
             <div>
