@@ -67,7 +67,7 @@ footer,
     width: 25%;
 }
 
-index,
+/*index*/
 .product-screen {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -79,13 +79,13 @@ index,
     background-color: rgb(68, 160, 129);
 }
 
-.product {
+/*.product {
     display: block;
     background-color: brown;
     aspect-ratio: 2/1;
     align-items: center;
     min-width: 100px;
-}
+}*/
 
 .container-img {
     display: block;
@@ -106,4 +106,8 @@ index,
     height: 15%;
     justify-content: center;
     align-items: center;
+}
+
+.image{
+    max-height: 100px;
 }

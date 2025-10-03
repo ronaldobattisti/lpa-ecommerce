@@ -13,7 +13,7 @@ if (!$result) {
 <div class="products">
     <?php while ($row = $result->fetch_assoc()): ?>
         <div class="product">
-            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>">
+            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>"; class="image">
             <h3><?php echo $row['name']; ?></h3>
             <p><?php echo $row['description']; ?></p>
             <p><strong>$<?php echo $row['price']; ?></strong></p>
