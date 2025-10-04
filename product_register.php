@@ -1,8 +1,17 @@
 <?php
-// Disable caching for test purposes
-header("Cache-Control: no-cache, must-revalidate"); // HTTP 1.1
-header("Pragma: no-cache"); // HTTP 1.0
-header("Expires: 0"); // Proxies and browsers
+    // Disable caching for test purposes
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP 1.1
+    header("Pragma: no-cache"); // HTTP 1.0
+    header("Expires: 0"); // Proxies and browsers
+
+    include 'connection.php';
+
+    //getting data
+    $prod_name = $_POST['name'];
+    $prod_desc = $_POST['description'];
+    $prod_price = $_POST['price'];
+    $prod_cat = $_POST['category'];
+    $prod_url = $_POST['image'];
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +63,7 @@ header("Expires: 0"); // Proxies and browsers
             </div>
 
             <div>
-                <button type="submit" class="button-submit">Login</button>
+                <button type="submit" class="button-submit">Register product</button>
             </div>
         </form>
 
