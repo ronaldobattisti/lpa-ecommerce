@@ -28,8 +28,8 @@
             exit();
         } else {
             // ❌ Registration failed → go back to registration
-            //header("Location: register.php?error=1");
-            //exit();
+            header("Location: register.php?error=1");
+            exit();
         }
 
         //Close connection
@@ -48,8 +48,6 @@
     </head>
     <body class="body">
         <div><?php include 'header.php'; ?></div>
-
-        <div><?php include 'menu.html'; ?></div>
 
         <form method='post'>
             <div>
@@ -74,7 +72,7 @@
                     <option value="laptop">Laptop</option>
                     <option value="component">Component</option>
                     <option value="storage">Storage</option>
-                    <option value="perihperal">Perihperal</option>
+                    <option value="peripheral">Perihperal</option>
                     <option value="display">Display</option>
                     <option value="network">Network</option>
                     <option value="printer">Printer</option>
