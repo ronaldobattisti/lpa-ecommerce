@@ -11,7 +11,7 @@
         $password = $_POST['password'] ?? '';
 
         // Prepare and execute query
-        $stmt = $conn->prepare("SELECT id, user, password FROM dbuser WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, user, isADM, password FROM dbuser WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
@@ -20,21 +20,22 @@
             //Password is stored hashed
             //bind_result will bind the value of the first collumn returned to the
             //first variable on its parameter and so on.
-            $stmt->bind_result($user_id, $user_name, $hashed_password);
+            $stmt->bind_result($user_id, $user_name, $user_isadm, $hashed_password);
             //now, user_id and hashed_password have the value returned from db
             $stmt->fetch();
-            echo 'The inputed password is: ' . $password;
-
-            echo 'The correct password is: ' . $hashed_password;
 
             //password_verify does two things:
             //generates a hashed version of the inputed pass
             //and compares with te one stored in db
-            echo 'before the if statement';
             if (password_verify($password, $hashed_password)) {
-                echo 'password correct';
+                //echo 'password correct';
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_name'] = $user_name;
+                //Setting adm condition
+                if ($user_isadm > 0){
+                    $_SESSION['user_isadm'] = true;
+                } else $_SESSION['user_isadm'] = false;
+
                 //header() redirects the user
                 header("Location: index.php");
                 //exit to stop script
@@ -59,23 +60,17 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="header-placeholder"></div>
+    <div><?php include 'header.php'; ?></div>
 
     <div>
         <form method="post" action="login.php">
             <div>
                 <label for="email">E-mail:</label>
-            </div>
-
-            <div>
                 <input type="text" id="email" class="input-field" name="email" autocomplete="email" placeholder="Enter your e-mail here" required>
             </div>
 
             <div>
                 <label for="password">Password:</label>
-            </div>
-
-            <div>
                 <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
             </div>
             
@@ -94,18 +89,8 @@
             </div>
         </form>
     </div>
+
+    <div><?php include 'footer.html'; ?></div>
 </body>
 </html>
-
-<script>
-    function loadContent(){
-        fetch('header.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', loadContent);
-</script>
 

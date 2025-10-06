@@ -4,11 +4,7 @@
     header("Pragma: no-cache"); // HTTP 1.0
     header("Expires: 0"); // Proxies and browsers
 
-    session_start();
-
-    if (!empty($_SESSION['user_id'])){
-        echo 'Welcome, ' . $_SESSION['user_name'];
-    }
+    include 'start_session_safe.php';
 ?>
 
 <!DOCTYPE html>
@@ -32,21 +28,3 @@
         <div><?php include 'footer.html'; ?></div>
     </body>
 </html>
-
-<script>
-    function loadContent(){
-        fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
-
-        fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', loadContent);
-</script>
