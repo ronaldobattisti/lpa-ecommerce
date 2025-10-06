@@ -1,7 +1,8 @@
 <?php
-    session_start(); //Server side persistent storage - 
     //persists between different page loads and allows the use of $_SERVER
     include 'connection.php';
+    //Server side persistent storage - 
+    include 'start_session_safe.php';
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {

@@ -9,8 +9,6 @@
     if (!empty($_SESSION['user_id'])){
         echo 'Welcome, ' . $_SESSION['user_name'];
     }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -22,21 +20,21 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="body">
+        <div><?php include 'header.php'; ?></div>
+
+        <div><?php include 'menu.html'; ?></div>
+
         <div>
             <p>Welcome to you account's settings, <?php echo $_SESSION['user_name']; ?></p>
             <p>Click <a href="logout.php">here</a> to log out</p>
         </div>
+
+        <div><?php include 'footer.html'; ?></div>
     </body>
 </html>
 
 <script>
     function loadContent(){
-        fetch('header.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-
         fetch('menu.html')
         .then(response => response.text())
         .then(data => {

@@ -4,7 +4,9 @@
     header("Pragma: no-cache"); // HTTP 1.0
     header("Expires: 0"); // Proxies and browsers
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     $link = 'login.php';
     $person_tn = 'bi bi-person';
@@ -32,7 +34,7 @@
         </button>
     </div>
     <div class="header-item">
-        <<a href="<?php echo $link; ?>">>
+        <a href="<?php echo $link; ?>">
             <i class="<?php echo $person_tn; ?>"></i>
         </a>
 

@@ -4,11 +4,11 @@
     header("Pragma: no-cache"); // HTTP 1.0
     header("Expires: 0"); // Proxies and browsers
 
-    session_start();
+    include 'start_session_safe.php';
 
-    if (!empty($_SESSION['user_id'])){
+    /*if (!empty($_SESSION['user_id'])){
         echo 'Welcome, ' . $_SESSION['user_name'];
-    }
+    }*/
 ?>
 
 <!DOCTYPE html>
