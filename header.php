@@ -1,3 +1,21 @@
+<?php
+    // Disable caching for test
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP 1.1
+    header("Pragma: no-cache"); // HTTP 1.0
+    header("Expires: 0"); // Proxies and browsers
+
+    session_start();
+
+    $link = 'login.php';
+    $person_tn = 'bi bi-person';
+
+    if (!empty($_SESSION['user_name'])){
+        $link = 'config.php';
+        $person_tn = 'bi bi-person-check';
+    }
+
+?>
+
 <link rel="stylesheet" href="css/styles.css">
 
 <header>
@@ -14,8 +32,8 @@
         </button>
     </div>
     <div class="header-item">
-        <a href="login.php">
-            <i class="bi bi-person"></i>
+        <<a href="<?php echo $link; ?>">>
+            <i class="<?php echo $person_tn; ?>"></i>
         </a>
 
         <i class="bi bi-bag"></i>

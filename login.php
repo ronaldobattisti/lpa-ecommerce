@@ -10,7 +10,7 @@
         $password = $_POST['password'] ?? '';
 
         // Prepare and execute query
-        $stmt = $conn->prepare("SELECT id, password FROM dbuser WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, user, password FROM dbuser WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
@@ -19,7 +19,7 @@
             //Password is stored hashed
             //bind_result will bind the value of the first collumn returned to the
             //first variable on its parameter and so on.
-            $stmt->bind_result($user_id, $hashed_password);
+            $stmt->bind_result($user_id, $user_name, $hashed_password);
             //now, user_id and hashed_password have the value returned from db
             $stmt->fetch();
             echo 'The inputed password is: ' . $password;
@@ -33,10 +33,11 @@
             if (password_verify($password, $hashed_password)) {
                 echo 'password correct';
                 $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_name'] = $user_name;
                 //header() redirects the user
-                //header("Location: index.php");
+                header("Location: index.php");
                 //exit to stop script
-                //exit;
+                exit;
             } else {
                 $error = "Invalid password.";
             }
@@ -56,13 +57,6 @@
     <title>User Login</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<style>
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
-
-</style>
 <body>
     <div id="header-placeholder"></div>
 
@@ -91,7 +85,7 @@
 
             <div>
                 <p>Don't have an accout?<br>
-                Click <a href="register.html">here</a> to sign up</p>
+                Click <a href="register.php">here</a> to sign up</p>
             </div>
 
             <div>
@@ -104,7 +98,7 @@
 
 <script>
     function loadContent(){
-        fetch('header.html')
+        fetch('header.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;

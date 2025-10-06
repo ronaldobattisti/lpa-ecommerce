@@ -9,6 +9,8 @@
     if (!empty($_SESSION['user_id'])){
         echo 'Welcome, ' . $_SESSION['user_name'];
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +22,10 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="body">
-        <div id="header-placeholder"></div>
-
-        <div id="menu-placeholder"></div>
-
-        <div class="product">
-            <?php include 'products_div.php'; ?>
+        <div>
+            <p>Welcome to you account's settings, <?php echo $_SESSION['user_name']; ?></p>
+            <p>Click <a href="logout.php">here</a> to log out</p>
         </div>
-
-        <div id="footer-placeholder"></div>
     </body>
 </html>
 
