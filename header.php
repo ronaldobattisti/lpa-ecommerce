@@ -53,6 +53,8 @@
             <i class="<?php echo $person_tn; ?>"></i>
         </a>
 
-        <i class="bi bi-bag"></i>
+        <a href="cart.php">
+            <i class="bi bi-bag"></i>
+        </a>
     </div>
 </header>
