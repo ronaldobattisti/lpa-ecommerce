@@ -5,6 +5,8 @@
     header("Expires: 0"); // Proxies and browsers
 
     include 'start_session_safe.php';
+
+    //$sql = "SELECT name, description, price"
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@
     <body class="body">
         <div><?php include 'header.php'; ?></div>
 
-        <div><?php include 'menu.html'; ?></div>
+        <div><?php include 'menu.php'; ?></div>
 
         <div class="product">
             <?php include 'products_div.php'; ?>

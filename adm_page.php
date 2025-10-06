@@ -18,10 +18,12 @@
     <body class="body">
         <div><?php include 'header.php'; ?></div>
 
-        <div><?php include 'menu.html'; ?></div>
-
         <div>
             <p>Welcome adm <?php echo $_SESSION['user_name']; ?></p>
+        </div>
+
+        <div>
+            <p>Click <a href="product_register.php">here</a> to add products</p>
         </div>
 
         <div>

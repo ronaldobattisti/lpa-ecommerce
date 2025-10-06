@@ -18,8 +18,6 @@
     <body class="body">
         <div><?php include 'header.php'; ?></div>
 
-        <div><?php include 'menu.html'; ?></div>
-
         <div>
             <p>Welcome to you account's settings, <?php echo $_SESSION['user_name']; ?></p>
             <p>Click <a href="logout.php">here</a> to log out</p>

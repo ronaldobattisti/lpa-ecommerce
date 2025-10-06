@@ -1,13 +1,19 @@
 <?php
-include 'connection.php';
+    include 'connection.php';
+    include 'start_session_safe.php';
 
-// Fetch all products
-$sql = "SELECT * FROM dbproducts";
-$result = $conn->query($sql);
+    // Fetch all products by category
+    if (@$_SESSION['category'] != ''){
+        $sql = "SELECT * FROM dbproducts WHERE category = '{$_SESSION['category']}'";
+    } else {
+        $sql = "SELECT * FROM dbproducts";
+    }
 
-if (!$result) {
-    die("Query failed: " . $conn->error);
-}
+    $result = $conn->query($sql);
+
+    if (!$result) {
+        die("Query failed: " . $conn->error);
+    }
 ?>
 
 <div class="products">

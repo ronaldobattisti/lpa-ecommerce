@@ -1,6 +1,6 @@
 <?php
     // Step 1: Start the session
-    session_start();
+    include 'start_session_safe.php';
 
     // Step 2: Unset all session variables
     session_unset();

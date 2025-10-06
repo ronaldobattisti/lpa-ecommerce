@@ -5,13 +5,37 @@
     header("Expires: 0"); // Proxies and browsers
 
     include 'connection.php';
+    include 'start_session_safe.php';
 
-    //getting data
-    $prod_name = $_POST['name'];
-    $prod_desc = $_POST['description'];
-    $prod_price = $_POST['price'];
-    $prod_cat = $_POST['category'];
-    $prod_url = $_POST['image'];
+    //getting data from forms
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            //getting data
+        $prod_name = $_POST['name'];
+        $prod_desc = $_POST['description'];
+        $prod_price = $_POST['price'];
+        $prod_cat = $_POST['category'];
+        $prod_url = 'images/' . $_POST['image'];
+
+        //prepare to run the query wo filling the values
+        $stmt = $conn->prepare("INSERT INTO dbproducts (name, description, price, category, image_url) VALUES (?, ?, ?, ?, ?)");
+        //Avoid SQL injection by making sure that data will be pushed in the correct format
+        $stmt->bind_param("ssdss", $prod_name, $prod_desc, $prod_price,  $prod_cat, $prod_url);
+
+        //Run the query
+        if ($stmt->execute()) {
+            // ✅ Registration successful → go to index
+            header("Location: index.php");
+            exit();
+        } else {
+            // ❌ Registration failed → go back to registration
+            //header("Location: register.php?error=1");
+            //exit();
+        }
+
+        //Close connection
+        $stmt->close();
+        $conn->close();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +47,11 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="body">
-        <div id="header-placeholder"></div>
+        <div><?php include 'header.php'; ?></div>
 
-        <div id="menu-placeholder"></div>
+        <div><?php include 'menu.html'; ?></div>
 
-        <form>
+        <form method='post'>
             <div>
                 <label for="name">Product name:</label>
                 <input type="text" id="name" class="" name="name" required>
@@ -59,7 +83,7 @@
 
             <div>
                 <label for="image">Product image:</label>
-                <input type="" id="image" class="" name="image" accept="image/*" required>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
 
             <div>
@@ -67,30 +91,6 @@
             </div>
         </form>
 
-        <div id="footer-placeholder"></div>
+        <div><?php include 'footer.html'; ?></div>
     </body>
 </html>
-
-<script>
-    function loadContent(){
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-
-        fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
-
-        fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', loadContent);
-</script>
