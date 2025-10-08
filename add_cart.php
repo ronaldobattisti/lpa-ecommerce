@@ -3,38 +3,34 @@
     include 'start_session_safe.php';
 
     if (isset($_SESSION['user_id'])){
-        $user_id = $_SESSION['user_id'];
+        $user_id = $_SESSION['user_id'];//doesn't work into sql query if I use $_SESSION
         
         //add_cart.php
         if (isset($_POST['itemID'])) {
-            $itemID = $_POST['itemID'];
+            $itemID = $_POST['itemID'];//easier to work with
             //echo 'user id is: ' . $_SESSION['user_id'];
-            $sql = "SELECT * FROM dbcart WHERE userID = $user_id";
+            $sql = "SELECT * FROM dbcart WHERE userID = $user_id AND itemID = $itemID";
             echo $user_id;
             $result = $conn->query($sql);
-            if ($result && $result->num_rows > 0){
-                echo 'Already have a cart';
-            } else {
+
+            //if cortumer has already added the item into the cart, do nothing and go to index
+            if ($result->num_rows > 0){
+                header('Location: index.php');
+            } else {//otherwise, add it
                 $stmt = $conn->prepare("INSERT INTO dbcart (userID, itemID, quant) VALUES (?, ?, 1)");
                 $stmt->bind_param("ii", $user_id, $itemID);
+                if ($stmt->execute()) {
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    header("Location: register.php?error=1");
+                    exit();
+                }
             }
-////
-            if ($stmt->execute()) {
-            // ✅ Registration successful → go to index
-            header("Location: index.php");
-            exit();
-            } else {
-                // ❌ Registration failed → go back to registration
-                header("Location: register.php?error=1");
-                exit();
-            }
-////
-            // Example: add to cart table or session
-            // $_SESSION['cart'][$itemID] = ($_SESSION['cart'][$itemID] ?? 0) + 1;
         } else {
-            echo "No itemID received!";
+            echo "An error has ocurred with the item id, please call the support";
         }
     } else {
-        header('login.php');
+        echo "No itemID received!";
     }
 ?>
