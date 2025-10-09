@@ -19,6 +19,7 @@
         $email = $row['email'];
     }
 
+    //SELECT DISTINCT returns only unique values, deleting doplicates
     $sql = "SELECT DISTINCT itemID FROM dbcart WHERE userID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
@@ -33,9 +34,15 @@
             $item_ids[] = $row['itemID'];
         }
         //impliding it to turn into a string
+        $item_ids = array_map('intval', $item_ids);//certifying that all ids are integer
         $id_list = implode(',', $item_ids);
         echo $id_list; // e.g. "2,5,7"
+        $sql = "SELECT * FROM dbproducts WHERE id IN($id_list)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
     } else $hasItemsInCart = false;
+
     
 ?>
 
@@ -58,14 +65,14 @@
                     <div class="product">
                         <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>"; class="image">
                         <h3><?php echo $row['name']; ?></h3>
-                        <p><?php echo $row['description']; ?></p>
                         <p><strong>$<?php echo $row['price']; ?></strong></p>
-                        <p><em><?php echo $row['category']; ?></em></p>
-                        <!--Post for change server state, GET for retrieve info-->
-                        <form method="post" action="add_cart.php">
-                            <input type="hidden" name='itemID' value="<?php echo $row['id']; ?>">
-                            <button type="submit">Add to cart</button>
-                        </form>
+                        <p>Quantity: <?php  $sql_quant = "SELECT quant FROM dbcart WHERE userID = $user_id AND itemID = {$row['id']}";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            $result = $stmt->get_result();
+                                            echo $result['quant'];
+                                    ?>
+                        </p>
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
