@@ -48,13 +48,19 @@
             <?php endif; ?>
         <?php endif; ?>
         <!--end test-->
-        
+       
         <a href="<?php echo $link; ?>">
             <i class="<?php echo $person_tn; ?>"></i>
         </a>
 
-        <a href="cart.php">
-            <i class="bi bi-bag"></i>
-        </a>
+        <?php if (isset($_SESSION['user_id'])) :?>
+            <a href="cart.php">
+                <i class="bi bi-bag"></i>
+            </a>
+        <?php endif; ?>
     </div>
 </header>
+
+<body>
+    
+</body>
