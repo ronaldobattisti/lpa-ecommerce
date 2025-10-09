@@ -67,10 +67,13 @@
                         <h3><?php echo $row['name']; ?></h3>
                         <p><strong>$<?php echo $row['price']; ?></strong></p>
                         <p>Quantity: <?php  $sql_quant = "SELECT quant FROM dbcart WHERE userID = $user_id AND itemID = {$row['id']}";
-                                            $stmt = $conn->prepare($sql);
+                                            $stmt = $conn->prepare($sql_quant);
                                             $stmt->execute();
                                             $result = $stmt->get_result();
-                                            echo $result['quant'];
+                                            $row_quant = $result->fetch_assoc();
+                                            echo $row_quant['quant'];
+                                            $total += $row_quant['quant'] * $row['price'];
+                                            echo 'total = ' . $total;
                                     ?>
                         </p>
                     </div>
