@@ -8,41 +8,35 @@
     include 'start_session_safe.php';
 
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT user, email FROM dbuser WHERE id = $user_id";
-    $result = $conn->query($sql);
-    $total = 0;
-    if ($result->num_rows > 0) {
-        $user_id = $_SESSION['user_id'];
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc(); // fetch one row as associative array
-        $username = $row['user'];
-        $email = $row['email'];
-    }
-
-    //SELECT DISTINCT returns only unique values, deleting doplicates
-    $sql = "SELECT DISTINCT itemID FROM dbcart WHERE userID = ?";
+    $sql = "SELECT user, email FROM dbuser WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    if($result->num_rows > 0){
-        $hasItemsInCart = true;
-        $item_ids = [];
-        //Creting an array with all items in cart to fetch less items
-        //from db when displaying in cart
-        while ($row = $result->fetch_assoc()) {
-            $item_ids[] = $row['itemID'];
-        }
-        //impliding it to turn into a string
-        $item_ids = array_map('intval', $item_ids);//certifying that all ids are integer
-        $id_list = implode(',', $item_ids);
-        echo $id_list; // e.g. "2,5,7"
-        $sql = "SELECT * FROM dbproducts WHERE id IN($id_list)";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    } else $hasItemsInCart = false;
+    $total = 0;
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $username = $row['user'];
+        $email = $row['email'];
+    }
+
+    // Fetch all cart items with product info in a single query
+    $sql = "
+        SELECT p.*, c.quant
+        FROM dbproducts p
+        JOIN dbcart c ON p.id = c.itemID
+        WHERE c.userID = ?
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $hasItemsInCart = $result->num_rows > 0;
+    $total = 0;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,36 +47,35 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="body">
-        
+
         
         <div><?php include 'header.php'; ?></div>
 
         <div>
-            <p>Welcome to your cart, <?php echo $username; ?></p>
+            <p>Welcome to your cart, <?php echo htmlspecialchars($username); ?>.</p>
+
             <?php if ($hasItemsInCart): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="product">
-                        <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>"; class="image">
-                        <h3><?php echo $row['name']; ?></h3>
-                        <p><strong>$<?php echo $row['price']; ?></strong></p>
-                        <p>Quantity: <?php  $sql_quant = "SELECT quant FROM dbcart WHERE userID = $user_id AND itemID = {$row['id']}";
-                                            $stmt = $conn->prepare($sql_quant);
-                                            $stmt->execute();
-                                            $result = $stmt->get_result();
-                                            $row_quant = $result->fetch_assoc();
-                                            echo $row_quant['quant'];
-                                            $total += $row_quant['quant'] * $row['price'];
-                                            echo 'total = ' . $total;
-                                    ?>
-                        </p>
+                        <img src="<?php echo htmlspecialchars($row['image_url']); ?>" 
+                             alt="<?php echo htmlspecialchars($row['name']); ?>" 
+                             class="image">
+                        <h3><?php echo htmlspecialchars($row['name']); ?></h3>
+                        <p><strong>$<?php echo number_format($row['price'], 2); ?></strong></p>
+                        <p>Quantity: <?php echo (int)$row['quant']; ?></p>
+                        <?php
+                            $total += $row['quant'] * $row['price'];
+                        ?>
                     </div>
                 <?php endwhile; ?>
+
+                <div class="cart-total">
+                    <h3>Total: $<?php echo number_format($total, 2); ?></h3>
+                </div>
             <?php else: ?>
-                echo: "Your cart is empty";
+                <p>Your cart is empty.</p>
             <?php endif; ?>
-
         </div>
-
 
         <div><?php include 'footer.html'; ?></div>
     </body>
