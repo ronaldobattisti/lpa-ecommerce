@@ -42,8 +42,6 @@
         $stmt->execute();
         $result = $stmt->get_result();
     } else $hasItemsInCart = false;
-
-    
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +53,7 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="body">
+        
         
         <div><?php include 'header.php'; ?></div>
 
