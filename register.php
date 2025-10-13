@@ -1,7 +1,5 @@
 <?php
-    //persists between different page loads and allows the use of $_SERVER
     include 'connection.php';
-    //Server side persistent storage - 
     include 'start_session_safe.php';
 
     //getting data from forms
@@ -46,7 +44,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="header-placeholder"></div>
+    <div><?php include 'header.php'; ?></div>
 
     <div>
         <form action="register.php" method="post">
@@ -85,15 +83,3 @@
     </div>
 </body>
 </html>
-
-<script>
-    function loadContent(){
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', loadContent);
-</script>

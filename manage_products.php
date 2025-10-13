@@ -12,16 +12,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
+    <link rel="stylesheet" href="css/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+    <title>Manage Products</title>
+</header>
 
 <style>
     .modal {
-        display: none; /* hidden by default */
+        display: none;
         position: fixed;
         z-index: 1;
         left: 0;
@@ -29,6 +29,18 @@
         width: 100%;
         height: 100%;
         background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .modal-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-align: center;
     }
 </style>
 
@@ -51,7 +63,13 @@
                         <td><?php echo $row['name'] ?></td>
                         <td><?php echo $row['price'] ?></td>
                         <td><?php echo $row['quant'] ?></td>
-                        <td><a href="#" onclick="show_popup(<?php ?>);">Edit</a></td>
+                        <td><a href="#" onclick="show_popup(<?php echo $row['id']; ?>, 
+                                                            '<?php echo $row['name']; ?>',
+                                                            '<?php echo $row['description']; ?>',
+                                                            <?php echo $row['price']; ?>,
+                                                            <?php echo $row['quant']; ?>,
+                                                            '<?php echo $row['category']; ?>',
+                                                            '<?php echo $row['image_url']; ?>');">Edit</a></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -62,8 +80,56 @@
 
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <p>Hello! This is a nicer popup!</p>
-            <button onclick="closeModal()">Close</button>
+            <p>Edit item</p>
+            <form action="">
+                <label for="id">ID</label>
+                <input type="text" name="id" id="id" readonly>
+
+                <br>
+    
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+
+                <br>
+    
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description">
+
+                <br>
+    
+                <label for="price">Price</label>
+                <input type="text" name="price" id="price">
+
+                <br>
+    
+                <label for="quant">Quantity</label>
+                <input type="text" name="quant" id="quant">
+
+                <br>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="desktop">Desktop</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="component">Component</option>
+                    <option value="storage">Storage</option>
+                    <option value="peripheral">Perihperal</option>
+                    <option value="display">Display</option>
+                    <option value="network">Network</option>
+                    <option value="printer">Printer</option>
+                </select>
+
+                <br>
+    
+                <label for="image">Image path</label>
+                <input type="text" name="image" id="image">
+
+                <br>
+    
+                <button onclick="closeModal()">Close</button>
+                <br>
+                <button>Update</button>
+            </form>
         </div>
     </div>
 
@@ -72,8 +138,15 @@
 </html>
 
 <script>
-    function show_popup() {
+    function show_popup(id, name, desc, price, quant, cat, image_url) {
         document.getElementById("myModal").style.display = "block";
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
+        document.getElementById("description").value = desc;
+        document.getElementById("price").value = price;
+        document.getElementById("quant").value = quant;
+        document.getElementById("category").value = cat;
+        document.getElementById("image").value = image_url;
     }
 
     function closeModal() {

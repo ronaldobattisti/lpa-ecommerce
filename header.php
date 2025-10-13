@@ -1,9 +1,5 @@
 <?php
-    // Disable caching for test
-    header("Cache-Control: no-cache, must-revalidate"); // HTTP 1.1
-    header("Pragma: no-cache"); // HTTP 1.0
-    header("Expires: 0"); // Proxies and browsers
-
+    include 'disable_cache.php';
     include 'start_session_safe.php';
 
     $link = 'login.php';
@@ -21,9 +17,9 @@
     }
 ?>
 
-<link rel="stylesheet" href="css/styles.css">
 
 <header>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <div class="header-item"; id="header-logo">
         <a href="index.php">

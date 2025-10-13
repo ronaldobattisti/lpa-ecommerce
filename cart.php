@@ -1,9 +1,5 @@
 <?php
-    // Disable caching for test
-    header("Cache-Control: no-cache, must-revalidate"); // HTTP 1.1
-    header("Pragma: no-cache"); // HTTP 1.0
-    header("Expires: 0"); // Proxies and browsers
-
+    include 'disable_cache.php';
     include 'connection.php';
     include 'start_session_safe.php';
 
@@ -22,6 +18,7 @@
     }
 
     // Fetch all cart items with product info in a single query
+    //check thisq query
     $sql = "
         SELECT p.*, c.quant
         FROM dbproducts p
@@ -48,7 +45,6 @@
     </head>
     <body class="body">
 
-        
         <div><?php include 'header.php'; ?></div>
 
         <div>
