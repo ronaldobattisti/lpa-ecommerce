@@ -4,10 +4,40 @@
     include 'start_session_safe.php';
 
     $sql = "SELECT * FROM dbproducts";
-    $smtm = $conn->prepare($sql);
-    $smtm->execute();
-    $result = $smtm->get_result();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $has_products = ($result->num_rows > 0);
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $quant = $_POST['quant'];
+        $category = $_POST['category'];
+
+        if ($_POST['new_image'] != '') {
+            $image = 'images/' . $_POST['new_image'];
+        } else $image = $_POST['image'];
+
+        $sql = "UPDATE `dbproducts` SET name=?, 
+                                        description=?, 
+                                        price=?, 
+                                        quant=?, 
+                                        category=?, 
+                                        image_url=?
+                                        WHERE `dbproducts`.`id`=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssdissi", $name, $description, $price, $quant, $category, $image, $id);
+        
+        if ($stmt->execute()){
+            echo 'registration sucessful';
+        } else echo 'Fail updating';
+    }
+    $stmt->close();
+    $conn->close();
+    
 ?>
 
 <!DOCTYPE html>
@@ -81,29 +111,29 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <p>Edit item</p>
-            <form action="">
+            <form method="post">
                 <label for="id">ID</label>
                 <input type="text" name="id" id="id" readonly>
 
                 <br>
     
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" required>
 
                 <br>
     
                 <label for="description">Description</label>
-                <input type="text" name="description" id="description">
+                <input type="text" name="description" id="description" required>
 
                 <br>
     
                 <label for="price">Price</label>
-                <input type="text" name="price" id="price">
+                <input type="text" name="price" id="price" required>
 
                 <br>
     
                 <label for="quant">Quantity</label>
-                <input type="text" name="quant" id="quant">
+                <input type="text" name="quant" id="quant" required>
 
                 <br>
 
@@ -121,14 +151,16 @@
 
                 <br>
     
-                <label for="image">Image path</label>
-                <input type="text" name="image" id="image">
+                <label for="image">Product image:</label>
+                <input type="text" name="image" id="image" readonly>
+                <input type="file" name="new_image" id="new_image" accept="image/*">
 
                 <br>
-    
+                <br>
                 <button onclick="closeModal()">Close</button>
                 <br>
-                <button>Update</button>
+                <br>
+                <button type="submit">Update</button>
             </form>
         </div>
     </div>
