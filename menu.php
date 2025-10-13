@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="/css/styles.css">
-
 <?php
-
     include 'connection.php';
     include 'start_session_safe.php';
 
@@ -11,6 +8,8 @@
     $_SESSION['category'] = $_GET['category'] ?? '';
 
 ?>
+
+<link rel="stylesheet" href="/css/styles.css">
 
 <header>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
@@ -30,5 +29,3 @@
         </select>
     </form>
 </header>
-
-perihperal

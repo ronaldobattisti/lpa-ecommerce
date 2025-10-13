@@ -27,7 +27,7 @@
         </div>
 
         <div>
-            <p>Click <a href="adm_page.php">here</a> to manage products</p>
+            <p>Click <a href="manage_products.php">here</a> to manage products</p>
         </div>
 
         <div><?php include 'footer.html'; ?></div>

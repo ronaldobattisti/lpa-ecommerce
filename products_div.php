@@ -1,4 +1,5 @@
 <?php
+    include 'disable_cache.php';
     include 'connection.php';
     include 'start_session_safe.php';
 
@@ -7,6 +8,11 @@
         $sql = "SELECT * FROM dbproducts WHERE category = '{$_SESSION['category']}'";
     } else {
         $sql = "SELECT * FROM dbproducts";
+    }
+
+    //Check if user is logged
+    if (isset($_SESSION['user_id'])){
+        $islogged = true;
     }
 
     $result = $conn->query($sql);
@@ -24,12 +30,14 @@
             <h3><?php echo $row['name']; ?></h3>
             <p><?php echo $row['description']; ?></p>
             <p><strong>$<?php echo $row['price']; ?></strong></p>
-            <p><em><?php echo $row['category']; ?></em></p>
+            <!--<p><em><?php echo $row['category']; ?></em></p>-->
             <!--Post for change server state, GET for retrieve info-->
-            <form method="post" action="add_cart.php">
-                <input type="hidden" name='itemID' value="<?php echo $row['id']; ?>">
-                <button type="submit">Add to cart</button>
-            </form>
+            <?php if ($islogged): ?>
+                <form method="post" action="add_cart.php">
+                    <input type="hidden" name='itemID' value="<?php echo $row['id']; ?>">
+                    <button type="submit">Add to cart</button>
+                </form>
+            <?php endif; ?>
         </div>
     <?php endwhile; ?>
 </div>
