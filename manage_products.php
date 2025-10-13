@@ -18,6 +18,20 @@
     <title>User Login</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
+<style>
+    .modal {
+        display: none; /* hidden by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+</style>
+
 <body>
     <div><?php include 'header.php'; ?></div>
 
@@ -37,7 +51,7 @@
                         <td><?php echo $row['name'] ?></td>
                         <td><?php echo $row['price'] ?></td>
                         <td><?php echo $row['quant'] ?></td>
-                        <td><a href="edit_product.php">Edit</a></td>
+                        <td><a href="#" onclick="show_popup(<?php ?>);">Edit</a></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -46,6 +60,23 @@
         <?php endif; ?>
     </div>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>Hello! This is a nicer popup!</p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
     <div><?php include 'footer.html'; ?></div>
 </body>
 </html>
+
+<script>
+    function show_popup() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+</script>

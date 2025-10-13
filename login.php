@@ -1,8 +1,7 @@
 <?php
-    //persists between different page loads and allows the use of $_SERVER
     include 'connection.php';
-    //Server side persistent storage - 
     include 'start_session_safe.php';
+    $correct_input = true;
 
     //POST when submit, GET when visiting
     //If ensures that the code only runs when submitted
@@ -31,6 +30,7 @@
                 //echo 'password correct';
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_name'] = $user_name;
+                $correct_input = true;
                 //Setting adm condition
                 if ($user_isadm > 0){
                     $_SESSION['user_isadm'] = true;
@@ -41,6 +41,7 @@
                 //exit to stop script
                 exit;
             } else {
+                $correct_input = false;
                 $error = "Invalid password.";
             }
         } else {
@@ -64,6 +65,12 @@
 
     <div>
         <form method="post" action="login.php">
+            <?php if (!$correct_input): ?>
+                <div>
+                    <p>Incorrect e-mail or password, please try again</p>
+                </div>
+            <?php endif;?>
+
             <div>
                 <label for="email">E-mail:</label>
                 <input type="text" id="email" class="input-field" name="email" autocomplete="email" placeholder="Enter your e-mail here" required>
@@ -72,6 +79,7 @@
             <div>
                 <label for="password">Password:</label>
                 <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
+            
             </div>
             
             <div>
