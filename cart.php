@@ -50,29 +50,43 @@
         <div>
             <p>Welcome to your cart, <?php echo htmlspecialchars($username); ?>.</p>
 
-            <?php if ($hasItemsInCart): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <div class="product">
-                        <img src="<?php echo htmlspecialchars($row['image_url']); ?>" 
-                             alt="<?php echo htmlspecialchars($row['name']); ?>" 
-                             class="image">
-                        <h3><?php echo htmlspecialchars($row['name']); ?></h3>
-                        <p><strong>$<?php echo number_format($row['price'], 2); ?></strong></p>
-                        <p>Quantity: <?php echo (int)$row['quant']; ?></p>
-                        <?php
-                            $total += $row['quant'] * $row['price'];
-                        ?>
-                    </div>
-                <?php endwhile; ?>
+            <form method='POST'>
+
+                <table>
+                    <tr>
+                        <th>Select</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+
+                <?php if ($hasItemsInCart){
+                    while ($row = $result->fetch_assoc()){
+                        $id = $row['id'];
+                        $name = $row['name'];
+                        $price = $row['price'];
+                        $quant = $row['quant'];
+                        echo "
+                        <tr>
+                            <td><input type='checkbox' name='selected_ids[]' value='$id'></td>
+                            <td>$name</td>
+                            <td>AUD $price</td>
+                            <td><input type='number' name='quantity[$id]' value='$quant' min='1'></td>
+                            <td class='total'>$" . ($price * $quant) . "</td>
+                        </tr>";
+                        
+                        $total += $row['quant'] * $row['price'];
+                    }      
+                } else {
+                    echo "<p>Your car is empty</p>";
+                }?>
 
                 <div class="cart-total">
                     <h3>Total: $<?php echo number_format($total, 2); ?></h3>
                 </div>
-            <?php else: ?>
-                <p>Your cart is empty.</p>
-            <?php endif; ?>
-        </div>
-
-        <div><?php include 'footer.html'; ?></div>
+                
+                <div><?php include 'footer.html'; ?></div>
+            </form>
     </body>
 </html>

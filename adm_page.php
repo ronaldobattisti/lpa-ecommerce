@@ -26,6 +26,10 @@
             <p>Click <a href="manage_products.php">here</a> to manage products</p>
         </div>
 
+        <div>
+            <p>Click <a href="manage_orders.php">here</a> to manage orders</p>
+        </div>
+
         <div><?php include 'footer.html'; ?></div>
     </body>
 </html>

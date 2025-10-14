@@ -32,7 +32,7 @@
         $stmt->bind_param("ssdissi", $name, $description, $price, $quant, $category, $image, $id);
         
         if ($stmt->execute()){
-            echo 'registration sucessful';
+            echo '<meta http-equiv="refresh" content="5">';
         } else echo 'Fail updating';
     }
     $stmt->close();
