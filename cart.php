@@ -83,7 +83,11 @@
                 }?>
 
                 <div class="cart-total">
-                    <h3>Total: $<?php echo number_format($total, 2); ?></h3>
+                    <p>Total: $<?php echo number_format($total, 2); ?></p>
+                </div>
+
+                <div>
+                    <button type="submit">Purchase</button>
                 </div>
                 
                 <div><?php include 'footer.html'; ?></div>
