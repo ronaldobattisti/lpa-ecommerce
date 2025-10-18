@@ -7,7 +7,7 @@
     if (@$_SESSION['category'] != ''){
         $sql = "SELECT * FROM lpa_stock WHERE lpa_Stock_cat = '{$_SESSION['category']}'";
     } else {
-        $sql = "SELECT * FROM dbproducts";
+        $sql = "SELECT * FROM lpa_stock";
     }
 
     //Check if user is logged
@@ -31,11 +31,9 @@
             <h3><?php echo $row['lpa_stock_name']; ?></h3>
             <p><?php echo $row['lpa_stock_desc']; ?></p>
             <p><strong>$<?php echo $row['lpa_stock_price']; ?></strong></p>
-            <!--<p><em><?php //echo $row['category']; ?></em></p>-->
-            <!--Post for change server state, GET for retrieve info-->
             <?php if ($islogged): ?>
                 <form method="post" action="add_cart.php">
-                    <input type="hidden" name='itemID' value="<?php echo $row['lpa_stock_id ']; ?>">
+                    <input type="hidden" name='item_id' value="<?php echo $row['lpa_stock_id']; ?>">
                     <button type="submit">Add to cart</button>
                 </form>
             <?php endif; ?>

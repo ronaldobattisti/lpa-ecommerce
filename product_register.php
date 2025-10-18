@@ -8,14 +8,22 @@
             //getting data
         $prod_name = $_POST['name'];
         $prod_desc = $_POST['description'];
+        $prod_onhand = $_POST['onhand'];
         $prod_price = $_POST['price'];
         $prod_cat = $_POST['category'];
         $prod_url = 'images/' . $_POST['image'];
+        //db sets by default status = 'a' (available)
 
         //prepare to run the query wo filling the values
-        $stmt = $conn->prepare("INSERT INTO dbproducts (name, description, price, category, image_url) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO dbproducts (lpa_stock_name, 
+                                                        lpa_stock_desc, 
+                                                        lpa_stock_onhand, 
+                                                        lpa_stock_price, 
+                                                        lpa_stock_cat, 
+                                                        lpa_stock_image) 
+                                                        VALUES (?, ?, ?, ?, ?, ?)");
         //Avoid SQL injection by making sure that data will be pushed in the correct format
-        $stmt->bind_param("ssdss", $prod_name, $prod_desc, $prod_price,  $prod_cat, $prod_url);
+        $stmt->bind_param("ssidss", $prod_name, $prod_desc, $prod_onhand, $prod_price,  $prod_cat, $prod_url);
 
         //Run the query
         if ($stmt->execute()) {
@@ -54,6 +62,11 @@
             <div>
                 <label for="description">Product description:</label>
                 <input type="text" id="description" class="" name="description" required>
+            </div>
+
+            <div>
+                <label for="onhand">Quantity available:</label>
+                <input type="text" id="onhand" class="" name="onhand" required>
             </div>
 
             <div>

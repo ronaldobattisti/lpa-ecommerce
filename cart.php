@@ -4,7 +4,7 @@
     include 'start_session_safe.php';
 
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT user, email FROM dbuser WHERE id = ?";
+    $sql = "SELECT lpa_client_firstname, lpa_client_lastname, lpa_client_email FROM lpa_clients WHERE lpa_client_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
@@ -13,17 +13,17 @@
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $username = $row['user'];
-        $email = $row['email'];
+        $username = $row['lpa_client_firstname'] . ' ' . $row['lpa_client_lastname'];
+        $email = $row['lpa_client_email'];
     }
 
     // Fetch all cart items with product info in a single query
     //check thisq query
     $sql = "
-        SELECT p.*, c.quant
-        FROM dbproducts p
-        JOIN dbcart c ON p.id = c.itemID
-        WHERE c.userID = ?
+        SELECT s.*, c.lpa_cart_item_qty
+        FROM lpa_stock s
+        JOIN lpa_cart c ON s.lpa_stock_id = c.lpa_cart_item_id 
+        WHERE c.lpa_cart_user_id = ?
     ";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
@@ -59,24 +59,29 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th></th>
                     </tr>
 
                 <?php if ($hasItemsInCart){
                     while ($row = $result->fetch_assoc()){
-                        $id = $row['id'];
-                        $name = $row['name'];
-                        $price = $row['price'];
-                        $quant = $row['quant'];
+                        $id = $row['lpa_stock_id'];
+                        $name = $row['lpa_stock_name'];
+                        $price = $row['lpa_stock_price'];
+                        $quant = $row['lpa_cart_item_qty'];
                         echo "
                         <tr>
                             <td><input type='checkbox' name='selected_ids[]' value='$id'></td>
-                            <td>$name</td>
+                            <td>$id -> $name</td>
                             <td>AUD $price</td>
                             <td><input type='number' name='quantity[$id]' value='$quant' min='1'></td>
                             <td class='total'>$" . ($price * $quant) . "</td>
+                            <td>
+                                <a href='delete_from_cart.php?item_id=" . $id . "' 
+                                onclick='return confirm('Delete this item?');'>Delete</a>
+                            </td>
                         </tr>";
                         
-                        $total += $row['quant'] * $row['price'];
+                        $total += $row['lpa_cart_item_qty'] * $row['lpa_stock_price'];
                     }      
                 } else {
                     echo "<p>Your car is empty</p>";

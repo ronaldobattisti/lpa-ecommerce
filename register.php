@@ -4,18 +4,27 @@
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $name = $_POST['name'];
+        $fname = $_POST['fname'];
+        $sname = $_POST['sname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $isADM = 0;
+        $address = $_POST['address'];
+        $phone = $_POST['phone'];
+        //startard registration as non-adm
 
         // Hash the password before saving - must have 255 char on db
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         //prepare to run the query wo filling the values
-        $stmt = $conn->prepare("INSERT INTO dbuser (user, email, password, isADM) VALUES (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO lpa_clients (lpa_client_firstname, 
+                                                        lpa_client_lastname, 
+                                                        lpa_client_email, 
+                                                        lpa_client_password, 
+                                                        lpa_client_address,
+                                                        lpa_client_phone) 
+                                                        VALUES (?, ?, ?, ?, ?, ?)");
         //Avoid SQL injection by making sure that data will be pushed in the correct format
-        $stmt->bind_param("sssi", $name, $email, $hashedPassword, $isADM);
+        $stmt->bind_param("ssssss", $fname, $sname, $email, $hashedPassword, $address, $phone);
 
         //Run the query
         if ($stmt->execute()) {
@@ -53,8 +62,13 @@
             </div>
 
             <div>
-                <input type="text" id="name" class="input-field" name="name" autocomplete="Name" placeholder="John Doe" required>
+                <input type="text" id="fname" class="input-field" name="fname" autocomplete="Name" placeholder="John" required>
             </div>
+
+            <div>
+                <input type="text" id="sname" class="input-field" name="sname" autocomplete="Name" placeholder="Doe" required>
+            </div>
+
             <div>
                 <label for="email">E-mail:</label>
             </div>
@@ -70,10 +84,26 @@
             <div>
                 <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
             </div>
+
+            <div>
+                <label for="adress">Address:</label>
+            </div>
+
+            <div>
+                <input type="address" id="address" class="input-field" name="address" placeholder="Address" required>
+            </div>
+
+            <div>
+                <label for="password">Phone:</label>
+            </div>
+
+            <div>
+                <input type="phone" id="phone" class="input-field" name="phone" placeholder="(61) 123-456-789" required>
+            </div>
             
             <div>
                 <p>Do you already have an account?<br>
-                Click <a href="login.html">here</a> to sign in</p>
+                Click <a href="login.php">here</a> to sign in</p>
             </div>
 
             <div>

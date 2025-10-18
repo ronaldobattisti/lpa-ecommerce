@@ -10,7 +10,7 @@
         $password = $_POST['password'] ?? '';
 
         // Prepare and execute query
-        $stmt = $conn->prepare("SELECT id, user, isADM, password FROM dbuser WHERE email = ?");
+        $stmt = $conn->prepare("SELECT * FROM lpa_clients WHERE lpa_client_email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
@@ -19,7 +19,18 @@
             //Password is stored hashed
             //bind_result will bind the value of the first collumn returned to the
             //first variable on its parameter and so on.
-            $stmt->bind_result($user_id, $user_name, $user_isadm, $hashed_password);
+            $stmt->bind_result( $user_id,
+                                $fname, 
+                                $sname, 
+                                $email, 
+                                $hashed_password, 
+                                $address, 
+                                $phone, 
+                                $payment, 
+                                $last4,
+                                $create_at,
+                                $user_status,
+                                $user_isadm);
             //now, user_id and hashed_password have the value returned from db
             $stmt->fetch();
 
@@ -29,12 +40,21 @@
             if (password_verify($password, $hashed_password)) {
                 //echo 'password correct';
                 $_SESSION['user_id'] = $user_id;
-                $_SESSION['user_name'] = $user_name;
-                $correct_input = true;
+                $_SESSION['user_name'] = $fname . ' ' . $sname;
+                $_SESSION['user_fname'] = $fname;
+                $_SESSION['user_sname'] = $sname;
+                $_SESSION['user_email'] = $email;
+                $_SESSION['address'] = $address;
+                $_SESSION['phone'] = $phone;
+                $_SESSION['payment'] = $payment;
+                $_SESSION['last4'] = $last4;
+                $_SESSION['user_isadm'] = $user_isadm;
+
+                /*$correct_input = true;
                 //Setting adm condition
                 if ($user_isadm > 0){
                     $_SESSION['user_isadm'] = true;
-                } else $_SESSION['user_isadm'] = false;
+                } else $_SESSION['user_isadm'] = false;*/
 
                 //header() redirects the user
                 header("Location: index.php");
