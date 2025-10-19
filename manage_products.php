@@ -1,9 +1,9 @@
 <?php
-    include 'disable_cache.php';
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include 'assets/disable_cache.php';
+    include 'app/database/connection.php';
+    include 'assets/start_session_safe.php';
 
-    $sql = "SELECT * FROM dbproducts";
+    $sql = "SELECT * FROM lpa_stock";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -18,7 +18,7 @@
         $category = $_POST['category'];
 
         if ($_POST['new_image'] != '') {
-            $image = 'images/' . $_POST['new_image'];
+            $image = 'assets/images/' . $_POST['new_image'];
         } else $image = $_POST['image'];
 
         $sql = "UPDATE `dbproducts` SET name=?, 
@@ -43,7 +43,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Products</title>
@@ -75,7 +75,7 @@
 </style>
 
 <body>
-    <div><?php include 'header.php'; ?></div>
+    <div><?php include 'includes/header.php'; ?></div>
 
     <div>
         <?php if ($has_products): ?>

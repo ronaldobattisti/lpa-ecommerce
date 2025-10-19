@@ -1,9 +1,9 @@
 <?php
-    include 'disable_cache.php';
-    include 'start_session_safe.php';
+    include 'assets/disable_cache.php';
+    include 'assets/start_session_safe.php';
 
-    $link = 'login.php';
     $person_tn = 'bi bi-person';
+    $link = 'login.php';
 
     if (!empty($_SESSION['user_name'])){
         $link = 'config.php';
@@ -45,7 +45,7 @@
         <?php endif; ?>
         <!--end test-->
        
-        <a href="<?php echo $link; ?>">
+        <a href="<?php echo $link ?>">
             <i class="<?php echo $person_tn; ?>"></i>
         </a>
 

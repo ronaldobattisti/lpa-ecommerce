@@ -1,6 +1,6 @@
 <?php
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include 'app/database/connection.php';
+    include 'assets/start_session_safe.php';
     $correct_input = true;
 
     //POST when submit, GET when visiting
@@ -78,10 +78,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div><?php include 'header.php'; ?></div>
+    <div><?php include 'includes/header.php'; ?></div>
 
     <div>
         <form method="post" action="login.php">
@@ -118,7 +118,7 @@
         </form>
     </div>
 
-    <div><?php include 'footer.html'; ?></div>
+    <div><?php include 'includes/footer.html'; ?></div>
 </body>
 </html>
 

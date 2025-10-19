@@ -10,7 +10,7 @@
             $item_id = $_POST['item_id'];//easier to work with
             //echo 'user id is: ' . $_SESSION['user_id'];
             $sql = "SELECT * FROM lpa_cart WHERE lpa_cart_user_id = $user_id AND lpa_cart_item_id  = $item_id";
-            echo $user_id;
+            //echo $user_id;
             $result = $conn->query($sql);
 
             //if cortumer has already added the item into the cart, do nothing and go to index

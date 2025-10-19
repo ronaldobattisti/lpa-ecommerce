@@ -1,7 +1,7 @@
 <?php
-    include 'disable_cache.php'
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include 'assets/disable_cache.php';
+    include 'app/database/connection.php';
+    include 'assets/start_session_safe.php';
 
     $user_id = $_SESSION['user_id'];
     

@@ -1,6 +1,6 @@
 <?php
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include 'app/database/connection.php';
+    include 'assets/start_session_safe.php';
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -50,10 +50,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div><?php include 'header.php'; ?></div>
+    <div><?php include 'includes/header.php'; ?></div>
 
     <div>
         <form action="register.php" method="post">

@@ -1,11 +1,11 @@
 <?php
-    include 'disable_cache.php';
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include 'assets/disable_cache.php';
+    include 'app/database/connection.php';
+    include 'assets/start_session_safe.php';
 
     // Fetch all products by category
     if (@$_SESSION['category'] != ''){
-        $sql = "SELECT * FROM lpa_stock WHERE lpa_Stock_cat = '{$_SESSION['category']}'";
+        $sql = "SELECT * FROM lpa_stock WHERE lpa_stock_cat = '{$_SESSION['category']}'";
     } else {
         $sql = "SELECT * FROM lpa_stock";
     }
