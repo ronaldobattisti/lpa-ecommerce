@@ -23,7 +23,7 @@
         </div>
 
         <div>
-            <p>Click <a href="manage_products.php">here</a> to manage products</p>
+            <p>Click <a href="product_manage.php">here</a> to manage products</p>
         </div>
 
         <div>

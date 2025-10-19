@@ -11,11 +11,11 @@
         $prod_onhand = $_POST['onhand'];
         $prod_price = $_POST['price'];
         $prod_cat = $_POST['category'];
-        $prod_url = 'images/' . $_POST['image'];
+        $prod_url = 'assets/images/' . $_POST['image'];
         //db sets by default status = 'a' (available)
 
         //prepare to run the query wo filling the values
-        $stmt = $conn->prepare("INSERT INTO dbproducts (lpa_stock_name, 
+        $stmt = $conn->prepare("INSERT INTO lpa_stock ( lpa_stock_name, 
                                                         lpa_stock_desc, 
                                                         lpa_stock_onhand, 
                                                         lpa_stock_price, 

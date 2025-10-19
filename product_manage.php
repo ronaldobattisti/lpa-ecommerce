@@ -21,15 +21,15 @@
             $image = 'assets/images/' . $_POST['new_image'];
         } else $image = $_POST['image'];
 
-        $sql = "UPDATE `dbproducts` SET name=?, 
-                                        description=?, 
-                                        price=?, 
-                                        quant=?, 
-                                        category=?, 
-                                        image_url=?
-                                        WHERE `dbproducts`.`id`=?";
+        $sql = "UPDATE `lpa_stock` SET  lpa_stock_name=?, 
+                                        lpa_stock_desc=?, 
+                                        lpa_stock_onhand=?,
+                                        lpa_stock_price=?, 
+                                        lpa_stock_cat=?, 
+                                        lpa_stock_image=?, 
+                                        WHERE `lpa_stock`.`lpa_stock_id `=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssdissi", $name, $description, $price, $quant, $category, $image, $id);
+        $stmt->bind_param("ssdissi", $name, $description, $quant, $price, $category, $image, $id);
         
         if ($stmt->execute()){
             echo '<meta http-equiv="refresh" content="5">';
@@ -89,17 +89,17 @@
                 </tr>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['name'] ?></td>
-                        <td><?php echo $row['price'] ?></td>
-                        <td><?php echo $row['quant'] ?></td>
-                        <td><a href="#" onclick="show_popup(<?php echo $row['id']; ?>, 
-                                                            '<?php echo $row['name']; ?>',
-                                                            '<?php echo $row['description']; ?>',
-                                                            <?php echo $row['price']; ?>,
-                                                            <?php echo $row['quant']; ?>,
-                                                            '<?php echo $row['category']; ?>',
-                                                            '<?php echo $row['image_url']; ?>');">Edit</a></td>
+                        <td><?php echo $row['lpa_stock_id'] ?></td>
+                        <td><?php echo $row['lpa_stock_name'] ?></td>
+                        <td><?php echo $row['lpa_stock_price'] ?></td>
+                        <td><?php echo $row['lpa_stock_onhand'] ?></td>
+                        <td><a href="#" onclick="show_popup(<?php echo $row['lpa_stock_id']; ?>, 
+                                                            '<?php echo $row['lpa_stock_name']; ?>',
+                                                            '<?php echo $row['lpa_stock_desc']; ?>',
+                                                            <?php echo $row['lpa_stock_price']; ?>,
+                                                            <?php echo $row['lpa_stock_onhand']; ?>,
+                                                            '<?php echo $row['lpa_stock_cat']; ?>',
+                                                            '<?php echo $row['lpa_stock_image']; ?>');">Edit</a></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -165,7 +165,7 @@
         </div>
     </div>
 
-    <div><?php include 'footer.html'; ?></div>
+    <div><?php include 'includes/footer.html'; ?></div>
 </body>
 </html>
 
