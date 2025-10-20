@@ -1,6 +1,6 @@
 <?php
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/app/database/connection.php';
+    include __DIR__ . '/assets/start_session_safe.php';
     $correct_input = true;
 
     //POST when submit, GET when visiting
@@ -50,14 +50,9 @@
                 $_SESSION['last4'] = $last4;
                 $_SESSION['user_isadm'] = $user_isadm;
 
-                /*$correct_input = true;
-                //Setting adm condition
-                if ($user_isadm > 0){
-                    $_SESSION['user_isadm'] = true;
-                } else $_SESSION['user_isadm'] = false;*/
-
+                include __DIR__ . '/config/site.php';
                 //header() redirects the user
-                header("Location: index.php");
+                header("Location: " . BASE_URL . "/index.php");
                 //exit to stop script
                 exit;
             } else {
@@ -81,7 +76,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div><?php include 'includes/header.php'; ?></div>
+    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
     <div>
         <form method="post" action="login.php">
@@ -118,7 +113,7 @@
         </form>
     </div>
 
-    <div><?php include 'includes/footer.html'; ?></div>
+    <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
 </body>
 </html>
 

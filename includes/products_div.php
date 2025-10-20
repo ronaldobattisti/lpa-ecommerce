@@ -1,7 +1,7 @@
 <?php
-    include 'assets/disable_cache.php';
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/../assets/disable_cache.php';
+    include __DIR__ . '/../app/database/connection.php';
+    include __DIR__ . '/../assets/start_session_safe.php';
 
     // Fetch all products by category
     if (@$_SESSION['category'] != ''){

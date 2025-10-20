@@ -1,6 +1,6 @@
 <?php
-    include 'assets/disable_cache.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/../assets/disable_cache.php';
+    include __DIR__ . '/../assets/start_session_safe.php';
 
     $person_tn = 'bi bi-person';
     $link = 'login.php';
@@ -19,11 +19,10 @@
 
 
 <header>
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <div class="header-item"; id="header-logo">
         <a href="index.php">
-            <img class="header-logo"; src="images/Logo.png" alt="TempLogo">
+            <img class="header-logo"; src="assets/images/Logo.png" alt="TempLogo">
         </a>
     </div>
     <div class="header-item">
@@ -56,7 +55,5 @@
         <?php endif; ?>
     </div>
 </header>
-
-<body>
     
 </body>

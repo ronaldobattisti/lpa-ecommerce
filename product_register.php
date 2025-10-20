@@ -1,7 +1,7 @@
 <?php
-    include 'assets/disable_cache.php';
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/assets/disable_cache.php';
+    include __DIR__ . '/app/database/connection.php';
+    include __DIR__ . '/assets/start_session_safe.php';
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -27,13 +27,13 @@
 
         //Run the query
         if ($stmt->execute()) {
-            // ✅ Registration successful → go to index
-            header("Location: index.php");
-            exit();
+              include __DIR__ . '/config/site.php';
+              header("Location: " . BASE_URL . "/index.php");
+              exit();
         } else {
-            // ❌ Registration failed → go back to registration
-            header("Location: register.php?error=1");
-            exit();
+              include __DIR__ . '/config/site.php';
+              header("Location: " . BASE_URL . "/register.php?error=1");
+              exit();
         }
 
         //Close connection
@@ -51,7 +51,7 @@
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body class="body">
-        <div><?php include 'includes/header.php'; ?></div>
+    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
         <form method='post'>
             <div>
@@ -74,7 +74,7 @@
                 <input type="number" id="price" class="" name="price" required>
             </div>
 
-            <?php include 'includes/category_select.php'?>
+            <?php include __DIR__ . '/includes/category_select.php'?>
 
             <div>
                 <label for="image">Product image:</label>
@@ -86,6 +86,6 @@
             </div>
         </form>
 
-        <div><?php include 'includes/footer.html'; ?></div>
+    <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
     // Step 1: Start the session
-    include '../assets/start_session_safe.php';
+    include __DIR__ . '/../assets/start_session_safe.php';
 
     // Step 2: Unset all session variables
     session_unset();
@@ -9,6 +9,7 @@
     session_destroy();
 
     // Step 4: Redirect to the login page (or home)
-    header("Location: ../index.php");
+    include __DIR__ . '/../config/site.php';
+    header("Location: " . BASE_URL . "/index.php");
     exit;
 ?>

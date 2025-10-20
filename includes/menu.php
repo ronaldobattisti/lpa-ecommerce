@@ -1,6 +1,6 @@
 <?php
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/../app/database/connection.php';
+    include __DIR__ . '/../assets/start_session_safe.php';
 
     //Using GET because there's no sensitive content, thats why
     //enchange="this.form.submit()" is being used
@@ -8,8 +8,6 @@
     $_SESSION['category'] = $_GET['category'] ?? '';
 
 ?>
-
-<link rel="stylesheet" href="../assets/css/styles.css">
 
 <header>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">

@@ -1,6 +1,6 @@
 <?php
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/../app/database/connection.php';
+    include __DIR__ . '/../assets/start_session_safe.php';
 
     if (isset($_SESSION['user_id'])){
         $user_id = $_SESSION['user_id'];//doesn't work into sql query if I use $_SESSION
@@ -14,8 +14,9 @@
             $result = $conn->query($sql);
 
             //if cortumer has already added the item into the cart, do nothing and go to index
-            if ($result->num_rows > 0){
-                header('Location: index.php');
+                if ($result->num_rows > 0){
+                include __DIR__ . '/../config/site.php';
+                header('Location: ' . BASE_URL . '/index.php');
             } else {//otherwise, add it
                 $stmt = $conn->prepare("INSERT INTO lpa_cart (  lpa_cart_user_id, 
                                                                 lpa_cart_item_id, 
@@ -23,10 +24,12 @@
                                                                 VALUES (?, ?, 1)");
                 $stmt->bind_param("ii", $user_id, $item_id);
                 if ($stmt->execute()) {
-                    header("Location: index.php");
+                    include __DIR__ . '/../config/site.php';
+                    header("Location: " . BASE_URL . "/index.php");
                     exit();
                 } else {
-                    header("Location: register.php?error=1");
+                    include __DIR__ . '/../config/site.php';
+                    header("Location: " . BASE_URL . "/register.php?error=1");
                     exit();
                 }
             }

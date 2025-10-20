@@ -1,6 +1,6 @@
 <?php
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include __DIR__ . '/connection.php';
+    include __DIR__ . '/start_session_safe.php';
 
     echo 'id' . $_GET['item_id'];
 
@@ -14,6 +14,7 @@
     }
 
     // Redirect back to the cart page
-    header("Location: cart.php");
+    include __DIR__ . '/../config/site.php';
+    header("Location: " . BASE_URL . "/cart.php");
     exit;
 ?>

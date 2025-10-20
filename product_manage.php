@@ -1,7 +1,7 @@
 <?php
-    include 'assets/disable_cache.php';
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/assets/disable_cache.php';
+    include __DIR__ . '/app/database/connection.php';
+    include __DIR__ . '/assets/start_session_safe.php';
 
     $sql = "SELECT * FROM lpa_stock WHERE 1";
     $stmt = $conn->prepare($sql);
@@ -75,7 +75,7 @@
 </style>
 
 <body>
-    <div><?php include 'includes/header.php'; ?></div>
+    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
     <div>
         <?php if ($has_products): ?>
@@ -165,7 +165,7 @@
         </div>
     </div>
 
-    <div><?php include 'includes/footer.html'; ?></div>
+    <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
 </body>
 </html>
 

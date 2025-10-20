@@ -1,6 +1,6 @@
 <?php
-    include 'app/database/connection.php';
-    include 'assets/start_session_safe.php';
+    include __DIR__ . '/app/database/connection.php';
+    include __DIR__ . '/assets/start_session_safe.php';
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -29,11 +29,13 @@
         //Run the query
         if ($stmt->execute()) {
             // ✅ Registration successful → go to index
-            header("Location: index.php");
+                include __DIR__ . '/config/site.php';
+                header("Location: " . BASE_URL . "/index.php");
             exit();
         } else {
             // ❌ Registration failed → go back to registration
-            header("Location: register.php?error=1");
+                include __DIR__ . '/config/site.php';
+                header("Location: " . BASE_URL . "/register.php?error=1");
             exit();
         }
 
@@ -53,7 +55,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div><?php include 'includes/header.php'; ?></div>
+    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
     <div>
         <form action="register.php" method="post">
