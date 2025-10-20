@@ -2,6 +2,10 @@
     include __DIR__ . '/../assets/disable_cache.php';
     include __DIR__ . '/../app/database/connection.php';
     include __DIR__ . '/../assets/start_session_safe.php';
+    // Make BASE_URL available for building web URLs
+    if (file_exists(__DIR__ . '/../config/site.php')) {
+        include __DIR__ . '/../config/site.php';
+    }
 
     // Fetch all products by category
     if (@$_SESSION['category'] != ''){
@@ -32,7 +36,7 @@
             <p><?php echo $row['lpa_stock_desc']; ?></p>
             <p><strong>$<?php echo $row['lpa_stock_price']; ?></strong></p>
             <?php if ($islogged): ?>
-                <form method="post" action="add_cart.php">
+                <form method="post" action="<?php echo defined('BASE_URL') ? BASE_URL : ''; ?>/ajax/add_cart.php">
                     <input type="hidden" name='item_id' value="<?php echo $row['lpa_stock_id']; ?>">
                     <button type="submit">Add to cart</button>
                 </form>

@@ -1,7 +1,7 @@
 <?php
     // AJAX endpoint to update cart item quantity
-    header('Content-Type: application/json; charset=utf-8');
-    include __DIR__ . '/../app/database/connection.php';
+    header('Content-Type: application/json; charset=utf-8'); //tells the vrowser the response will be a json, not html
+    include __DIR__ . '/../app/database/connection.php'; //__DIR__ means the current folder
     include __DIR__ . '/../assets/start_session_safe.php';
 
     // Ensure user is logged in

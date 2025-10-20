@@ -3,6 +3,12 @@
     include __DIR__ . '/app/database/connection.php';
     include __DIR__ . '/assets/start_session_safe.php';
 
+    if (file_exists(__DIR__ . '/../config/site.php')) {
+            include __DIR__ . '/../config/site.php';
+    }
+
+    echo defined('BASE_URL') ? BASE_URL : ''; 
+    
     $user_id = $_SESSION['user_id'];
     $sql = "SELECT lpa_client_firstname, lpa_client_lastname, lpa_client_email FROM lpa_clients WHERE lpa_client_id = ?";
     $stmt = $conn->prepare($sql);
@@ -75,7 +81,7 @@
                             <td><input type="number" name="quantity[<?php echo $id; ?>]" value="<?php echo $quant; ?>" min="1" class="quantity" data-id="<?php echo $id; ?>"></td>
                             <td class="total">AUD <?php echo number_format($price * $quant, 2); ?></td>
                             <td>
-                                <a href="delete_from_cart.php?item_id=<?php echo $id; ?>" onclick="return confirm('Delete this item?');">Delete</a>
+                                <a href="<?php echo defined('BASE_URL') ? BASE_URL : ''; ?>/ajax/delete_from_cart.php?item_id=<?php echo $id; ?>" onclick="return confirm('Delete this item?');">Delete</a>
                             </td>
                         </tr>
                         <?php
