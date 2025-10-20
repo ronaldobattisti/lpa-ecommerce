@@ -2,6 +2,10 @@
     include 'app/database/connection.php';
     include 'assets/start_session_safe.php';
 
+    echo "  <script>
+                alert ('chegou');
+            </script>";
+
     if (isset($_POST['id']) && isset($_POST['quant'])) {
         $item_id = intval($_POST['id']);
         $quant = intval($_POST['quant']);

@@ -3,7 +3,7 @@
     include 'app/database/connection.php';
     include 'assets/start_session_safe.php';
 
-    $sql = "SELECT * FROM lpa_stock";
+    $sql = "SELECT * FROM lpa_stock WHERE 1";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -26,8 +26,8 @@
                                         lpa_stock_onhand=?,
                                         lpa_stock_price=?, 
                                         lpa_stock_cat=?, 
-                                        lpa_stock_image=?, 
-                                        WHERE `lpa_stock`.`lpa_stock_id `=?";
+                                        lpa_stock_image=? 
+                                        WHERE `lpa_stock`.`lpa_stock_id`=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssdissi", $name, $description, $quant, $price, $category, $image, $id);
         

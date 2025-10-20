@@ -97,6 +97,7 @@
                 
                 <div><?php include 'includes/footer.html'; ?></div>
             </form>
+        </div>
     </body>
 </html>
 
@@ -123,16 +124,13 @@
                 // that's what php file receives:
                 // $_POST['id']
                 // $_POST['quant']
-                fetch('../ajax/update_cart_quantity.php', {
+                fetch('ajax/update_cart_quantity.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     body: 'id=' + encodeURIComponent(id) + '&quant=' + encodeURIComponent(quant)
                 })
                 .then(response => response.text())   // 6️⃣ Get the response from PHP
-                .then(result => {
-                    console.log(result);  // 7️⃣ Optional: see response in console
+                .then(result => { console.log(result);  // 7️⃣ Optional: see response in console
 
                     // 8️⃣ Update the total price in the table row immediately
                     let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;

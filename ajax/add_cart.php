@@ -1,6 +1,6 @@
 <?php
-    include 'connection.php';
-    include 'start_session_safe.php';
+    include 'app/database/connection.php';
+    include 'assets/start_session_safe.php';
 
     if (isset($_SESSION['user_id'])){
         $user_id = $_SESSION['user_id'];//doesn't work into sql query if I use $_SESSION

@@ -27,7 +27,7 @@
         </div>
 
         <div>
-            <p>Click <a href="manage_orders.php">here</a> to manage orders</p>
+            <p>Click <a href="order_manage.php">here</a> to manage orders</p>
         </div>
 
         <div><?php include 'includes/footer.html'; ?></div>

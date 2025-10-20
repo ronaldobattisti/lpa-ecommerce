@@ -16,7 +16,6 @@
     <form method="GET" action="">
         <label for="category">Filter by category:</label>
         <select name="category" id="category" onchange="this.form.submit()">
-            <option value="" disabled selected>Select a category</option>
             <option value="">All categories</option>
             <option value="desktop">Desktop</option>
             <option value="laptop">Laptop</option>

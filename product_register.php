@@ -23,7 +23,7 @@
                                                         lpa_stock_image) 
                                                         VALUES (?, ?, ?, ?, ?, ?)");
         //Avoid SQL injection by making sure that data will be pushed in the correct format
-        $stmt->bind_param("ssidss", $prod_name, $prod_desc, $prod_onhand, $prod_price,  $prod_cat, $prod_url);
+        $stmt->bind_param("ssidss", $prod_name, $prod_desc, $prod_onhand, $prod_price, $prod_cat, $prod_url);
 
         //Run the query
         if ($stmt->execute()) {
@@ -48,7 +48,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Temp Store</title>
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body class="body">
         <div><?php include 'includes/header.php'; ?></div>
@@ -74,19 +74,7 @@
                 <input type="number" id="price" class="" name="price" required>
             </div>
 
-            <div>
-                <label for="category">Category:</label>
-                <select id="category" name="category">
-                    <option value="desktop">Desktop</option>
-                    <option value="laptop">Laptop</option>
-                    <option value="component">Component</option>
-                    <option value="storage">Storage</option>
-                    <option value="peripheral">Perihperal</option>
-                    <option value="display">Display</option>
-                    <option value="network">Network</option>
-                    <option value="printer">Printer</option>
-                </select>
-            </div>
+            <?php include 'includes/category_select.php'?>
 
             <div>
                 <label for="image">Product image:</label>
