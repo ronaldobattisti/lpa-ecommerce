@@ -102,15 +102,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 1️⃣ Select all class quantity inputs
         let quantityInputs = document.querySelectorAll('.quantity');
         let deleteButtons = document.querySelectorAll('.delete');
 
-        // 2️⃣ Loop through each input
         quantityInputs.forEach(function(input) {
-            
         
-            // 3️⃣ Add an event listener for when the value changes
             input.addEventListener('change', function() {
             
                 // 4️⃣ Get the item ID and new quantity
@@ -140,6 +136,7 @@
                         let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
                         let price = parseFloat(priceText.replace('AUD ', ''));
                         this.closest('tr').querySelector('.total').innerText = 'AUD ' + (price * quant).toFixed(2);
+                        updateCartTotal();
                     } else {
                         console.error('Server error:', json.error || json.message);
                         alert('Could not update quantity: ' + (json.error || json.message));
@@ -152,4 +149,20 @@
             });
         });
     });
+
+    function updateCartTotal() {
+        let totals = document.querySelectorAll('.total');
+        let sum = 0;
+
+        totals.forEach(function(td){
+            let text = td.innerText.replace('AUD ', '').trim();
+            let value = parseFloat(text);
+
+            if (!isNaN(value)){
+                sum += value;
+            }
+        });
+        
+        document.querySelector('.cart-total').innerText = 'AUD' + sum.toFixed(2);
+    }
 </script>
