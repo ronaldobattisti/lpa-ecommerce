@@ -94,9 +94,9 @@
                     <button type="submit">Purchase</button>
                 </div>
                 
-                <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
             </form>
         
+    <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>
 </html>
 

@@ -86,6 +86,6 @@
             </div>
         </form>
 
-    <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
+    <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>
 </html>

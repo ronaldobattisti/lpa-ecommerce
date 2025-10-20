@@ -30,6 +30,6 @@
             <p>Click <a href="order_manage.php">here</a> to manage orders</p>
         </div>
 
-    <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
+        <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>
 </html>

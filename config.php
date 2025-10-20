@@ -19,6 +19,6 @@
             <p>Click <a href="includes/logout.php">here</a> to log out</p>
         </div>
 
-    <div><?php include __DIR__ . '/includes/footer.html'; ?></div>
+        <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>
 </html>

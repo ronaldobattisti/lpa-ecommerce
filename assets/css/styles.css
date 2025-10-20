@@ -1,5 +1,14 @@
 html, body {
-    min-width: 350;
+    height: 100%;
+    min-width: 350px;
+}
+
+/* Layout: make body a column flex container so footer can stick to the bottom when
+   content is short via margin-top: auto on the footer */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header,
@@ -50,15 +59,20 @@ menu,
 
 footer,
 #footer-container {
-    bottom: 5px;
-    left: 10px;
-    right: 10px;
-    height: 35px;
+    /* make footer part of normal document flow so it appears at the end of the page */
+    position: static; /* not fixed */
+    width: 100%;
+    left: auto;
+    right: auto;
+    bottom: auto;
     display: flex;
     flex-direction: row;
-    position: fixed;
-    background-color: beige;
     justify-content: center;
+    align-items: center;
+    background-color: beige;
+    padding: 10px 0;
+    margin-top: auto; /* push footer to bottom when page is short */
+    box-sizing: border-box;
 }
 
 /*login*/
