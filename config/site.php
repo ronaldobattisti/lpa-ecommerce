@@ -5,7 +5,7 @@
 // If you run at the webroot (http://localhost/) use ''
 
 if (!defined('BASE_URL')) {
-    define('BASE_URL', '/LPA_eComms');
+    define('BASE_URL', "/LPA_eComms");
 }
 
 ?>
