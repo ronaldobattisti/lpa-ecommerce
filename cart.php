@@ -45,12 +45,14 @@
     </head>
     <body class="body">
 
-    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+        <script>window.BASE_URL = '<?php echo defined("BASE_URL") ? rtrim(BASE_URL, "\\/") : ""; ?>';</script>
+
+        <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
         <div>
             <p>Welcome to your cart, <?php echo htmlspecialchars($username); ?>.</p>
 
-            <form method='POST'>
+            <form id="purchaseForm" method='POST'>
 
                 <table>
                     <tr>
@@ -62,29 +64,30 @@
                         <th></th>
                     </tr>
 
-                <?php if ($hasItemsInCart){
-                    while ($row = $result->fetch_assoc()){
-                        $id = $row['lpa_stock_id'];
-                        $name = $row['lpa_stock_name'];
-                        $price = $row['lpa_stock_price'];
-                        $quant = $row['lpa_cart_item_qty'];
-                        ?>
-                        <tr>
-                            <td><input type="checkbox" name="selected_ids[]" value="<?php echo $id; ?>"></td>
-                            <td><?php echo $id . ' -> ' . htmlspecialchars($name); ?></td>
-                            <td>AUD <?php echo number_format($price, 2); ?></td>
-                            <td><input type="number" name="quantity[<?php echo $id; ?>]" value="<?php echo $quant; ?>" min="1" class="quantity" data-id="<?php echo $id; ?>"></td>
-                            <td class="total">AUD <?php echo number_format($price * $quant, 2); ?></td>
-                            <td>
-                                <a href="<?php echo BASE_URL; ?>/ajax/delete_from_cart.php?item_id=<?php echo $id; ?>" onclick="return confirm('Delete this item? ');">Delete</a>
-                            </td>
-                        </tr>
-                        <?php
-                        $total += $row['lpa_cart_item_qty'] * $row['lpa_stock_price'];
-                    }
-                } else {
-                    echo '<p>Your cart is empty</p>';
-                }?>
+                    <?php if ($hasItemsInCart){
+                        while ($row = $result->fetch_assoc()){
+                            $id = $row['lpa_stock_id'];
+                            $name = $row['lpa_stock_name'];
+                            $price = $row['lpa_stock_price'];
+                            $quant = $row['lpa_cart_item_qty'];
+                            ?>
+                            <tr>
+                                <td><input type="checkbox" name="selected_ids[]" value="<?php echo $id; ?>"></td>
+                                <td><?php echo $id . ' -> ' . htmlspecialchars($name); ?></td>
+                                <td>AUD <?php echo number_format($price, 2); ?></td>
+                                <td><input type="number" name="quantity[<?php echo $id; ?>]" value="<?php echo $quant; ?>" min="1" class="quantity" data-id="<?php echo $id; ?>"></td>
+                                <td class="total">AUD <?php echo number_format($price * $quant, 2); ?></td>
+                                <td>
+                                    <a href="<?php echo BASE_URL; ?>/ajax/delete_from_cart.php?item_id=<?php echo $id; ?>" onclick="return confirm('Delete this item? ');">Delete</a>
+                                </td>
+                            </tr>
+                            <?php
+                            $total += $row['lpa_cart_item_qty'] * $row['lpa_stock_price'];
+                        }
+                    } else {
+                        echo '<p>Your cart is empty</p>';
+                    }?>
+                </table>
 
                 <div class="cart-total">
                     <p>Total: $<?php echo number_format($total, 2); ?></p>
@@ -93,76 +96,135 @@
                 <div>
                     <button type="submit">Purchase</button>
                 </div>
-                
             </form>
+            <div id="responseMessage"></div>
+        </div>
         
-    <?php include __DIR__ . '/includes/footer.html'; ?>
-    </body>
-</html>
+        <script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let quantityInputs = document.querySelectorAll('.quantity');
-        let deleteButtons = document.querySelectorAll('.delete');
+            document.addEventListener('DOMContentLoaded', function() {
+                let quantityInputs = document.querySelectorAll('.quantity');
+                let deleteButtons = document.querySelectorAll('.delete');
 
-        quantityInputs.forEach(function(input) {
-        
-            input.addEventListener('change', function() {
-            
-                // 4️⃣ Get the item ID and new quantity
-                let id = this.dataset.id;      // which product
-                let quant = this.value;        // new quantity entered by user
+                quantityInputs.forEach(function(input) {
+
+                    input.addEventListener('change', function() {
+
+                        // 4️⃣ Get the item ID and new quantity
+                        let id = this.dataset.id;      // which product
+                        let quant = this.value;        // new quantity entered by user
+
+                        // 5️⃣ Send AJAX request to PHP, POST because we're sending data and 
+                        // the content type is regarding the type of data(HTML format).
+                        // body is the content sent, where the encodeURIComponent assure thet special characters are safely send
+                        // that's what php file receives:
+                        // $_POST['id']
+                        // $_POST['quant']
+                        let link = 'ajax/update_cart_quantity.php';
+                        fetch(link, {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                            body: 'id=' + encodeURIComponent(id) + '&quant=' + encodeURIComponent(quant)
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+                            return response.json();//converts response into json
+                        })
+                        .then(json => {
+                            console.log('AJAX result:', json);
+                            if (json.ok) {
+                                // Update the total price in the table row immediately
+                                let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
+                                let price = parseFloat(priceText.replace('AUD ', ''));
+                                this.closest('tr').querySelector('.total').innerText = 'AUD ' + (price * quant).toFixed(2);
+                                updateCartTotal();
+                            } else {
+                                console.error('Server error:', json.error || json.message);
+                                alert('Could not update quantity: ' + (json.error || json.message));
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Fetch error:', err);
+                            alert('An error occurred while updating quantity. See console for details.');
+                        });
+                    });
+                });
+            });
+
+            function updateCartTotal() {
+                let totals = document.querySelectorAll('.total');
+                let sum = 0;
+
+                totals.forEach(function(td){
+                    let text = td.innerText.replace('AUD ', '').trim();
+                    let value = parseFloat(text);
+
+                    if (!isNaN(value)){
+                        sum += value;
+                    }
+                });
                 
-                // 5️⃣ Send AJAX request to PHP, POST because we're sending data and 
-                // the content type is regarding the type of data(HTML format).
-                // body is the content sent, where the encodeURIComponent assure thet special characters are safely send
-                // that's what php file receives:
-                // $_POST['id']
-                // $_POST['quant']
-                let link = 'ajax/update_cart_quantity.php';
-                fetch(link, {
+                document.querySelector('.cart-total').innerText = 'AUD' + sum.toFixed(2);
+            }
+
+            document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+                e.preventDefault(); // prevent page reload
+
+                const checked = document.querySelectorAll('input[name="selected_ids[]"]:checked');
+                const selectedIds = Array.from(checked).map(cb => parseInt(cb.value, 10));
+                //Array.from(selectedCheckboxes) -> convert NodeList into JS array, allowing to use map
+                //.map(cb => cb.value) -> extract only the values
+                //before map:<input type="checkbox" name="selected_ids[]" value="12" checked>
+                //after map: selectedIds = ["12", "25", "37"];
+
+                const quantities = {};
+                document.querySelectorAll('input.quantity').forEach(input => {
+                    const id = parseInt(input.getAttribute('data-id'), 10);
+                    quantities[id] = parseInt(input.value, 10) || 1;
+                });
+                
+                if (selectedIds.length === 0) {
+                    document.getElementById('responseMessage').innerText = "Please select at least one product.";
+                    return;
+                }
+
+                // use BASE_URL if defined server-side to build absolute path
+                const createUrl = (typeof BASE_URL !== 'undefined' && BASE_URL) ? BASE_URL + '/ajax/create_invoice.php' : 'ajax/create_invoice.php';
+
+                fetch(createUrl, {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: 'id=' + encodeURIComponent(id) + '&quant=' + encodeURIComponent(quant)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ selected_ids: selectedIds, quantity: quantities })
                 })
                 .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
-                    return response.json();//converts response into json
+                    if (!response.ok) throw new Error('Server returned ' + response.status);
+                    return response.json();
                 })
-                .then(json => {
-                    console.log('AJAX result:', json);
-                    if (json.ok) {
-                        // Update the total price in the table row immediately
-                        let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
-                        let price = parseFloat(priceText.replace('AUD ', ''));
-                        this.closest('tr').querySelector('.total').innerText = 'AUD ' + (price * quant).toFixed(2);
+                .then(data => {
+                    const respEl = document.getElementById('responseMessage');
+                    respEl.innerText = data.message || 'No message from server.';
+                    const purchaseBtn = document.querySelector('#purchaseForm button[type="submit"]');
+                    purchaseBtn.disabled = false;
+
+                    if (data.success) {
+                        // remove checked rows from DOM
+                        checked.forEach(cb => {
+                            const row = cb.closest('tr');
+                            if (row) row.parentNode.removeChild(row);
+                        });
+                        // recalc total
                         updateCartTotal();
-                    } else {
-                        console.error('Server error:', json.error || json.message);
-                        alert('Could not update quantity: ' + (json.error || json.message));
                     }
                 })
                 .catch(err => {
-                    console.error('Fetch error:', err);
-                    alert('An error occurred while updating quantity. See console for details.');
+                    document.getElementById('responseMessage').innerText = 'Error: ' + err.message;
+                    const purchaseBtn = document.querySelector('#purchaseForm button[type="submit"]');
+                    if (purchaseBtn) purchaseBtn.disabled = false;
                 });
+            
             });
-        });
-    });
 
-    function updateCartTotal() {
-        let totals = document.querySelectorAll('.total');
-        let sum = 0;
-
-        totals.forEach(function(td){
-            let text = td.innerText.replace('AUD ', '').trim();
-            let value = parseFloat(text);
-
-            if (!isNaN(value)){
-                sum += value;
-            }
-        });
-        
-        document.querySelector('.cart-total').innerText = 'AUD' + sum.toFixed(2);
-    }
-</script>
+        </script>
+    </body>
+    <?php include __DIR__ . '/includes/footer.html'; ?>
+</html>

@@ -1,0 +1,66 @@
+2025-10-22 03:40:40 - Inserting item: invoice=7 stockId=7 name=Monitor LG qty=2 price=106.00 amount=212
+2025-10-22 03:40:40 - Uncaught Exception: Commands out of sync; you can't run this command now\n#0 C:\xampp\htdocs\LPA_eComms\ajax\create_invoice.php(149): mysqli->rollback()
+#1 {main}
+2025-10-22 03:41:50 - Inserting item: invoice=8 stockId=7 name=Monitor LG qty=2 price=106.00 amount=212
+2025-10-22 03:41:50 - Inserting item: invoice=8 stockId=6 name=Desktop Dell all-in-one qty=1 price=1000.00 amount=1000
+2025-10-22 03:41:50 - Exception: Duplicate entry '8' for key 'PRIMARY'
+Stack: #0 C:\xampp\htdocs\LPA_eComms\ajax\create_invoice.php(123): mysqli_stmt->execute()
+#1 {main}
+
+2025-10-22 03:43:05 - Created invoice no: 9
+2025-10-22 03:43:05 - Schema lpa_invoices: CREATE TABLE `lpa_invoices` (
+  `lpa_inv_no` int(20) NOT NULL AUTO_INCREMENT,
+  `lpa_inv_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `lpa_inv_client_id` int(20) NOT NULL,
+  `lpa_inv_amount` decimal(8,2) NOT NULL,
+  `lpa_inv_payment_type` varchar(50) NOT NULL,
+  `lpa_inv_status` char(1) NOT NULL DEFAULT 'E',
+  PRIMARY KEY (`lpa_inv_no`),
+  KEY `lpa_invoices_ibfk_1` (`lpa_inv_client_id`),
+  CONSTRAINT `lpa_invoices_ibfk_1` FOREIGN KEY (`lpa_inv_client_id`) REFERENCES `lpa_clients` (`lpa_client_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+2025-10-22 03:43:05 - Schema lpa_invoice_items: CREATE TABLE `lpa_invoice_items` (
+  `lpa_invitem_inv_no` int(20) NOT NULL,
+  `lpa_invitem_stock_id` int(20) NOT NULL,
+  `lpa_invitem_stock_name` varchar(250) NOT NULL,
+  `lpa_invitem_qty` int(11) NOT NULL,
+  `lpa_invitem_price` decimal(8,2) NOT NULL,
+  `lpa_invitem_amount` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`lpa_invitem_inv_no`),
+  KEY `lpa_invitem_stock_id` (`lpa_invitem_stock_id`),
+  CONSTRAINT `lpa_invoice_items_ibfk_1` FOREIGN KEY (`lpa_invitem_inv_no`) REFERENCES `lpa_invoices` (`lpa_inv_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `lpa_invoice_items_ibfk_2` FOREIGN KEY (`lpa_invitem_stock_id`) REFERENCES `lpa_stock` (`lpa_stock_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+2025-10-22 03:43:05 - Inserting item: invoice=9 stockId=7 name=Monitor LG qty=2 price=106.00 amount=212
+2025-10-22 03:43:05 - Inserting item: invoice=9 stockId=6 name=Desktop Dell all-in-one qty=1 price=1000.00 amount=1000
+2025-10-22 03:43:05 - Exception: Duplicate entry '9' for key 'PRIMARY'
+Stack: #0 C:\xampp\htdocs\LPA_eComms\ajax\create_invoice.php(141): mysqli_stmt->execute()
+#1 {main}
+
+2025-10-22 03:49:47 - Created invoice no: 10
+2025-10-22 03:49:47 - Schema lpa_invoices: CREATE TABLE `lpa_invoices` (
+  `lpa_inv_no` int(20) NOT NULL AUTO_INCREMENT,
+  `lpa_inv_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `lpa_inv_client_id` int(20) NOT NULL,
+  `lpa_inv_amount` decimal(8,2) NOT NULL,
+  `lpa_inv_payment_type` varchar(50) NOT NULL,
+  `lpa_inv_status` char(1) NOT NULL DEFAULT 'E',
+  PRIMARY KEY (`lpa_inv_no`),
+  KEY `lpa_invoices_ibfk_1` (`lpa_inv_client_id`),
+  CONSTRAINT `lpa_invoices_ibfk_1` FOREIGN KEY (`lpa_inv_client_id`) REFERENCES `lpa_clients` (`lpa_client_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+2025-10-22 03:49:47 - Schema lpa_invoice_items: CREATE TABLE `lpa_invoice_items` (
+  `lpa_invitem_inv_no` int(20) NOT NULL,
+  `lpa_invitem_stock_id` int(20) NOT NULL,
+  `lpa_invitem_stock_name` varchar(250) NOT NULL,
+  `lpa_invitem_qty` int(11) NOT NULL,
+  `lpa_invitem_price` decimal(8,2) NOT NULL,
+  `lpa_invitem_amount` decimal(10,2) NOT NULL,
+  KEY `lpa_invitem_stock_id` (`lpa_invitem_stock_id`),
+  KEY `index` (`lpa_invitem_inv_no`) USING BTREE,
+  CONSTRAINT `lpa_invoice_items_ibfk_1` FOREIGN KEY (`lpa_invitem_inv_no`) REFERENCES `lpa_invoices` (`lpa_inv_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `lpa_invoice_items_ibfk_2` FOREIGN KEY (`lpa_invitem_stock_id`) REFERENCES `lpa_stock` (`lpa_stock_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+2025-10-22 03:49:47 - Inserting item: invoice=10 stockId=7 name=Monitor LG qty=2 price=106.00 amount=212
+2025-10-22 03:49:47 - Inserting item: invoice=10 stockId=6 name=Desktop Dell all-in-one qty=1 price=1000.00 amount=1000
+2025-10-22 03:49:47 - Inserting item: invoice=10 stockId=5 name=Laptop Microsoft Surface qty=1 price=3200.00 amount=3200

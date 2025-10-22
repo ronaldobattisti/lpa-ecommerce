@@ -69,52 +69,51 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Login</title>
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+    <body>
+        <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-    <div>
-        <form method="post" action="login.php">
-            <?php if (!$correct_input): ?>
+        <div>
+            <form method="post" action="login.php">
+                <?php if (!$correct_input): ?>
+                    <div>
+                        <p>Incorrect e-mail or password, please try again</p>
+                    </div>
+                <?php endif;?>
+
                 <div>
-                    <p>Incorrect e-mail or password, please try again</p>
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" class="input-field" name="email" autocomplete="email" placeholder="Enter your e-mail here" required>
                 </div>
-            <?php endif;?>
 
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="text" id="email" class="input-field" name="email" autocomplete="email" placeholder="Enter your e-mail here" required>
-            </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
+                
+                </div>
+                
+                <div>
+                    <p>Forgot your password?<br>
+                    Click <a href="recover-password.html">here</a> and follow the instructions</p>
+                </div>
 
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
-            
-            </div>
-            
-            <div>
-                <p>Forgot your password?<br>
-                Click <a href="recover-password.html">here</a> and follow the instructions</p>
-            </div>
+                <div>
+                    <p>Don't have an accout?<br>
+                    Click <a href="register.php">here</a> to sign up</p>
+                </div>
 
-            <div>
-                <p>Don't have an accout?<br>
-                Click <a href="register.php">here</a> to sign up</p>
-            </div>
+                <div>
+                    <button type="submit" class="button-submit">Login</button>
+                </div>
+            </form>
+        </div>
 
-            <div>
-                <button type="submit" class="button-submit">Login</button>
-            </div>
-        </form>
-    </div>
-
-</body>
+    </body>
     <?php include __DIR__ . '/includes/footer.html'; ?>
-</body>
 </html>
 
