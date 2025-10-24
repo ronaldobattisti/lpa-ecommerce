@@ -1,6 +1,7 @@
 <?php
     include __DIR__ . '/assets/disable_cache.php';
     include __DIR__ . '/assets/start_session_safe.php';
+    include __DIR__ . '/config/site.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,8 @@
 
         <div>
             <p>Welcome to you account's settings, <?php echo $_SESSION['user_name']; ?></p>
-            <p>Click <a href="includes/logout.php">here</a> to log out</p>
+            <p>Click <a href="<?php echo BASE_URL . '/order_view.php'; ?>">here</a> to see your orders</p>
+            <p>Click <a href="<?php echo BASE_URL . '/includes/logout.php'; ?>">here</a> to log out</p>
         </div>
 
         <?php include __DIR__ . '/includes/footer.html'; ?>

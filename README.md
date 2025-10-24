@@ -5,6 +5,8 @@ To clarify:
 -Differences btw get_result() and store_result();
 -How $_SESSION variables works;
 
+Summary:
+
 Ajax used in cart:
     -change quantity
 
@@ -14,6 +16,7 @@ Notes:
 
     General:
         » User __DIR__ in front of the paths to avoid errors when fetching other pages. __DIR__ returns the absolute path of the directory where the current php file is located.
+        » 
 
     Cart:
         » Ajax -> standard pattern:
@@ -29,3 +32,25 @@ Notes:
         » Change instantly the price:
             let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
             //select the innerText of the 3rd collumn in this line
+
+
+
+
+
+
+
+
+
+
+Quoting php in html:
+
+
+__DIR__:
+    » Gives the phisical folder path (server/computer)
+    » Used inside PHP for includes or file handling
+    » Not visible to the browser
+    » <?php include __DIR__ . '/inludes/header.php'; ?>
+
+BASE_URL:
+    » Constant defined
+    » <?php echo BASE_URL . '/assets/css/styles.css'; ?>
