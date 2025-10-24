@@ -52,15 +52,32 @@
                         <td><?php echo $inv_date ?></td>
                         <td><?php echo $inv_amount ?></td>
                         <td><?php echo $inv_payment ?></td>
-                        <td><?php echo $inv_status ?></td>
+                        <td><a href="#" onclick="show_popup(
+                                                            
+                                                            );"> <?php echo $inv_status ?></a></td>
                     </tr>
                     <?php
                 }
-            }
-
-            ?>
+            }?>
         </table>
 
     </body>
     <?php include __DIR__ . '/includes/footer.html'; ?>
 </html>
+
+<script>
+    function show_popup(id, name, desc, price, quant, cat, image_url) {
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
+        document.getElementById("description").value = desc;
+        document.getElementById("price").value = price;
+        document.getElementById("quant").value = quant;
+        document.getElementById("category").value = cat;
+        document.getElementById("image").value = image_url;
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+</script>

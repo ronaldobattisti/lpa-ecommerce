@@ -30,7 +30,7 @@
         if ($stmt->execute()) {
             // ✅ Registration successful → go to index
                 include __DIR__ . '/config/site.php';
-                header("Location: " . BASE_URL . "/index.php");
+                header("Location: " . BASE_URL . "/login.php");
             exit();
         } else {
             // ❌ Registration failed → go back to registration

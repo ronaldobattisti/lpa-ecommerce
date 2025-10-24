@@ -85,7 +85,7 @@
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Quant</th>
-                    <th>Anything</th>
+                    <th>Edit</th>
                 </tr>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>

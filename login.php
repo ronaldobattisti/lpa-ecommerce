@@ -57,9 +57,11 @@
                 exit;
             } else {
                 $correct_input = false;
+                echo "<script>alert('Wrong password. Please, try again.');</script>";
                 $error = "Invalid password.";
             }
         } else {
+            echo "<script>alert('E-mail not registered');</script>";
             $error = "User not found.";
         }
 
