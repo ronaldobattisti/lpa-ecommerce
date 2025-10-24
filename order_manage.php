@@ -41,7 +41,7 @@
                 while ($row = $result->fetch_assoc()) {
                     $inv_no = $row['lpa_inv_no'];
                     $client_name = $row['lpa_client_firstname'] . ' ' . $row['lpa_client_lastname'];
-                    $inv_date = $row['lpa_inv_date'];
+                    $inv_date = (new DateTime($row['lpa_inv_date']))->format("d/m/Y");
                     $inv_amount = $row['lpa_inv_amount'];
                     $inv_payment = $row['lpa_inv_payment_type'];
                     $inv_status = $row['lpa_inv_status'];
