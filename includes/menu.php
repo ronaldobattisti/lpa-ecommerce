@@ -8,21 +8,31 @@
     $_SESSION['category'] = $_GET['category'] ?? '';
 
 ?>
+<html>
 
-<header>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <form method="GET" action="">
-        <label for="category">Filter by category:</label>
-        <select name="category" id="category" onchange="this.form.submit()">
-            <option value="">All categories</option>
-            <option value="desktop">Desktop</option>
-            <option value="laptop">Laptop</option>
-            <option value="component">Component</option>
-            <option value="storage">Storage</option>
-            <option value="peripheral">Peripheral</option>
-            <option value="display">Display</option>
-            <option value="network">Network</option>
-            <option value="printer">Printer</option>
-        </select>
-    </form>
-</header>
+    <header>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+        <form method="GET" action="">
+            <label for="category">Filter by category:</label>
+            <select name="category" id="category" onchange="this.form.submit()">
+                <option value='' <?= !isset($_GET['category']) || $_GET['category'] == '' ? 'selected' : '' ?>>All categories</option>
+                <option value="desktop" <?= !isset($_GET['category']) || $_GET['category'] == 'desktop' ? 'selected' : '' ?>>Desktop</option>
+                <option value="laptop" <?= !isset($_GET['category']) || $_GET['category'] == 'laptop' ? 'selected' : '' ?>>Laptop</option>
+                <option value="component" <?= !isset($_GET['category']) || $_GET['category'] == 'component' ? 'selected' : '' ?>>Component</option>
+                <option value="storage" <?= !isset($_GET['category']) || $_GET['category'] == 'storage' ? 'selected' : '' ?>>Storage</option>
+                <option value="peripheral" <?= !isset($_GET['category']) || $_GET['category'] == 'peripheral' ? 'selected' : '' ?>>Peripheral</option>
+                <option value="display" <?= !isset($_GET['category']) || $_GET['category'] == 'display' ? 'selected' : '' ?>>Display</option>
+                <option value="network" <?= !isset($_GET['category']) || $_GET['category'] == 'network' ? 'selected' : '' ?>>Network</option>
+                <option value="printer" <?= !isset($_GET['category']) || $_GET['category'] == 'printer' ? 'selected' : '' ?>>Printer</option>
+            </select>
+        </form>
+    </header>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            let selection = document.querySelector('.category');
+
+            let cat = selection.
+        })
+    </script>
+</html>
