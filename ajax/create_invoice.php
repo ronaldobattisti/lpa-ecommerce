@@ -4,6 +4,7 @@ header('Content-Type: application/json');
 // Simple, easy-to-read create_invoice endpoint
 include __DIR__ . '/../app/database/connection.php';
 include __DIR__ . '/../assets/start_session_safe.php';
+include __DIR__ . '/../assets/csrf.php';
 
 function json_error($msg, $code = 400) {
     http_response_code($code);
@@ -17,6 +18,11 @@ if (!$user_id) json_error('Not authenticated', 401);
 $raw = file_get_contents('php://input');
 $data = json_decode($raw, true);
 if (!is_array($data) || empty($data['selected_ids'])) json_error('No products selected', 400);
+
+// verify CSRF token sent from client
+if (empty($data['csrf_token']) || !csrf_check($data['csrf_token'])) {
+    json_error('Invalid CSRF token', 403);
+}
 
 $selectedIds = array_map('intval', $data['selected_ids']);
 $quantities = isset($data['quantity']) && is_array($data['quantity']) ? $data['quantity'] : [];
@@ -76,5 +82,3 @@ try {
     $conn->rollback();
     json_error('Error creating invoice: ' . $e->getMessage(), 500);
 }
-?>
-    // Log table schemas for debugging duplicate primary key issues

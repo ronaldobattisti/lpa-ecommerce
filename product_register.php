@@ -2,9 +2,24 @@
     include __DIR__ . '/assets/disable_cache.php';
     include __DIR__ . '/app/database/connection.php';
     include __DIR__ . '/assets/start_session_safe.php';
+    include __DIR__ . '/assets/csrf.php';
+    include __DIR__ . '/config/site.php';
+
+    // Require admin to add products
+    $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') : '';
+    if (empty($_SESSION['user_isadm'])) {
+        header('Location: ' . $base . '/index.php');
+        exit;
+    }
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // CSRF validation
+        if (empty($_POST['csrf_token']) || !csrf_check($_POST['csrf_token'])) {
+            // simple error response
+            echo 'Invalid CSRF token';
+            exit;
+        }
             //getting data
         $prod_name = $_POST['name'];
         $prod_desc = $_POST['description'];
@@ -53,7 +68,7 @@
     <body class="body">
     <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-        <form method='post'>
+    <form method='post'>
             <div>
                 <label for="name">Product name:</label>
                 <input type="text" id="name" class="" name="name" required>
@@ -84,6 +99,7 @@
             <div>
                 <button type="submit" class="button-submit">Register product</button>
             </div>
+            <?php csrf_field(); ?>
         </form>
 
     <?php include __DIR__ . '/includes/footer.html'; ?>

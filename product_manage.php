@@ -2,7 +2,21 @@
     include __DIR__ . '/assets/disable_cache.php';
     include __DIR__ . '/app/database/connection.php';
     include __DIR__ . '/assets/start_session_safe.php';
+    include __DIR__ . '/assets/csrf.php';
+    include __DIR__ . '/config/site.php';
 
+    // Guard: require admin session flag before anything else
+    // If not admin, redirect to site home
+    if (empty($_SESSION['user_isadm']) || $_SESSION['user_isadm'] !== true) {
+        if (defined('BASE_URL')) {
+            header('Location: ' . rtrim(BASE_URL, '/') . '/index.php');
+        } else {
+            header('Location: /index.php');
+        }
+        exit;
+    }
+
+    // Admin-only: load products and handle updates
     $sql = "SELECT * FROM lpa_stock WHERE 1";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -10,6 +24,11 @@
     $has_products = ($result->num_rows > 0);
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // CSRF check
+        if (empty($_POST['csrf_token']) || !csrf_check($_POST['csrf_token'])) {
+            echo 'Invalid CSRF token';
+            exit;
+        }
         $id = $_POST['id'];
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -17,9 +36,11 @@
         $quant = $_POST['quant'];
         $category = $_POST['category'];
 
-        if ($_POST['new_image'] != '') {
+        if (!empty($_POST['new_image'])) {
             $image = 'assets/images/' . $_POST['new_image'];
-        } else $image = $_POST['image'];
+        } else {
+            $image = $_POST['image'];
+        }
 
         $sql = "UPDATE `lpa_stock` SET  lpa_stock_name=?, 
                                         lpa_stock_desc=?, 
@@ -30,13 +51,14 @@
                                         WHERE `lpa_stock`.`lpa_stock_id`=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssdissi", $name, $description, $quant, $price, $category, $image, $id);
-        
+
         if ($stmt->execute()){
             echo '<meta http-equiv="refresh" content="5">';
         } else echo 'Fail updating';
     }
     $stmt->close();
     $conn->close();
+
     
 ?>
 
@@ -87,6 +109,7 @@
         <div class="modal-content">
             <p>Edit item</p>
             <form method="post">
+                <?php csrf_field(); ?>
                 <label for="id">ID</label>
                 <input type="text" name="id" id="id" readonly>
 

@@ -3,6 +3,17 @@
     include __DIR__ . '/app/database/connection.php';
     include __DIR__ . '/assets/start_session_safe.php';
     include __DIR__ . '/config/site.php';
+    include __DIR__ . '/assets/csrf.php';
+
+    // Require admin access
+    if (empty($_SESSION['user_isadm'])) {
+        if (defined('BASE_URL')) {
+            header('Location: ' . rtrim(BASE_URL, '/') . '/index.php');
+        } else {
+            header('Location: /index.php');
+        }
+        exit;
+    }
 
     $user_id = $_SESSION['user_id'];
     $sql = "SELECT i.*, c.lpa_client_firstname, c.lpa_client_lastname 
@@ -15,6 +26,11 @@
     $hasOrder = $result->num_rows > 0;
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // CSRF validation
+        if (empty($_POST['csrf_token']) || !csrf_check($_POST['csrf_token'])) {
+            echo 'Invalid CSRF token';
+            exit;
+        }
         $inv_id = $_POST['inv_no'];
         $inv_payment = $_POST['inv_payment'];
         $inv_status = $_POST['inv_status'];
@@ -109,6 +125,7 @@
                 <option value="pending">Pending</option>
                 <option value="paid">Paid</option>
             </select>
+            <?php csrf_field(); ?>
             <br>
 
             <label for="inv_status">Order status: </label>
@@ -139,8 +156,7 @@
         document.getElementById("client_name").value = client_name;
         document.getElementById("inv_date").value = inv_date;
         document.getElementById("inv_amount").value = inv_amount;
-        let sel_inv_payment = sel_inv_payment.charAt(0).toUpperCase();
-        document.getElementById("inv_payment").value = sel_inv_payment;
+        document.getElementById("inv_payment").value = inv_payment;
         document.getElementById("inv_status").value = inv_status;
     }
 

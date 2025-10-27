@@ -29,6 +29,10 @@
         <div>
             <p>Click <a href="order_manage.php">here</a> to manage orders</p>
         </div>
+        
+        <div>
+            <p>Click <a href="user_manage.php">here</a> to manage clients</p>
+        </div>
 
         <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>

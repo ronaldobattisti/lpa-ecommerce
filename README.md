@@ -57,12 +57,11 @@ Notes:
 
 Quoting php in html:
 
-
 __DIR__:
     » Gives the phisical folder path (server/computer)
     » Used inside PHP for includes or file handling
     » Not visible to the browser
-    » <?php include __DIR__ . '/inludes/header.php'; ?>
+    » <?php include __DIR__ . '/includes/header.php'; ?>
 
 BASE_URL:
     » Constant defined
@@ -71,3 +70,56 @@ BASE_URL:
     To clarify: 
 -Differences btw get_result() and store_result();
 -How $_SESSION variables works;
+
+>>Completed (already implemented)<<
+
+» Project basics — DB connection, sessions and includes (index, connection.php, start_session_safe.php, header/footer). (completed)
+Product CRUD UI — product_register.php, product_manage.php, product listing. (completed)
+
+» Shopping cart — add/update/delete and display (ajax/add_cart.php, ajax/update_cart_quantity.php, ajax/delete_from_cart.php, cart.php). (completed)
+
+» Invoice creation — server endpoint and client flow (ajax/create_invoice.php, cart.php JS). (completed)
+
+» Order management UI — order listing and modal edit form, server-side update (order_manage.php). (completed)
+
+» Includes & path robustness — use of DIR and centralized BASE_URL. (completed)
+
+» Styling and layout fixes — stylesheet and footer placement improvements. (completed)
+
+>>In progress / partially done<<
+
+» Input validation & sanitization — some prepared statements exist, but central validation and sanitization need to be completed for all forms and endpoints. (in-progress)
+
+» Error handling & logging — endpoints now return JSON, but central logging and removal of dev logs should be finalized. (in-progress)
+
+» UX polish & accessibility — button disabling and row-removal implemented; consider empty-cart message and modal ARIA roles. (in-progress)
+
+>>Not started / recommended next steps (prioritized)<<
+
+» Fix lpa_invoice_items schema so one invoice can have many lines (urgent)
+
+    Preferred: change primary key to composite (lpa_invitem_inv_no, lpa_invitem_stock_id)
+
+    ALTER TABLE lpa_invoice_items DROP PRIMARY KEY, ADD PRIMARY KEY (lpa_invitem_inv_no, lpa_invitem_stock_id);
+
+    Alternate: add an auto-increment id column
+
+    Always backup table before running ALTER. (not-started)
+
+» Normalize invoice/payment enum values (important)
+    Make stored values consistent across code and DB (e.g., payment: 'pending'/'paid'; status: 'u'/'s'/'p' or full words). Update create_invoice.php and order_manage.php to use exactly the same values. (not-started)
+
+» CSRF protection (important for security)
+    Add tokens to all POST forms and validate server-side for ajax/create_invoice.php, order_manage.php, product edits. (not-started)
+
+» Permissions & auth checks (important)
+    Restrict admin pages and AJAX endpoints to authorized roles. (not-started)
+
+» Database migrations & backups (operational)
+    Add a small migrations folder with SQL files and an instruction in README to run backups. (not-started)
+
+» Tests & automated checks (nice to have)
+    Add a few integration tests (PHP scripts or PHPUnit) for AJAX endpoints. (not-started)
+
+» Documentation (setup + how to run) (helpful for assessment)
+    README with steps to import DB, set BASE_URL, run on XAMPP, and note known issues. (not-started)

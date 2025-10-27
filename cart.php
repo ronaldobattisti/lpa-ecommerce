@@ -45,7 +45,10 @@
     </head>
     <body class="body">
 
-        <script>window.BASE_URL = '<?php echo defined("BASE_URL") ? rtrim(BASE_URL, "\\/") : ""; ?>';</script>
+        <script>
+            window.BASE_URL = '<?php echo defined("BASE_URL") ? rtrim(BASE_URL, "\\/") : ""; ?>';
+            window.CSRF_TOKEN = '<?php echo isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : ''; ?>';
+        </script>
 
         <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
@@ -191,10 +194,13 @@
                 // use BASE_URL if defined server-side to build absolute path
                 const createUrl = (typeof BASE_URL !== 'undefined' && BASE_URL) ? BASE_URL + '/ajax/create_invoice.php' : 'ajax/create_invoice.php';
 
+                const purchaseBtn = document.querySelector('#purchaseForm button[type="submit"]');
+                if (purchaseBtn) purchaseBtn.disabled = true;
+
                 fetch(createUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ selected_ids: selectedIds, quantity: quantities })
+                    body: JSON.stringify({ selected_ids: selectedIds, quantity: quantities, csrf_token: window.CSRF_TOKEN })
                 })
                 .then(response => {
                     if (!response.ok) throw new Error('Server returned ' + response.status);
