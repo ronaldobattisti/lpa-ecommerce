@@ -9,12 +9,13 @@
 
 ?>
 <html>
-
     <header>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
         <form method="GET" action="">
             <label for="category">Filter by category:</label>
             <select name="category" id="category" onchange="this.form.submit()">
+                <!-- If category is not selected or category == '', 'all categories' is gonna be setted s selected -->
+                <!-- (condition) ? (value if true) : (value if false) -->
                 <option value='' <?= !isset($_GET['category']) || $_GET['category'] == '' ? 'selected' : '' ?>>All categories</option>
                 <option value="desktop" <?= !isset($_GET['category']) || $_GET['category'] == 'desktop' ? 'selected' : '' ?>>Desktop</option>
                 <option value="laptop" <?= !isset($_GET['category']) || $_GET['category'] == 'laptop' ? 'selected' : '' ?>>Laptop</option>
@@ -27,12 +28,4 @@
             </select>
         </form>
     </header>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            let selection = document.querySelector('.category');
-
-            let cat = selection.
-        })
-    </script>
 </html>

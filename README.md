@@ -1,9 +1,18 @@
 # TempStore
 Online store webpage
 
-To clarify: 
--Differences btw get_result() and store_result();
--How $_SESSION variables works;
+This application is being designed to improve my knowledges in ful-stack development.
+After working on some project with C#, I decided to explore more technologies to be able to develop solutions in a more efficient way, thats why this idea came. The main goal of this project is to develop an online store, with all resources a real store would have.
+
+My main goals are to learn and use the following tools:
+» AJAX: Used in the cart system to create a smoother and more responsive user experience;
+» PHP and JS: Focused on enabling seamless interaction between server-side and client-side code;
+» UI and UX: Ensuring the interface is intuitive and user-friendly;
+» Java: Revisiting cross-platform application development using HTTP requests and CRUD operations;
+» Android Studio: Learning the fundamentals of Android app development.
+
+At the moment, the database is hosted locally for testing and development.
+The application will be deployed online once it reaches a stable version.
 
 Summary:
 
@@ -33,7 +42,11 @@ Notes:
             let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
             //select the innerText of the 3rd collumn in this line
 
-
+    Menu:
+        » Hold user selection on select tag:
+            <!-- If category is not selected or category == '', 'all categories' is gonna be setted s selected -->
+            <!-- (condition) ? (value if true) : (value if false) -->
+            <option value='' <?= !isset($_GET['category']) || $_GET['category'] == '' ? 'selected' : '' ?>>All categories</option>
 
 
 
@@ -54,3 +67,7 @@ __DIR__:
 BASE_URL:
     » Constant defined
     » <?php echo BASE_URL . '/assets/css/styles.css'; ?>
+
+    To clarify: 
+-Differences btw get_result() and store_result();
+-How $_SESSION variables works;
