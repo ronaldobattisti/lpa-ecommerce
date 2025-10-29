@@ -60,6 +60,7 @@
                 <table>
                     <tr>
                         <th>Select</th>
+                        <th>Thumbnail</th>
                         <th>Product</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -76,6 +77,14 @@
                             ?>
                             <tr>
                                 <td><input type="checkbox" name="selected_ids[]" value="<?php echo $id; ?>"></td>
+                                <?php
+                                    // Try to use product image if provided, otherwise show a placeholder
+                                    $imgFile = 'no-image.png';
+                                    if (isset($row['lpa_stock_image']) && $row['lpa_stock_image'] !== '') {
+                                        $imgFile = $row['lpa_stock_image'];
+                                    }
+                                ?>
+                                <td><img src="<?php echo $imgFile; ?>" alt="<?php echo htmlspecialchars($name); ?>" style="width:60px;height:60px;object-fit:cover;border-radius:4px;"></td>
                                 <td><?php echo $id . ' -> ' . htmlspecialchars($name); ?></td>
                                 <td>AUD <?php echo number_format($price, 2); ?></td>
                                 <td><input type="number" name="quantity[<?php echo $id; ?>]" value="<?php echo $quant; ?>" min="1" class="quantity" data-id="<?php echo $id; ?>"></td>
@@ -113,43 +122,43 @@
 
                     input.addEventListener('change', function() {
 
-                        // 4️⃣ Get the item ID and new quantity
+                        // 4- Get the item ID and new quantity
                         let id = this.dataset.id;      // which product
                         let quant = this.value;        // new quantity entered by user
 
-                        // 5️⃣ Send AJAX request to PHP, POST because we're sending data and 
+                        // 5- Send AJAX request to PHP, POST because we're sending data and 
                         // the content type is regarding the type of data(HTML format).
                         // body is the content sent, where the encodeURIComponent assure thet special characters are safely send
                         // that's what php file receives:
                         // $_POST['id']
                         // $_POST['quant']
                         let link = 'ajax/update_cart_quantity.php';
-                        fetch(link, {
-                            method: 'POST',
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                            body: 'id=' + encodeURIComponent(id) + '&quant=' + encodeURIComponent(quant)
-                        })
-                        .then(response => {
-                            if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
-                            return response.json();//converts response into json
-                        })
-                        .then(json => {
-                            console.log('AJAX result:', json);
-                            if (json.ok) {
-                                // Update the total price in the table row immediately
-                                let priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
-                                let price = parseFloat(priceText.replace('AUD ', ''));
-                                this.closest('tr').querySelector('.total').innerText = 'AUD ' + (price * quant).toFixed(2);
-                                updateCartTotal();
-                            } else {
-                                console.error('Server error:', json.error || json.message);
-                                alert('Could not update quantity: ' + (json.error || json.message));
-                            }
-                        })
-                        .catch(err => {
-                            console.error('Fetch error:', err);
-                            alert('An error occurred while updating quantity. See console for details.');
-                        });
+                                    fetch(link, {
+                                        method: 'POST',
+                                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                                        body: 'id=' + encodeURIComponent(id) + '&quant=' + encodeURIComponent(quant)
+                                    })
+                                    .then(function(response) {
+                                        if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+                                        return response.json(); // converts response into json
+                                    })
+                                    .then(function(json) {
+                                        console.log('AJAX result:', json);
+                                        if (json.ok) {
+                                            // Update the total price in the table row immediately
+                                            var priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
+                                            var price = parseFloat(priceText.replace('AUD ', ''));
+                                            this.closest('tr').querySelector('.total').innerText = 'AUD ' + (price * quant).toFixed(2);
+                                            updateCartTotal();
+                                        } else {
+                                            console.error('Server error:', json.error || json.message);
+                                            alert('Could not update quantity: ' + (json.error || json.message));
+                                        }
+                                    }.bind(this))
+                                    .catch(function(err) {
+                                        console.error('Fetch error:', err);
+                                        alert('An error occurred while updating quantity. See console for details.');
+                                    });
                     });
                 });
             });
@@ -174,15 +183,15 @@
                 e.preventDefault(); // prevent page reload
 
                 const checked = document.querySelectorAll('input[name="selected_ids[]"]:checked');
-                const selectedIds = Array.from(checked).map(cb => parseInt(cb.value, 10));
+                const selectedIds = Array.from(checked).map(function(cb) { return parseInt(cb.value, 10); });
                 //Array.from(selectedCheckboxes) -> convert NodeList into JS array, allowing to use map
                 //.map(cb => cb.value) -> extract only the values
                 //before map:<input type="checkbox" name="selected_ids[]" value="12" checked>
                 //after map: selectedIds = ["12", "25", "37"];
 
                 const quantities = {};
-                document.querySelectorAll('input.quantity').forEach(input => {
-                    const id = parseInt(input.getAttribute('data-id'), 10);
+                document.querySelectorAll('input.quantity').forEach(function(input) {
+                    var id = parseInt(input.getAttribute('data-id'), 10);
                     quantities[id] = parseInt(input.value, 10) || 1;
                 });
                 
@@ -202,30 +211,30 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ selected_ids: selectedIds, quantity: quantities, csrf_token: window.CSRF_TOKEN })
                 })
-                .then(response => {
+                .then(function(response) {
                     if (!response.ok) throw new Error('Server returned ' + response.status);
                     return response.json();
                 })
-                .then(data => {
-                    const respEl = document.getElementById('responseMessage');
+                .then(function(data) {
+                    var respEl = document.getElementById('responseMessage');
                     respEl.innerText = data.message || 'No message from server.';
-                    const purchaseBtn = document.querySelector('#purchaseForm button[type="submit"]');
-                    purchaseBtn.disabled = false;
+                    var purchaseBtnLocal = document.querySelector('#purchaseForm button[type="submit"]');
+                    if (purchaseBtnLocal) purchaseBtnLocal.disabled = false;
 
                     if (data.success) {
                         // remove checked rows from DOM
-                        checked.forEach(cb => {
-                            const row = cb.closest('tr');
+                        checked.forEach(function(cb) {
+                            var row = cb.closest('tr');
                             if (row) row.parentNode.removeChild(row);
                         });
                         // recalc total
                         updateCartTotal();
                     }
                 })
-                .catch(err => {
+                .catch(function(err) {
                     document.getElementById('responseMessage').innerText = 'Error: ' + err.message;
-                    const purchaseBtn = document.querySelector('#purchaseForm button[type="submit"]');
-                    if (purchaseBtn) purchaseBtn.disabled = false;
+                    var purchaseBtnLocal = document.querySelector('#purchaseForm button[type="submit"]');
+                    if (purchaseBtnLocal) purchaseBtnLocal.disabled = false;
                 });
             
             });

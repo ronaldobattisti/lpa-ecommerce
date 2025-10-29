@@ -5,14 +5,10 @@
     include __DIR__ . '/assets/csrf.php';
     include __DIR__ . '/config/site.php';
 
-    // Guard: require admin session flag before anything else
-    // If not admin, redirect to site home
-    if (empty($_SESSION['user_isadm']) || $_SESSION['user_isadm'] !== true) {
-        if (defined('BASE_URL')) {
-            header('Location: ' . rtrim(BASE_URL, '/') . '/index.php');
-        } else {
-            header('Location: /index.php');
-        }
+    // Require admin to add products
+    $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') : '';
+    if (empty($_SESSION['user_isadm'])) {
+        header('Location: ' . $base . '/index.php');
         exit;
     }
 
