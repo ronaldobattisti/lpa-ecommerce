@@ -87,7 +87,20 @@
                                 <td><img src="<?php echo $imgFile; ?>" alt="<?php echo htmlspecialchars($name); ?>" style="width:60px;height:60px;object-fit:cover;border-radius:4px;"></td>
                                 <td><?php echo $id . ' -> ' . htmlspecialchars($name); ?></td>
                                 <td>AUD <?php echo number_format($price, 2); ?></td>
-                                <td><input type="number" name="quantity[<?php echo $id; ?>]" value="<?php echo $quant; ?>" min="1" class="quantity" data-id="<?php echo $id; ?>"></td>
+                                <td>
+                                    <input
+                                        type="number"
+                                        name="quantity[<?php echo $id; ?>]"
+                                        value="<?php echo $quant; ?>"
+                                        min="1"
+                                        max="999"
+                                        step="1"
+                                        class="quantity"
+                                        data-id="<?php echo $id; ?>"
+                                        aria-label="Quantity for <?php echo htmlspecialchars($name); ?>"
+                                        style="width:4ch;"
+                                    >
+                                </td>
                                 <td class="total">AUD <?php echo number_format($price * $quant, 2); ?></td>
                                 <td>
                                     <a href="<?php echo BASE_URL; ?>/ajax/delete_from_cart.php?item_id=<?php echo $id; ?>" onclick="return confirm('Delete this item? ');">Delete</a>
