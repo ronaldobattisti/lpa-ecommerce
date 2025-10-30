@@ -119,7 +119,7 @@
                 </div>
 
                 <div>
-                    <button type="submit">Purchase</button>
+                    <button type="submit" onclick="alert('Purchase successful!')">Purchase</button>
                 </div>
             </form>
             <div id="responseMessage"></div>

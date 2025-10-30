@@ -1,4 +1,4 @@
-package io.github.ronaldobattisti.desktop;
+package io.github.ronaldobattisti.desktop.app;
 
 import javafx.application.Application;
 
