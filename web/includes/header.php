@@ -25,12 +25,14 @@
             <img class="header-logo"; src="assets/images/Logo.png" alt="TempLogo">
         </a>
     </div>
-    <div class="header-item">
-        <input type="text" class="grow" id="search-bar" placeholder="Search...">
-        <button type="button">
-            <i class="bi bi-search"></i>
-        </button>
-    </div>
+    <form method="POST">
+        <div class="header-item">
+            <input type="text" class="grow" id="search-bar" placeholder="Search...">
+            <button type="submit" method="POST">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
     <div class="header-item">
         <!--Invoking php in the html to test variable-->
         <!--test is the session was already initialized and not null-->
