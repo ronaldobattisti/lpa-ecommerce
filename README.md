@@ -48,7 +48,8 @@ Notes:
             <!-- (condition) ? (value if true) : (value if false) -->
             <option value='' <?= !isset($_GET['category']) || $_GET['category'] == '' ? 'selected' : '' ?>>All categories</option>
 
-
+    Products_div:
+        » $params[] -> ...$params = params[0], params[1], ..., params[n];
 
 
 

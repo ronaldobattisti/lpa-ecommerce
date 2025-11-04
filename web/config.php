@@ -15,11 +15,24 @@
     <body class="body">
     <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-        <div>
-            <p>Welcome to you account's settings, <?php echo $_SESSION['user_name']; ?></p>
-            <p>Click <a href="<?php echo BASE_URL . '/order_view.php'; ?>">here</a> to see your orders</p>
-            <p>Click <a href="<?php echo BASE_URL . '/includes/logout.php'; ?>">here</a> to log out</p>
+    <div class="account-panel">
+        <h2>Account Settings</h2>
+        <p class="welcome-msg">
+            Welcome to your account settings, 
+            <span><?php echo htmlspecialchars($_SESSION['user_name']); ?></span>.
+        </p>
+
+        <div class="account-links">
+            <a href="<?php echo BASE_URL . '/order_view.php'; ?>" class="account-link">
+            <i class="bi bi-box-seam"></i> View your orders
+            </a>
+
+            <a href="<?php echo BASE_URL . '/includes/logout.php'; ?>" class="account-link logout">
+            <i class="bi bi-box-arrow-right"></i> Log out
+            </a>
         </div>
+    </div>
+
 
         <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>

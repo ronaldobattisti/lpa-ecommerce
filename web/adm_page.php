@@ -9,30 +9,43 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Temp Store</title>
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles.css"/>
     </head>
     <body class="body">
     <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-        <div>
-            <p>Welcome adm <?php echo $_SESSION['user_name']; ?></p>
-        </div>
+    <main class="admin-dashboard">
+    <section class="welcome-box">
+        <h1>Welcome, <span><?= htmlspecialchars($_SESSION['user_name']); ?></span></h1>
+        <p>Manage your store efficiently using the tools below.</p>
+    </section>
 
-        <div>
-            <p>Click <a href="product_register.php">here</a> to add products</p>
-        </div>
+    <section class="admin-actions">
+        <a href="product_register.php" class="admin-card">
+            <i class="bi bi-box-seam"></i>
+            <h3>Add Products</h3>
+            <p>Register new products in your store.</p>
+        </a>
 
-        <div>
-            <p>Click <a href="product_manage.php">here</a> to manage products</p>
-        </div>
+        <a href="product_manage.php" class="admin-card">
+            <i class="bi bi-pencil-square"></i>
+            <h3>Manage Products</h3>
+            <p>Edit or remove existing products.</p>
+        </a>
 
-        <div>
-            <p>Click <a href="order_manage.php">here</a> to manage orders</p>
-        </div>
-        
-        <div>
-            <p>Click <a href="user_manage.php">here</a> to manage clients</p>
-        </div>
+        <a href="order_manage.php" class="admin-card">
+            <i class="bi bi-receipt-cutoff"></i>
+            <h3>Manage Orders</h3>
+            <p>Track and update customer orders.</p>
+        </a>
+
+        <a href="user_manage.php" class="admin-card">
+            <i class="bi bi-people"></i>
+            <h3>Manage Clients</h3>
+            <p>View and manage registered users.</p>
+        </a>
+    </section>
+    </main>
 
         <?php include __DIR__ . '/includes/footer.html'; ?>
     </body>
