@@ -52,12 +52,14 @@
 
         <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-        <div>
-            <p>Welcome to your cart, <?php echo htmlspecialchars($username); ?>.</p>
+        <div class="cart-container">
+            <h2>Shopping Cart</h2>
+            <p class="cart-welcome">Welcome to your cart, <span><?php echo htmlspecialchars($username); ?></span>.</p>
 
-            <form id="purchaseForm" method='POST'>
-
-                <table>
+            <form id="purchaseForm" method="POST" class="cart-form">
+                <?php if ($hasItemsInCart): ?>
+                <table class="cart-table">
+                    <thead>
                     <tr>
                         <th>Select</th>
                         <th>Thumbnail</th>
@@ -65,66 +67,68 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
+                    </thead>
 
-                    <?php if ($hasItemsInCart){
-                        while ($row = $result->fetch_assoc()){
-                            $id = $row['lpa_stock_id'];
-                            $name = $row['lpa_stock_name'];
-                            $price = $row['lpa_stock_price'];
-                            $quant = $row['lpa_cart_item_qty'];
-                            ?>
-                            <tr>
-                                <td><input type="checkbox" name="selected_ids[]" value="<?php echo $id; ?>"></td>
-                                <?php
-                                    // Try to use product image if provided, otherwise show a placeholder
-                                    $imgFile = 'no-image.png';
-                                    if (isset($row['lpa_stock_image']) && $row['lpa_stock_image'] !== '') {
-                                        $imgFile = $row['lpa_stock_image'];
-                                    }
-                                ?>
-                                <td><img src="<?php echo $imgFile; ?>" alt="<?php echo htmlspecialchars($name); ?>" style="width:60px;height:60px;object-fit:cover;border-radius:4px;"></td>
-                                <td><?php echo $id . ' -> ' . htmlspecialchars($name); ?></td>
-                                <td>AUD <?php echo number_format($price, 2); ?></td>
-                                <td>
-                                    <input
-                                        type="number"
-                                        name="quantity[<?php echo $id; ?>]"
-                                        value="<?php echo $quant; ?>"
-                                        min="1"
-                                        max="999"
-                                        step="1"
-                                        class="quantity"
-                                        data-id="<?php echo $id; ?>"
-                                        aria-label="Quantity for <?php echo htmlspecialchars($name); ?>"
-                                        style="width:4ch;"
-                                    >
-                                </td>
-                                <td class="total">AUD <?php echo number_format($price * $quant, 2); ?></td>
-                                <td>
-                                    <a href="<?php echo BASE_URL; ?>/ajax/delete_from_cart.php?item_id=<?php echo $id; ?>" onclick="return confirm('Delete this item? ');">Delete</a>
-                                </td>
-                            </tr>
-                            <?php
-                            $total += $row['lpa_cart_item_qty'] * $row['lpa_stock_price'];
-                        }
-                    } else {
-                        echo '<p>Your cart is empty</p>';
-                    }?>
+                    <tbody>
+                    <?php
+                    while ($row = $result->fetch_assoc()):
+                        $id = $row['lpa_stock_id'];
+                        $name = $row['lpa_stock_name'];
+                        $price = $row['lpa_stock_price'];
+                        $quant = $row['lpa_cart_item_qty'];
+                        $imgFile = $row['lpa_stock_image'] ?: 'no-image.png';
+                        $itemTotal = $price * $quant;
+                        $total += $itemTotal;
+                    ?>
+                        <tr>
+                        <td><input type="checkbox" name="selected_ids[]" value="<?php echo $id; ?>"></td>
+                        <td>
+                            <img src="<?php echo $imgFile; ?>" alt="<?php echo htmlspecialchars($name); ?>" class="cart-thumb">
+                        </td>
+                        <td><?php echo htmlspecialchars($name); ?></td>
+                        <td>AUD <?php echo number_format($price, 2); ?></td>
+                        <td>
+                            <input
+                            type="number"
+                            name="quantity[<?php echo $id; ?>]"
+                            value="<?php echo $quant; ?>"
+                            min="1"
+                            max="999"
+                            step="1"
+                            class="quantity"
+                            data-id="<?php echo $id; ?>"
+                            aria-label="Quantity for <?php echo htmlspecialchars($name); ?>"
+                            >
+                        </td>
+                        <td class="total">AUD <?php echo number_format($itemTotal, 2); ?></td>
+                        <td>
+                            <a href="<?php echo BASE_URL; ?>/ajax/delete_from_cart.php?item_id=<?php echo $id; ?>"
+                            class="delete-link"
+                            onclick="return confirm('Delete this item?');">
+                            <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    </tbody>
                 </table>
 
-                <div class="cart-total">
-                    <p>Total: $<?php echo number_format($total, 2); ?></p>
+                <div class="cart-summary">
+                    <p><strong>Total:</strong> AUD <?php echo number_format($total, 2); ?></p>
+                    <button type="submit" class="btn-purchase" onclick="alert('Purchase successful!')">
+                    <i class="bi bi-cash-coin"></i> Purchase
+                    </button>
                 </div>
-
-                <div>
-                    <button type="submit" onclick="alert('Purchase successful!')"
-                    ~lk>Purchase</button>
-                </div>
+                <?php else: ?>
+                <p class="empty-cart">Your cart is empty.</p>
+                <?php endif; ?>
             </form>
+
             <div id="responseMessage"></div>
         </div>
+
         
         <script>
 
@@ -160,7 +164,7 @@
                                         console.log('AJAX result:', json);
                                         if (json.ok) {
                                             // Update the total price in the table row immediately
-                                            var priceText = this.closest('tr').querySelector('td:nth-child(3)').innerText;
+                                            var priceText = this.closest('tr').querySelector('td:nth-child(4)').innerText;
                                             var price = parseFloat(priceText.replace('AUD ', ''));
                                             this.closest('tr').querySelector('.total').innerText = 'AUD ' + (price * quant).toFixed(2);
                                             updateCartTotal();
@@ -190,7 +194,7 @@
                     }
                 });
                 
-                document.querySelector('.cart-total').innerText = 'AUD' + sum.toFixed(2);
+                document.querySelector('.cart-summary').innerText = 'AUD' + sum.toFixed(2);
             }
 
             document.getElementById('purchaseForm').addEventListener('submit', function(e) {

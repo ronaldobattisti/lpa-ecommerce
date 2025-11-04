@@ -1,6 +1,6 @@
 <?php
     // AJAX endpoint to update cart item quantity
-    header('Content-Type: application/json; charset=utf-8'); //tells the vrowser the response will be a json, not html
+    //header('Content-Type: application/json; charset=utf-8'); //tells the vrowser the response will be a json, not html
     include __DIR__ . '/../app/database/connection.php'; //__DIR__ means the current folder
     include __DIR__ . '/../assets/start_session_safe.php';
 
@@ -37,10 +37,10 @@
 
     $stmt->bind_param('iii', $quant, $user_id, $item_id);
     if ($stmt->execute()) {
-        echo json_encode(['ok' => true, 'message' => 'Quantity updated']);
+        echo json_encode(['ok' => true, 'message' => "Quantity updated"]);
     } else {
         http_response_code(500);
-        echo json_encode(['ok' => false, 'error' => 'Execute failed']);
+        echo json_encode(['ok' => false, 'error' => "Execute failed"]);
     }
     $stmt->close();
     exit;
