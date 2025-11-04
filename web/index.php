@@ -1,6 +1,8 @@
 <?php
     include __DIR__ . '/assets/disable_cache.php';
     include __DIR__ . '/assets/start_session_safe.php';
+
+    $search = $_GET['search'] ?? '';
 ?>
 
 <!DOCTYPE html>

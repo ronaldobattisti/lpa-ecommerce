@@ -25,9 +25,9 @@
             <img class="header-logo"; src="assets/images/Logo.png" alt="TempLogo">
         </a>
     </div>
-    <form method="POST">
+    <form method="GET" action="index.php">
         <div class="header-item">
-            <input type="text" class="grow" id="search-bar" placeholder="Search...">
+            <input type="text" class="grow" id="search-bar" name="search" placeholder="Search...">
             <button type="submit" method="POST">
                 <i class="bi bi-search"></i>
             </button>
