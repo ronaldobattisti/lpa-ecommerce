@@ -116,9 +116,9 @@
                 </table>
 
                 <div class="cart-summary">
-                    <p><strong>Total:</strong> AUD <?php echo number_format($total, 2); ?></p>
+                    <p><strong>Total:</strong> AUD <span id="cartTotal"><?php echo number_format($total, 2); ?></span></p>
                     <button type="submit" class="btn-purchase" onclick="alert('Purchase successful!')">
-                    <i class="bi bi-cash-coin"></i> Purchase
+                        <i class="bi bi-cash-coin"></i> Purchase
                     </button>
                 </div>
                 <?php else: ?>
@@ -194,7 +194,10 @@
                     }
                 });
                 
-                document.querySelector('.cart-summary').innerText = 'AUD' + sum.toFixed(2);
+                document.getElementById('cartTotal').innerText = sum.toFixed(2);
+                //document.querySelector('.cart-summary cartTotal').innerText = 'AUD' + sum.toFixed(2);
+                
+                
             }
 
             document.getElementById('purchaseForm').addEventListener('submit', function(e) {

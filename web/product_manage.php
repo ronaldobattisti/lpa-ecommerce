@@ -67,100 +67,116 @@
     <title>Manage Products</title>
 </header>
 
-<body>
-    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+<body class="body">
+  <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-    <div>
-        <?php if ($has_products): ?>
-            <table border='1'>
-                <tr>
-                    <th>Product Id</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quant</th>
-                    <th>Edit</th>
-                </tr>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $row['lpa_stock_id'] ?></td>
-                        <td><?php echo $row['lpa_stock_name'] ?></td>
-                        <td><?php echo $row['lpa_stock_price'] ?></td>
-                        <td><?php echo $row['lpa_stock_onhand'] ?></td>
-                        <td><a href="#" onclick="show_popup(<?php echo $row['lpa_stock_id']; ?>, 
-                                                            '<?php echo $row['lpa_stock_name']; ?>',
-                                                            '<?php echo $row['lpa_stock_desc']; ?>',
-                                                            <?php echo $row['lpa_stock_price']; ?>,
-                                                            <?php echo $row['lpa_stock_onhand']; ?>,
-                                                            '<?php echo $row['lpa_stock_cat']; ?>',
-                                                            '<?php echo $row['lpa_stock_image']; ?>');">Edit</a></td>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
-        <?php else: ?>
-            <p>No items were registered yet</p>
-        <?php endif; ?>
-    </div>
+  <div class="admin-products-container">
+    <h2>Manage Products</h2>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <p>Edit item</p>
-            <form method="post">
-                <?php csrf_field(); ?>
-                <label for="id">ID</label>
-                <input type="text" name="id" id="id" readonly>
+    <?php if ($has_products): ?>
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price (AUD)</th>
+            <th>Qty</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+              <td><?= $row['lpa_stock_id'] ?></td>
+              <td><?= htmlspecialchars($row['lpa_stock_name']) ?></td>
+              <td><?= number_format($row['lpa_stock_price'], 2) ?></td>
+              <td><?= $row['lpa_stock_onhand'] ?></td>
+              <td>
+                <a href="#"
+                   class="edit-link"
+                   onclick="show_popup(
+                     <?= $row['lpa_stock_id'] ?>,
+                     '<?= htmlspecialchars($row['lpa_stock_name'], ENT_QUOTES) ?>',
+                     '<?= htmlspecialchars($row['lpa_stock_desc'], ENT_QUOTES) ?>',
+                     <?= $row['lpa_stock_price'] ?>,
+                     <?= $row['lpa_stock_onhand'] ?>,
+                     '<?= htmlspecialchars($row['lpa_stock_cat'], ENT_QUOTES) ?>',
+                     '<?= htmlspecialchars($row['lpa_stock_image'], ENT_QUOTES) ?>'
+                   )">
+                  <i class="bi bi-pencil-square"></i> Edit
+                </a>
+              </td>
+            </tr>
+          <?php endwhile; ?>
+        </tbody>
+      </table>
+    <?php else: ?>
+      <p class="no-products">No items have been registered yet.</p>
+    <?php endif; ?>
+  </div>
 
-                <br>
-    
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" required>
+  <!-- MODAL -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <h3>Edit Product</h3>
+      <form method="post" class="modal-form">
+        <?php csrf_field(); ?>
 
-                <br>
-    
-                <label for="description">Description</label>
-                <input type="text" name="description" id="description" required>
-
-                <br>
-    
-                <label for="price">Price</label>
-                <input type="text" name="price" id="price" required>
-
-                <br>
-    
-                <label for="quant">Quantity</label>
-                <input type="text" name="quant" id="quant" required>
-
-                <br>
-
-                <label for="category">Category:</label>
-                <select id="category" name="category">
-                    <option value="desktop">Desktop</option>
-                    <option value="laptop">Laptop</option>
-                    <option value="component">Component</option>
-                    <option value="storage">Storage</option>
-                    <option value="peripheral">Perihperal</option>
-                    <option value="display">Display</option>
-                    <option value="network">Network</option>
-                    <option value="printer">Printer</option>
-                </select>
-
-                <br>
-    
-                <label for="image">Product image:</label>
-                <input type="text" name="image" id="image" readonly>
-                <input type="file" name="new_image" id="new_image" accept="image/*">
-
-                <br>
-                <br>
-                <button onclick="closeModal()">Close</button>
-                <br>
-                <br>
-                <button type="submit">Update</button>
-            </form>
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input type="text" name="id" id="id" readonly>
         </div>
-    </div>
 
-</body>
-    <?php include __DIR__ . '/includes/footer.html'; ?>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="price">Price (AUD)</label>
+            <input type="number" name="price" id="price" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label for="quant">Quantity</label>
+            <input type="number" name="quant" id="quant" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" name="category">
+            <option value="desktop">Desktop</option>
+            <option value="laptop">Laptop</option>
+            <option value="component">Component</option>
+            <option value="storage">Storage</option>
+            <option value="peripheral">Peripheral</option>
+            <option value="display">Display</option>
+            <option value="network">Network</option>
+            <option value="printer">Printer</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image Path</label>
+          <input type="text" name="image" id="image" readonly>
+          <input type="file" name="new_image" id="new_image" accept="image/*">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-close" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-submit">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <?php include __DIR__ . '/includes/footer.html'; ?>
 </body>
 </html>
 

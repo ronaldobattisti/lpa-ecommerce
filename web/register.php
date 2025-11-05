@@ -54,64 +54,55 @@
     <title>Registration</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
-    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+<body class="body">
+  <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-    <div>
-        <form action="register.php" method="post">
-            <div>
-                <label for="name">Name:</label>
-            </div>
+  <div class="register-container">
+    <h2>Create an Account</h2>
 
-            <div>
-                <input type="text" id="fname" class="input-field" name="fname" autocomplete="Name" placeholder="John" required>
-            </div>
+    <form action="register.php" method="post" class="register-form">
 
-            <div>
-                <input type="text" id="sname" class="input-field" name="sname" autocomplete="Name" placeholder="Doe" required>
-            </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" name="fname" placeholder="John" required>
+        </div>
 
-            <div>
-                <label for="email">E-mail:</label>
-            </div>
+        <div class="form-group">
+          <label for="sname">Last name</label>
+          <input type="text" id="sname" name="sname" placeholder="Doe" required>
+        </div>
+      </div>
 
-            <div>
-                <input type="text" id="email" class="input-field" name="email" autocomplete="email" placeholder="Enter your e-mail here" required>
-            </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
 
-            <div>
-                <label for="password">Password:</label>
-            </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="********" required>
+      </div>
 
-            <div>
-                <input type="password" id="password" class="input-field" name="password" placeholder="Password" required>
-            </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" placeholder="123 Main St" required>
+      </div>
 
-            <div>
-                <label for="adress">Address:</label>
-            </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" name="phone" placeholder="(61) 123-456-789" required>
+      </div>
 
-            <div>
-                <input type="address" id="address" class="input-field" name="address" placeholder="Address" required>
-            </div>
+      <div class="form-footer">
+        <p>Already have an account? <a href="login.php">Sign in here</a></p>
+      </div>
 
-            <div>
-                <label for="password">Phone:</label>
-            </div>
+      <button type="submit" class="btn-submit">Sign Up</button>
+    </form>
+  </div>
 
-            <div>
-                <input type="phone" id="phone" class="input-field" name="phone" placeholder="(61) 123-456-789" required>
-            </div>
-            
-            <div>
-                <p>Do you already have an account?<br>
-                Click <a href="login.php">here</a> to sign in</p>
-            </div>
-
-            <div>
-                <button type="submit" class="button-submit">Sign Up</button>
-            </div>
-        </form>
-    </div>
+  <?php include __DIR__ . '/includes/footer.html'; ?>
 </body>
+
 </html>

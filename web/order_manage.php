@@ -58,95 +58,118 @@
         <title>View Orders</title>
         <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/css/styles.css'; ?>">
     </head>
-    <body class="body"> 
-        <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+    <body class="body">
+    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-        <div>
-            <table border='1'>
+    <div class="admin-orders-container">
+        <h2>Manage Invoices</h2>
+
+        <?php if ($hasOrder): ?>
+        <table class="orders-table">
+            <thead>
+            <tr>
+                <th>Invoice #</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Total (AUD)</th>
+                <th>Payment</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $result->fetch_assoc()):
+                $inv_no = $row['lpa_inv_no'];
+                $client_name = $row['lpa_client_firstname'] . ' ' . $row['lpa_client_lastname'];
+                $inv_date = (new DateTime($row['lpa_inv_date']))->format("d/m/Y");
+                $inv_amount = number_format($row['lpa_inv_amount'], 2);
+                $inv_payment = $row['lpa_inv_payment_type'];
+                $inv_status = $row['lpa_inv_status'];
+            ?>
                 <tr>
-                    <th>Invoice Number</th>
-                    <th>Costumer name</th>
-                    <th>Date</th>
-                    <th>Total value</th>
-                    <th>Payment status</th>
-                    <th>Order status</th>
+                <td><?= $inv_no ?></td>
+                <td><?= htmlspecialchars($client_name) ?></td>
+                <td><?= htmlspecialchars($inv_date) ?></td>
+                <td><?= htmlspecialchars($inv_amount) ?></td>
+                <td><?= htmlspecialchars(ucfirst($inv_payment)) ?></td>
+                <td>
+                    <a href="#"
+                    class="status-link"
+                    onclick="show_popup(
+                        <?= $inv_no ?>,
+                        '<?= htmlspecialchars($client_name, ENT_QUOTES) ?>',
+                        '<?= $inv_date ?>',
+                        '<?= $inv_amount ?>',
+                        '<?= $inv_payment ?>',
+                        '<?= $inv_status ?>'
+                    )">
+                    <i class="bi bi-pencil-square"></i>
+                    <?= htmlspecialchars(ucfirst($inv_status)) ?>
+                    </a>
+                </td>
                 </tr>
-                
-                <?php if ($hasOrder) {
-                    while ($row = $result->fetch_assoc()) {
-                        $inv_no = $row['lpa_inv_no'];
-                        $client_name = $row['lpa_client_firstname'] . ' ' . $row['lpa_client_lastname'];
-                        $inv_date = (new DateTime($row['lpa_inv_date']))->format("d/m/Y");
-                        $inv_amount = $row['lpa_inv_amount'];
-                        $inv_payment = $row['lpa_inv_payment_type'];
-                        $inv_status = $row['lpa_inv_status'];
-                    ?>
-                    <tr>
-                        <td><?php echo $inv_no ?></td>
-                        <td><?php echo $client_name ?></td>
-                        <td><?php echo $inv_date ?></td>
-                        <td><?php echo $inv_amount ?></td>
-                        <td><?php echo $inv_payment ?></td>
-                        <td><a href="#" onclick="show_popup(<?php echo $inv_no; ?>, 
-                                                            '<?php echo $client_name; ?>',
-                                                            '<?php echo $inv_date; ?>',
-                                                            <?php echo $inv_amount; ?>,
-                                                            '<?php echo $inv_payment; ?>',
-                                                            '<?php echo $inv_status; ?>');"> <?php echo $inv_status ?></a></td>
-                    </tr>
-                    <?php
-                }
-            }?>
+            <?php endwhile; ?>
+            </tbody>
         </table>
+        <?php else: ?>
+        <p class="no-orders">No invoices found.</p>
+        <?php endif; ?>
     </div>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <p>Edit invoices</p>
-        <form method="POST">
-            <label for="inv_no">Invoice number: </label>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+        <h3>Edit Invoice</h3>
+        <form method="POST" class="modal-form">
+            <?php csrf_field(); ?>
+
+            <div class="form-group">
+            <label for="inv_no">Invoice #</label>
             <input type="text" name="inv_no" id="inv_no" readonly>
-            <br>
+            </div>
 
-            <label for="client_name">Client name: </label>
+            <div class="form-group">
+            <label for="client_name">Client</label>
             <input type="text" name="client_name" id="client_name" readonly>
-            <br>
+            </div>
 
-            <label for="inv_date">Date: </label>
+            <div class="form-group">
+            <label for="inv_date">Date</label>
             <input type="text" name="inv_date" id="inv_date" readonly>
-            <br>
+            </div>
 
-            <label for="inv_amount">Total amount: </label>
+            <div class="form-group">
+            <label for="inv_amount">Total</label>
             <input type="text" name="inv_amount" id="inv_amount" readonly>
-            <br>
+            </div>
 
-            <label for="inv_payment">Payment status: </label>
-            <select id="inv_payment" name="inv_payment">
+            <div class="form-row">
+            <div class="form-group">
+                <label for="inv_payment">Payment</label>
+                <select id="inv_payment" name="inv_payment">
                 <option value="pending">Pending</option>
                 <option value="paid">Paid</option>
-            </select>
-            <?php csrf_field(); ?>
-            <br>
-
-            <label for="inv_status">Order status: </label>
-            <select id="inv_status" name="inv_status">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inv_status">Order status</label>
+                <select id="inv_status" name="inv_status">
                 <option value="u">Packaging</option>
                 <option value="s">Shipped</option>
                 <option value="p">Processed</option>
-            </select>
+                </select>
+            </div>
+            </div>
+
+            <div class="modal-actions">
+            <button type="button" class="btn-close" onclick="closeModal()">Cancel</button>
+            <button type="button" class="btn-submit" onclick="document.querySelector('#myModal form').submit()">Update</button>
+            </div>
         </form>
-
-        <br>
-        <br>
-        <button onclick="closeModal()">Close</button>
-        <br>
-        <br>
-        <button type="button" onclick="document.querySelector('#myModal form').submit()">Update</button>
+        </div>
     </div>
-</div>
 
-    </body>
     <?php include __DIR__ . '/includes/footer.html'; ?>
+    </body>
 </html>
 
 <script>

@@ -70,98 +70,115 @@
         <title>View Orders</title>
         <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/css/styles.css'; ?>">
     </head>
-    <body class="body"> 
-        <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+    <body class="body">
+    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-        <div>
-            <table border='1'>
+    <div class="admin-clients-container">
+        <h2>Manage Clients</h2>
+
+        <?php if ($hasClient): ?>
+        <table class="clients-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>isAdm</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <th>Client ID</th>
-                    <th>Client name</th>
-                    <th>Client email</th>
-                    <th>Client address</th>
-                    <th>Client phone</th>
-                    <th>isAdm</th>
-                    <th>Edit</th>
+                <td><?= $row['lpa_client_id'] ?></td>
+                <td><?= htmlspecialchars($row['lpa_client_firstname'] . ' ' . $row['lpa_client_lastname']) ?></td>
+                <td><?= htmlspecialchars($row['lpa_client_email']) ?></td>
+                <td><?= htmlspecialchars($row['lpa_client_address']) ?></td>
+                <td><?= htmlspecialchars($row['lpa_client_phone']) ?></td>
+                <td><?= htmlspecialchars($row['lpa_client_group']) ?></td>
+                <td>
+                    <a href="#"
+                    class="edit-link"
+                    onclick="show_popup(
+                        <?= $row['lpa_client_id'] ?>,
+                        '<?= htmlspecialchars($row['lpa_client_firstname'], ENT_QUOTES) ?>',
+                        '<?= htmlspecialchars($row['lpa_client_lastname'], ENT_QUOTES) ?>',
+                        '<?= htmlspecialchars($row['lpa_client_email'], ENT_QUOTES) ?>',
+                        '<?= htmlspecialchars($row['lpa_client_address'], ENT_QUOTES) ?>',
+                        '<?= htmlspecialchars($row['lpa_client_phone'], ENT_QUOTES) ?>',
+                        '<?= htmlspecialchars($row['lpa_client_group'], ENT_QUOTES) ?>'
+                    )">
+                    <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                </td>
                 </tr>
-                
-                <?php if ($hasClient) {
-                    while ($row = $result->fetch_assoc()) {
-                        $client_id = $row['lpa_client_id'];
-                        $client_name = $row['lpa_client_firstname'] . ' ' . $row['lpa_client_lastname'];
-                        $client_firstname = $row['lpa_client_firstname'];
-                        $client_lastname = $row['lpa_client_lastname'];
-                        $client_email = $row['lpa_client_email'];
-                        $client_address = $row['lpa_client_address'];
-                        $client_phone = $row['lpa_client_phone'];
-                        $client_isadm = $row['lpa_client_group'];
-                    ?>
-                    <tr>
-                        <td><?php echo $client_id ?></td>
-                        <td><?php echo $client_name ?></td>
-                        <td><?php echo $client_email ?></td>
-                        <td><?php echo $client_address ?></td>
-                        <td><?php echo $client_phone ?></td>
-                        <td><?php echo $client_isadm ?></td>
-                        <td><a href="#" onclick="show_popup(<?php echo $client_id; ?>, 
-                                                            '<?php echo $client_firstname; ?>',
-                                                            '<?php echo $client_lastname; ?>',
-                                                            '<?php echo $client_email; ?>',
-                                                            '<?php echo $client_address; ?>',
-                                                            '<?php echo $client_phone; ?>',
-                                                            '<?php echo $client_isadm; ?>');"> Edit</a></td>
-                    </tr>
-                    <?php
-                }
-            }?>
+            <?php endwhile; ?>
+            </tbody>
         </table>
+        <?php else: ?>
+        <p class="no-clients">No clients found.</p>
+        <?php endif; ?>
     </div>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <p>Edit invoices</p>
-        <form method="POST">
-            <label for="client_id">Client ID: </label>
-            <input type="text" name="client_id" id="client_id" readonly>
-            <br>
-
-            <label for="client_firstname">Client frst name: </label>
-            <input type="text" name="client_firstname" id="client_firstname" required>
-            <br>
-
-            <label for="client_lastname">Client last name: </label>
-            <input type="text" name="client_lastname" id="client_lastname" required>
-            <br>
-
-            <label for="client_email">Email: </label>
-            <input type="text" name="client_email" id="client_email" required>
-            <br>
-
-            <label for="client_address">Client address: </label>
-            <input type="text" name="client_address" id="client_address" required>
-            <br>
-
-            <label for="client_phone">Client phone: </label>
-            <input type="text" name="client_phone" id="client_phone" required>
-            <br>
+    <!-- MODAL -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+        <h3>Edit Client</h3>
+        <form method="POST" class="modal-form">
             <?php csrf_field(); ?>
 
-            <label for="client_isadm">Client permissions: </label>
-            <input type="text" name="client_isadm" id="client_isadm" required>
-            <br>
+            <div class="form-group">
+            <label for="client_id">Client ID</label>
+            <input type="text" name="client_id" id="client_id" readonly>
+            </div>
+
+            <div class="form-row">
+            <div class="form-group">
+                <label for="client_firstname">First name</label>
+                <input type="text" name="client_firstname" id="client_firstname" required>
+            </div>
+            <div class="form-group">
+                <label for="client_lastname">Last name</label>
+                <input type="text" name="client_lastname" id="client_lastname" required>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label for="client_email">Email</label>
+            <input type="email" name="client_email" id="client_email" required>
+            </div>
+
+            <div class="form-group">
+            <label for="client_address">Address</label>
+            <input type="text" name="client_address" id="client_address" required>
+            </div>
+
+            <div class="form-group">
+            <label for="client_phone">Phone</label>
+            <input type="text" name="client_phone" id="client_phone" required>
+            </div>
+
+            <div class="form-group">
+            <label for="client_isadm">Admin privileges</label>
+            <select name="client_isadm" id="client_isadm">
+                <option value="0">Regular user</option>
+                <option value="1">Administrator</option>
+            </select>
+            </div>
+
+            <div class="modal-actions">
+            <button type="button" class="btn-close" onclick="closeModal()">Cancel</button>
+            <button type="button" class="btn-submit" onclick="document.querySelector('#myModal form').submit()">Update</button>
+            </div>
         </form>
-
-        <br>
-        <br>
-        <button onclick="closeModal()">Close</button>
-        <br>
-        <br>
-        <button type="button" onclick="document.querySelector('#myModal form').submit()">Update</button>
+        </div>
     </div>
-</div>
 
-    </body>
     <?php include __DIR__ . '/includes/footer.html'; ?>
+    </body>
+
 </html>
 
 <script>

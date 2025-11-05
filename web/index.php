@@ -22,6 +22,6 @@
         <?php include __DIR__ . '/includes/products_div.php'; ?>
     </div>
 
-    <?php include __DIR__ . '/includes/footer.html'; ?>
-    </body>
+</body>
+<?php include __DIR__ . '/includes/footer.html'; ?>
 </html>
