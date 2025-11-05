@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/index.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/HeaderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/header.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/Launcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -43,6 +42,9 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="34ffZw6qSMzVVnIbKYfl0yOWvxf" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -50,7 +52,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+    "Application.MainApplication.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.desktop [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
     "Maven.desktop [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -60,13 +64,25 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.github.ronaldobattisti.desktop.controllers" />
+      <recent name="io.github.ronaldobattisti.desktop.app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainApplication">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.github.ronaldobattisti.desktop.app.HelloApplication" />
       <module name="desktop" />
@@ -82,11 +98,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.ronaldobattisti.desktop.app.MainApplication" />
+      <module name="desktop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.github.ronaldobattisti.desktop.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -95,7 +132,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1761609607369</updated>
+      <workItem from="1762315928153" duration="1873000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
