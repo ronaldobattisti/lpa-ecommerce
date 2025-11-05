@@ -15,7 +15,7 @@ $hasOrder = $result->num_rows > 0;
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+'<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Orders</title>
@@ -30,13 +30,13 @@ $hasOrder = $result->num_rows > 0;
     <?php if ($hasOrder): ?>
       <table class="orders-table">
         <thead>
-          <tr>
-            <th>Invoice #</th>
-            <th>Date</th>
-            <th>Total (AUD)</th>
-            <th>Payment Type</th>
-            <th>Status</th>
-          </tr>
+            <tr>
+                <th>Invoice #</th>
+                <th>Date</th>
+                <th>Total (AUD)</th>
+                <th>Payment Type</th>
+                <th>Status</th>
+            </tr>
         </thead>
         <tbody>
           <?php while ($row = $result->fetch_assoc()):
@@ -47,13 +47,20 @@ $hasOrder = $result->num_rows > 0;
             $inv_status = $row['lpa_inv_status'];
           ?>
             <tr>
-              <td><?= htmlspecialchars($inv_no) ?></td>
-              <td><?= htmlspecialchars($inv_date) ?></td>
-              <td><?= htmlspecialchars($inv_amount) ?></td>
-              <td><?= htmlspecialchars($inv_payment) ?></td>
-              <td class="status <?= strtolower($inv_status) ?>">
+                <td>
+                    <form action="invoice_details.php" method="POST">
+                        <input type="hidden" name="invoice_id" value="<?= $inv_no ;?>">
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">
+                            <?= htmlspecialchars($inv_no) ?>
+                        </button>
+                    </form>
+                </td>
+                <td><?= htmlspecialchars($inv_date) ?></td>
+                <td><?= htmlspecialchars($inv_amount) ?></td>
+                <td><?= htmlspecialchars($inv_payment) ?></td>
+                <td class="status <?= strtolower($inv_status) ?>">
                 <?= htmlspecialchars(ucfirst($inv_status)) ?>
-              </td>
+                </td>
             </tr>
           <?php endwhile; ?>
         </tbody>
@@ -64,5 +71,5 @@ $hasOrder = $result->num_rows > 0;
   </div>
 
 </body>
-<?php include __DIR__ . '/includes/footer.html'; ?>
+<?php include __DIR__ . '/includes/footer.html'; ?>'
 </html>
