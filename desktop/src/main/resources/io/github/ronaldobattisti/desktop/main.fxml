@@ -22,20 +22,7 @@
 
     <!-- Center: Product grid placeholder -->
     <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="product-scroll">
-            <content>
-                <GridPane fx:id="productGrid" alignment="CENTER" hgap="20" styleClass="product-grid" vgap="200">
-                    <!-- Placeholder products for now -->
-                    <Label styleClass="placeholder-label" text="Product Grid Placeholder" />
-                    <columnConstraints>
-                        <ColumnConstraints />
-                    </columnConstraints>
-                        <rowConstraints>
-                    <RowConstraints />
-                        </rowConstraints>
-                </GridPane>
-            </content>
-        </ScrollPane>
+        <fx:include source="productDisplay.fxml"/>
     </center>
 
     <!-- Bottom: Footer -->

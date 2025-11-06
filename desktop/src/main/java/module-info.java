@@ -4,6 +4,7 @@ module io.github.ronaldobattisti.desktop {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens io.github.ronaldobattisti.desktop to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.app;
