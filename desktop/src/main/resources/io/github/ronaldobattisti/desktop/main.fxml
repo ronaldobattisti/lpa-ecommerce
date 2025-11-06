@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="io.github.ronaldobattisti.desktop.controllers.MainController"
-            stylesheets="@../../../../css/styles.css">
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane minHeight="700.0"
+            minWidth="700.0"
+            prefWidth="643.0"
+            stylesheets="@../../../../css/styles.css"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.ronaldobattisti.desktop.controllers.MainController">
 
     <!-- Top: Header -->
     <top>
@@ -22,24 +22,25 @@
 
     <!-- Center: Product grid placeholder -->
     <center>
-        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="product-scroll">
+        <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="product-scroll">
             <content>
-                <GridPane fx:id="productGrid"
-                          hgap="20" vgap="200"
-                          alignment="CENTER"
-                          styleClass="product-grid">
+                <GridPane fx:id="productGrid" alignment="CENTER" hgap="20" styleClass="product-grid" vgap="200">
                     <!-- Placeholder products for now -->
-                    <Label text="Product Grid Placeholder"
-                           styleClass="placeholder-label" />
+                    <Label styleClass="placeholder-label" text="Product Grid Placeholder" />
+                    <columnConstraints>
+                        <ColumnConstraints />
+                    </columnConstraints>
+                        <rowConstraints>
+                    <RowConstraints />
+                        </rowConstraints>
                 </GridPane>
             </content>
         </ScrollPane>
     </center>
 
-    <!-- Bottom: Footer
+    <!-- Bottom: Footer -->
     <bottom>
         <fx:include source="footer.fxml" />
-    </bottom>-->
+    </bottom>
 
 </BorderPane>
-

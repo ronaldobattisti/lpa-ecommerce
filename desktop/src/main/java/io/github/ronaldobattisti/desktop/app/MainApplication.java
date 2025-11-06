@@ -13,9 +13,15 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/io/github/ronaldobattisti/desktop/main.fxml")
         );
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("LPA Online Store");
         stage.setScene(scene);
+
+        stage.setMinHeight(700);
+        stage.setMinWidth(700);
+
+        stage.setTitle("LPAEccom");
+
         stage.show();
     }
 }
