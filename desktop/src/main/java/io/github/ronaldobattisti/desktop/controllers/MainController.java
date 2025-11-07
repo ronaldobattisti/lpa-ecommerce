@@ -6,10 +6,14 @@ import javafx.scene.control.Label;
 
 public class MainController {
     @FXML
-    private Label welcomeText;
+    private ProductsGridController productsGridController;
 
     @FXML
-    protected void onLoginClick() {
-
+    private void initialize() {
+        System.out.println("Main controller initialized");
+        if (productsGridController != null) {
+            System.out.println("Main controller initialized");
+        } else
+            System.out.println("Main controller not initialized");
     }
 }

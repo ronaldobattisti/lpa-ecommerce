@@ -41,12 +41,15 @@ public class ProductsGridController {
                 ProductDisplayController controller = loader.getController();
                 controller.setProductData(product);
 
-                productGrid.add(productDisplay, column++, row);
+                productGrid.add(productDisplay, column, row);
+
+                column++;
 
                 if (column == 4) {
                     column = 0;
                     row++;
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

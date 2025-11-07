@@ -22,7 +22,7 @@
 
     <!-- Center: Product grid placeholder -->
     <center>
-        <fx:include source="../components/products_grid.fxml"/>
+        <fx:include fx:id="products_grid" source="../components/products_grid.fxml"/>
     </center>
 
     <!-- Bottom: Footer -->
