@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER"
+      maxHeight="-Infinity"
+      maxWidth="-Infinity"
+      minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="400.0"
+      prefWidth="600.0"
+      stylesheets="@../../../../../css/styles.css"
+      xmlns="http://javafx.com/javafx/25"
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.ProductDisplayController"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <ImageView id="productImage" fx:id="productImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+    <Label id="productPrice" fx:id="productPrice" styleClass="productPrice" text="Label" />
+    <Label id="productName" fx:id="productName" styleClass="productName" text="Label" />
+</VBox>

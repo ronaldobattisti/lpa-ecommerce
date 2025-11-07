@@ -9,7 +9,7 @@
 <HBox alignment="CENTER"
       spacing="40"
       styleClass="site-header"
-      stylesheets="@../../../../css/styles.css"
+      stylesheets="@../../../../../css/styles.css"
       xmlns="http://javafx.com/javafx/25"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="io.github.ronaldobattisti.desktop.controllers.HeaderController">
@@ -18,7 +18,7 @@
     <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
         <ImageView fx:id="logoImage" fitHeight="35" fitWidth="67.0" styleClass="image-view">
             <image>
-                <Image url="@../../../../images/Logo.png" />
+                <Image url="@../../../../../images/Logo.png" />
             </image>
         </ImageView>
     </HBox>

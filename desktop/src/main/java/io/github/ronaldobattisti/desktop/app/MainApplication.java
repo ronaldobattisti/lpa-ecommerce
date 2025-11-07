@@ -11,7 +11,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("/io/github/ronaldobattisti/desktop/main.fxml")
+                getClass().getResource("/io/github/ronaldobattisti/desktop/pages/main.fxml")
         );
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("LPA Online Store");

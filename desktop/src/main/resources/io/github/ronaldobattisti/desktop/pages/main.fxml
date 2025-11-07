@@ -10,24 +10,24 @@
 <BorderPane minHeight="700.0"
             minWidth="700.0"
             prefWidth="643.0"
-            stylesheets="@../../../../css/styles.css"
+            stylesheets="@../../../../../css/styles.css"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="io.github.ronaldobattisti.desktop.controllers.MainController">
 
     <!-- Top: Header -->
     <top>
-        <fx:include source="header.fxml" />
+        <fx:include source="../components/header.fxml" />
     </top>
 
     <!-- Center: Product grid placeholder -->
     <center>
-        <fx:include source="productDisplay.fxml"/>
+        <fx:include source="../components/products_grid.fxml"/>
     </center>
 
     <!-- Bottom: Footer -->
     <bottom>
-        <fx:include source="footer.fxml" />
+        <fx:include source="../components/footer.fxml" />
     </bottom>
 
 </BorderPane>

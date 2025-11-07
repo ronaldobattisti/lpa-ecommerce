@@ -41,9 +41,9 @@ public class ProductDAO {
                 Product p = new Product(
                         rs.getInt("lpa_stock_id"),
                         rs.getString("lpa_stock_name"),
-                        rs.getString("lpa_stock_description"),
+                        rs.getString("lpa_stock_desc"),
                         rs.getInt("lpa_stock_onhand"),
-                        rs.getFloat("lpa_stock_price"),
+                        rs.getDouble("lpa_stock_price"),
                         rs.getString("lpa_stock_cat"),
                         rs.getString("lpa_stock_image"),
                         rs.getString("lpa_stock_status")
