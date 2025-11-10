@@ -26,9 +26,8 @@ public class LoginController {
         String password = passwordField.getText();
         System.out.println("email: " + email + " password: " + password);
 
-        if (userDAO.loginCheck(email, password)) {
-            System.out.println("");
-        }
+        User user = userDAO.loginCheck(email, password);
 
+        System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName());
     }
 }

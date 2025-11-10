@@ -6,7 +6,7 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
-    private String name = firstName + " " + lastName;
+    private String name;
     private String email;
     private String password;
     private String address;
@@ -14,14 +14,14 @@ public class User {
     private String paymentType;
     private int cardLastFour;
     private Date registrationDate;
-    private char clientStatus;
+    private String clientStatus;
     private boolean clientGroup;
 
-    public User(int id, String firstName, String lastName, String name, String email, String password, String address, String phone, String paymentType, int cardLastFour, Date registrationDate, char clientStatus, boolean clientGroup) {
+    public User(int id, String firstName, String lastName, String email, String password, String address, String phone, String paymentType, int cardLastFour, Date registrationDate, String clientStatus, boolean clientGroup) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.name = name;
+        this.name = firstName + " " + lastName;
         this.email = email;
         this.password = password;
         this.address = address;
@@ -77,7 +77,7 @@ public class User {
         return registrationDate;
     }
 
-    public char getClientStatus() {
+    public String getClientStatus() {
         return clientStatus;
     }
 
