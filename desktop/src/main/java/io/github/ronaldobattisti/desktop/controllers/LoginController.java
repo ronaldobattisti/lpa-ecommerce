@@ -1,6 +1,7 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.dao.UserDAO;
+import io.github.ronaldobattisti.desktop.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -19,11 +20,15 @@ public class LoginController {
     UserDAO userDAO = new UserDAO();
 
     public void onLoginButtonClick(ActionEvent actionEvent) throws SQLException {
+        UserDAO userDAO = new UserDAO();
+
         String email = emailField.getText();
         String password = passwordField.getText();
         System.out.println("email: " + email + " password: " + password);
 
-        userDAO.loginCheck(email, password);
+        if (userDAO.loginCheck(email, password)) {
+            System.out.println("");
+        }
 
     }
 }

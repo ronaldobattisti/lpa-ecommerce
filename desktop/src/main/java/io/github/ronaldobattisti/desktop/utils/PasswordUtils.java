@@ -11,14 +11,7 @@ public class PasswordUtils {
             storedPassword = "$2a$" + storedPassword.substring(4);
         }
 
-        try {
-            //Has to be in this order: plainPassword, hashedPassword
-            return BCrypt.checkpw(inputtedPassword, storedPassword);
-        } catch (IllegalArgumentException e) {
-            // Log to verify what prefix reached here if it ever fails again
-            System.err.println("Hash prefix problem: " + storedPassword);
-            throw new RuntimeException("Password verification failed", e);
-        }
+        //Has to be in this order: plainPassword, hashedPassword
+        return BCrypt.checkpw(inputtedPassword, storedPassword);
     }
-
 }

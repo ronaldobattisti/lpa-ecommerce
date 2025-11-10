@@ -17,6 +17,22 @@ public class User {
     private char clientStatus;
     private boolean clientGroup;
 
+    public User(int id, String firstName, String lastName, String name, String email, String password, String address, String phone, String paymentType, int cardLastFour, Date registrationDate, char clientStatus, boolean clientGroup) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.paymentType = paymentType;
+        this.cardLastFour = cardLastFour;
+        this.registrationDate = registrationDate;
+        this.clientStatus = clientStatus;
+        this.clientGroup = clientGroup;
+    }
+
     public int getId() {
         return id;
     }

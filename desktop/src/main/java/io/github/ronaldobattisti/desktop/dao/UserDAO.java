@@ -22,10 +22,7 @@ public class UserDAO {
 
             if (rs.next()) {
                 String storedPassword = rs.getString("lpa_client_password");
-                if (PasswordUtils.checkPassword(storedPassword, password)) {
-                    System.out.println("Login Successful");
-                    return true;
-                }
+                return PasswordUtils.checkPassword(storedPassword, password);
             } else {
                 throw new Exception("There is no user associated to this email");
             }
@@ -34,6 +31,12 @@ public class UserDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return false;
+    }
+
+    public User getUser(String email,  String password) throws SQLException {
+        if(loginCheck(email, password)) {
+            User user = new User();
+
+        }
     }
 }
