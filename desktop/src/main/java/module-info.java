@@ -6,7 +6,7 @@ module io.github.ronaldobattisti.desktop {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
-    //requires io.github.ronaldobattisti.desktop;
+    requires jbcrypt;
 
     //opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.app;

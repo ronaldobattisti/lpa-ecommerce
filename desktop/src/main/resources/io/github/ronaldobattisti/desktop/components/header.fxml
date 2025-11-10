@@ -5,15 +5,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <HBox alignment="CENTER" spacing="40" styleClass="site-header" stylesheets="@../../../../../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ronaldobattisti.desktop.controllers.HeaderController">
 
     <!-- Left: Logo -->
     <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
         <ImageView fx:id="logoImage" fitHeight="35" fitWidth="67.0" onMouseClicked="#onIconClick" styleClass="image-view">
-            <image>
-                <Image url="@../../../../../images/Logo.png" />
-            </image>
+            <Image url="@../../../../../images/Logo.png"/>
         </ImageView>
     </HBox>
 
@@ -25,9 +24,10 @@
 
     <!-- Right: Icons -->
     <HBox alignment="CENTER_RIGHT" spacing="10">
-        <Button fx:id="adminButton" styleClass="icon-button" text="★" />
+        <FontIcon fx:id="accountButton" onMouseClicked="#onLoginClicked" styleClass="icon-button" iconLiteral="bi-person-check" iconSize="20" iconColor="black"/>
+        <!--<Button fx:id="adminButton" styleClass="icon-button" text="★" />
         <Button fx:id="accountButton" onMouseClicked="#onLoginClicked" styleClass="icon-button" text="👤" />
-        <Button fx:id="cartButton" styleClass="icon-button" text="🛍️" />
+        <Button fx:id="cartButton" styleClass="icon-button" text="🛍️" />-->
     </HBox>
 
 </HBox>
