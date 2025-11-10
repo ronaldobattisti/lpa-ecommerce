@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.ronaldobattisti.desktop.controllers.LoginController"
+            style="-fx-background-color: white;"
+            prefWidth="600" prefHeight="500"
+            AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+    <!-- Main container -->
+    <VBox alignment="CENTER" spacing="15" prefWidth="400"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <Label text="Welcome Back" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+        <Label text="Log in to access your account" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+
+        <!-- Alert area (hidden until needed) -->
+        <HBox fx:id="alertBox" visible="false" managed="false"
+              style="-fx-background-color: #ffe5e5; -fx-padding: 10; -fx-background-radius: 6;">
+            <Label fx:id="alertMessage"
+                   text="Incorrect e-mail or password. Please try again."
+                   style="-fx-text-fill: #c00; -fx-font-size: 12px;"/>
+        </HBox>
+
+        <!-- Email -->
+        <VBox spacing="5" alignment="CENTER_LEFT" prefWidth="300">
+            <Label text="E-mail" style="-fx-font-size: 13px;"/>
+            <TextField fx:id="emailField" promptText="Enter your e-mail"
+                       prefWidth="300" style="-fx-background-radius: 6; -fx-padding: 8;"/>
+        </VBox>
+
+        <!-- Password -->
+        <VBox spacing="5" alignment="CENTER_LEFT" prefWidth="300">
+            <Label text="Password" style="-fx-font-size: 13px;"/>
+            <PasswordField fx:id="passwordField" promptText="Enter your password"
+                           prefWidth="300" style="-fx-background-radius: 6; -fx-padding: 8;"/>
+        </VBox>
+
+        <!-- Links -->
+        <VBox spacing="5" alignment="CENTER">
+            <Hyperlink text="Forgot your password?" fx:id="forgotLink"
+                       style="-fx-font-size: 12px;"/>
+            <Label text="Don't have an account?" style="-fx-font-size: 12px;"/>
+            <Hyperlink text="Sign up" fx:id="signupLink" style="-fx-font-size: 12px;"/>
+        </VBox>
+
+        <!-- Submit button -->
+        <Button fx:id="loginButton" text="Login"
+                style="-fx-background-color: #007bff; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-background-radius: 6;"
+                prefWidth="200" prefHeight="35"
+                onAction="#onLoginButtonClick"/>
+
+    </VBox>
+</AnchorPane>

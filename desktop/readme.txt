@@ -43,3 +43,5 @@ OnlineStoreFX/
 │  └─ test/
 │     └─ java/                            ← Optional unit tests
 └─ target/                                ← Generated build files (auto)
+
+

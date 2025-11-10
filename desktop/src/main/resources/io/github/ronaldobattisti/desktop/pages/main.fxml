@@ -4,19 +4,29 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="800.0" maxWidth="800.0" minHeight="700.0" minWidth="700.0" prefWidth="643.0" stylesheets="@../../../../../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ronaldobattisti.desktop.controllers.MainController">
+<BorderPane fx:id="rootPane" maxHeight="800.0" maxWidth="800.0"
+            minHeight="700.0" minWidth="700.0"
+            prefWidth="643.0"
+            stylesheets="@../../../../../css/styles.css"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.ronaldobattisti.desktop.controllers.MainController">
 
     <!-- Top: Header -->
     <top>
-        <fx:include source="../components/header.fxml" />
+        <fx:include fx:id="header" source="../components/header.fxml" />
     </top>
-   <center>
+
+    <center>
        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <VBox layoutX="-1.0">
-                   <fx:include fx:id="productsPaneInclude" source="../components/products_pane.fxml"/>
-                   <fx:include source="../components/footer.fxml" />
-               </VBox>
+           <VBox layoutX="-1.0">
+               <fx:include fx:id="productsPaneInclude" source="../components/products_pane.fxml"/>
+           </VBox>
        </ScrollPane>
-   </center>
+    </center>
+
+    <bottom>
+        <fx:include source="../components/footer.fxml" />
+    </bottom>
 
 </BorderPane>

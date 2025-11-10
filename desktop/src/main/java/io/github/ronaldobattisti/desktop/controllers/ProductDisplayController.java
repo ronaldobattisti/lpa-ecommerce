@@ -19,9 +19,9 @@ public class ProductDisplayController {
 
     public void setProductData(Product product) {
         productName.setText(product.getName());
-        /*productPrice.setText(String.format("$", product.getPrice()));
+        productPrice.setText(String.format("AUD %.2f", product.getPrice()));
 
-        try {
+        /*try {
             //productImage.setImage(new Image(product.getImageUrl()));
             productImage.setImage(new Image(""));
         } catch (Exception e) {
