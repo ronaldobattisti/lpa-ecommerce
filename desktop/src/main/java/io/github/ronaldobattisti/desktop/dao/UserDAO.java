@@ -44,7 +44,7 @@ public class UserDAO {
                 throw new Exception("There is no user associated to this email");
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
     }
 }

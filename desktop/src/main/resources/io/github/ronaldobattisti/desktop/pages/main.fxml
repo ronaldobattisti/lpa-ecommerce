@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.StackPane?>
 <BorderPane fx:id="rootPane" maxHeight="800.0" maxWidth="800.0"
             minHeight="700.0" minWidth="700.0"
             prefWidth="643.0"
@@ -14,15 +15,19 @@
 
     <!-- Top: Header -->
     <top>
-        <fx:include fx:id="header" source="../components/header.fxml" />
+        <fx:include fx:id="headerRoot" source="../components/header.fxml" />
     </top>
 
     <center>
        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-           <VBox layoutX="-1.0">
-               <fx:include fx:id="productsPaneInclude" source="../components/products_pane.fxml"/>
-           </VBox>
+            <StackPane fx:id="contentArea">
+                <!-- Login pane -->
+                <fx:include fx:id="loginController" source="../components/login.fxml"/>
+                <!-- Products pane -->
+                <fx:include fx:id="productsController" source="../components/productsPane.fxml"/>
+            </StackPane>
        </ScrollPane>
+
     </center>
 
     <bottom>
