@@ -7,22 +7,22 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController {
 
     private MainController mainController;
 
+    @FXML private HBox root;
+    @FXML private TextField emailField;
+    @FXML private PasswordField passwordField;
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-
-    @FXML private TextField emailField;
-    @FXML private AnchorPane root;
-    @FXML private PasswordField passwordField;
 
     public void onLoginButtonClick(ActionEvent actionEvent) {
         try {

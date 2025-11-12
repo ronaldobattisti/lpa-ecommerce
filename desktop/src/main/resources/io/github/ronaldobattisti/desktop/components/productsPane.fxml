@@ -7,18 +7,20 @@
 <HBox alignment="CENTER"
       xmlns="http://javafx.com/javafx/25"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="io.github.ronaldobattisti.desktop.controllers.ProductsPaneController">
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.ProductsPaneController"
+      fx:id="root">
 
-    <FlowPane fx:id="root"
-              alignment="TOP_CENTER"
+    <FlowPane fx:id="productContainer"
+            alignment="TOP_CENTER"
               hgap="20.0"
               vgap="20.0"
               HBox.hgrow="ALWAYS"
               style="-fx-background-color:transparent;">
-        <!-- ✅ Correct padding syntax -->
         <padding>
             <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
     </FlowPane>
 </HBox>
+
+
 

@@ -3,7 +3,7 @@ package io.github.ronaldobattisti.desktop.controllers;
 import io.github.ronaldobattisti.desktop.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.layout.HBox;
 import java.io.IOException;
 
 public class HeaderController {
@@ -30,6 +30,7 @@ public class HeaderController {
 
     @FXML
     public void onLoginClicked(MouseEvent mouseEvent) throws IOException {
+        System.out.println("HeaderController: Login clicked");
         if (mainController != null) {
             mainController.showLoginPane();
             System.out.println("Login pressed");
