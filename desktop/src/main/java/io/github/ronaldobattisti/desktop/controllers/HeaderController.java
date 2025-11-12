@@ -30,7 +30,6 @@ public class HeaderController {
 
     @FXML
     public void onLoginClicked(MouseEvent mouseEvent) throws IOException {
-        System.out.println("HeaderController: Login clicked");
         if (mainController != null) {
             mainController.showLoginPane();
             System.out.println("Login pressed");
