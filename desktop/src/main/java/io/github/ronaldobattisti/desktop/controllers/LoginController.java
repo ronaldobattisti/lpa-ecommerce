@@ -2,6 +2,7 @@ package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.dao.UserDAO;
 import io.github.ronaldobattisti.desktop.models.User;
+import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -34,7 +35,7 @@ public class LoginController {
                 System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName());
 
                 // Send user to header
-                mainController.setUserToHeader(user);
+                SessionManager.setCurrentUser(user);
 
                 // Load products screen
                 mainController.showProductsPane();

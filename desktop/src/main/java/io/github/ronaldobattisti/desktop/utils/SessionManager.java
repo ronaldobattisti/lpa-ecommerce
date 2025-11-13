@@ -13,7 +13,7 @@ public class SessionManager {
         currentUser = user;
     }
 
-    private static User getCurrentUser() {
+    public static User getCurrentUser() {
         return currentUser;
     }
 }

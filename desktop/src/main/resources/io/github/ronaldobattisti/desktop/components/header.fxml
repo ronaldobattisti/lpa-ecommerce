@@ -4,8 +4,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.layout.HBox?>
 
 <HBox fx:id="root"
       alignment="CENTER"
@@ -25,15 +26,17 @@
 
     <!-- Center: Search bar -->
     <HBox fx:id="searchBox" alignment="CENTER" spacing="5" HBox.hgrow="ALWAYS">
-        <TextField id="searchField" fx:id="searchField" alignment="CENTER" promptText="Search products..." styleClass="search-bar" HBox.hgrow="ALWAYS" />
+        <TextField maxWidth="200" id="searchField" fx:id="searchField" alignment="CENTER" promptText="Search products..." styleClass="search-bar" HBox.hgrow="ALWAYS" />
         <Button fx:id="searchButton" styleClass="search-button" text="Search" />
     </HBox>
 
     <!-- Right: Icons -->
     <HBox alignment="CENTER_RIGHT" spacing="10">
-        <FontIcon fx:id="accountButton" onMouseClicked="#onLoginClicked" styleClass="icon-button" iconLiteral="bi-person-check" iconSize="20" iconColor="black"/>
-        <!--<Button fx:id="adminButton" styleClass="icon-button" text="★" />
-        <Button fx:id="accountButton" onMouseClicked="#onLoginClicked" styleClass="icon-button" text="👤" />
+        <FontIcon fx:id="adminButton" onMouseClicked="#onAdmClicked" styleClass="icon-button" iconLiteral="bi-person-plus" iconSize="20" iconColor="black" />
+        <FontIcon fx:id="cartButton" onMouseClicked="#onCartClicked" styleClass="icon-button" iconLiteral="bi-cart" iconSize="20" iconColor="black" />
+        <FontIcon fx:id="accountButton" onMouseClicked="#onLoginClicked" styleClass="icon-button" iconLiteral="bi-person" iconSize="20" iconColor="black"/>
+        <!--<FontIcon iconLiteral="bi-person-check" iconSize="20" iconColor="black" />
+        <Button fx:id="adminButton" styleClass="icon-button" text="★" />
         <Button fx:id="cartButton" styleClass="icon-button" text="🛍️" />-->
     </HBox>
 
