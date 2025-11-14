@@ -35,9 +35,6 @@
         <FontIcon fx:id="adminButton" onMouseClicked="#onAdmClicked" styleClass="icon-button" iconLiteral="bi-person-plus" iconSize="20" iconColor="black" />
         <FontIcon fx:id="cartButton" onMouseClicked="#onCartClicked" styleClass="icon-button" iconLiteral="bi-cart" iconSize="20" iconColor="black" />
         <FontIcon fx:id="accountButton" onMouseClicked="#onLoginClicked" styleClass="icon-button" iconLiteral="bi-person" iconSize="20" iconColor="black"/>
-        <!--<FontIcon iconLiteral="bi-person-check" iconSize="20" iconColor="black" />
-        <Button fx:id="adminButton" styleClass="icon-button" text="★" />
-        <Button fx:id="cartButton" styleClass="icon-button" text="🛍️" />-->
     </HBox>
 
 </HBox>
