@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 
 <!-- Main container -->
-<HBox alignment="CENTER"
+<VBox alignment="CENTER"
       prefWidth="400"
       spacing="15"
       style="-fx-background-color: white;"
       xmlns="http://javafx.com/javafx/25"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="io.github.ronaldobattisti.desktop.controllers.LoginController"
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.LoginPaneController"
       fx:id="root">
 
     <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Welcome Back" />
@@ -55,4 +55,4 @@
                 text="Login"/>
     </VBox>
 
-</HBox>
+</VBox>

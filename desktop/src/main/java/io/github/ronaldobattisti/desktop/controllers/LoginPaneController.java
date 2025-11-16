@@ -8,14 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
 import java.sql.SQLException;
 
-public class LoginController {
+public class LoginPaneController {
 
     private MainController mainController;
 
-    @FXML private HBox root;
+    @FXML private VBox root;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
 

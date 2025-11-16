@@ -20,10 +20,12 @@
     <center>
        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <StackPane fx:id="contentArea">
-                <!-- Login pane -->
-                <fx:include fx:id="loginPaneInclude" source="../components/login.fxml"/>
                 <!-- Products pane -->
                 <fx:include fx:id="productsPaneInclude" source="../components/productsPane.fxml"/>
+                <!-- Login pane -->
+                <fx:include fx:id="loginPaneInclude" source="../components/loginPane.fxml"/>
+                <!-- registration pane -->
+                <fx:include fx:id="registerPaneInclude" source="../components/registerPane.fxml"/>
             </StackPane>
        </ScrollPane>
     </center>

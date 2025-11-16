@@ -2,19 +2,20 @@ package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.models.User;
 import javafx.fxml.FXML;
-import javafx.scene.layout.*;
 
 public class MainController {
 
     @FXML private HeaderController headerIncludeController;
-    @FXML private LoginController loginPaneIncludeController;
+    @FXML private LoginPaneController loginPaneIncludeController;
     @FXML private ProductsPaneController productsPaneIncludeController;
+    @FXML private RegisterPaneController registerPaneIncludeController;
 
     @FXML
     private void initialize() {
         headerIncludeController.setMainController(this);
         loginPaneIncludeController.setMainController(this);
         productsPaneIncludeController.setMainController(this);
+        registerPaneIncludeController.setMainController(this);
         // show products first
         showProductsPane();
     }
