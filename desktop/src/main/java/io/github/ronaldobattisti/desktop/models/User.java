@@ -81,7 +81,7 @@ public class User {
         return clientStatus;
     }
 
-    public boolean isClientGroup() {
+    public boolean getClientGroup() {
         return clientGroup;
     }
 }

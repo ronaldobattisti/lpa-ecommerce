@@ -46,7 +46,7 @@
         <VBox alignment="CENTER" spacing="5">
             <Hyperlink fx:id="forgotLink" style="-fx-font-size: 12px;" text="Forgot your password?"/>
             <Label style="-fx-font-size: 12px;" text="Don't have an account?"/>
-            <Hyperlink fx:id="signupLink" style="-fx-font-size: 12px;" text="Sign up"/>
+            <Hyperlink fx:id="signupLink" onAction="#showRegisterPane" style="-fx-font-size: 12px;" text="Sign up"/>
         </VBox>
 
         <!-- Submit button -->

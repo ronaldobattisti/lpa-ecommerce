@@ -56,4 +56,8 @@ public class LoginPaneController {
     public Node getRoot() {
         return root;
     }
+
+    public void showRegisterPane(ActionEvent actionEvent) {
+        mainController.showRegisterPane();
+    }
 }

@@ -47,4 +47,8 @@ public class UserDAO {
             throw new SQLException(e);
         }
     }
+
+    public boolean checkEmailExists(User user) throws SQLException {
+        return false;
+    }
 }
