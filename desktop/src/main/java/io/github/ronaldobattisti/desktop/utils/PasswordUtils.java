@@ -14,4 +14,8 @@ public class PasswordUtils {
         //Has to be in this order: plainPassword, hashedPassword
         return BCrypt.checkpw(inputtedPassword, storedPassword);
     }
+
+    public static String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 }

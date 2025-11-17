@@ -48,6 +48,27 @@ public class UserDAO {
         }
     }
 
+    public void registerNewUser(User user) throws SQLException {
+        String sql = "INSERT INTO lpa_clients (lpa_client_firstname, lpa_client_lastname, lpa_client_email, lpa_client_password, lpa_client_address, lpa_client_phone) VALUES (?, ?, ?, ?, ?, ?)";
+
+        String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, user.getFirstName());
+            stmt.setString(2, user.getLastName());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, hashedPassword);
+            stmt.setString(5, user.getAddress());
+            stmt.setString(6, user.getPhone());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error registering new user: " + e.getMessage());
+        }
+    }
+
     public boolean checkEmailExists(User user) throws SQLException {
         return false;
     }

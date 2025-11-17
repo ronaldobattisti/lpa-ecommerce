@@ -1,9 +1,15 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.dao.UserDAO;
+import io.github.ronaldobattisti.desktop.models.User;
+import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+
+import java.sql.SQLException;
 
 public class RegisterPaneController {
 
@@ -25,6 +31,15 @@ public class RegisterPaneController {
         String address = addressField.getText();
         String phone = phoneField.getText();
 
+        User user = registerUser(firstName, lastName, email, password, address, phone);
+
+        if (user != null) {
+            SessionManager.setCurrentUser(user);
+            mainController.showProductsPane();
+        }
+        else  {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        }
     }
 
     public void showLoginPane(ActionEvent actionEvent) {
@@ -33,6 +48,23 @@ public class RegisterPaneController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    private User registerUser(String firstName, String lastName, String email, String password, String address, String phone) {
+        try{
+            User user = new User(firstName, lastName, email, password, address, phone);
+            UserDAO userDAO = new UserDAO();
+            if (!userDAO.checkEmailExists(user)){
+                userDAO.registerNewUser(user);
+                return user;
+            } else {
+                throw new SQLException("User already exists");
+            }
+        } catch (Exception e) {
+            System.out.println("Error during registration: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Node getRoot() {

@@ -33,6 +33,17 @@ public class User {
         this.clientGroup = clientGroup;
     }
 
+    //Registration WO payment info
+    public User(String firstName, String lastName, String email, String password, String address, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.name = firstName + " " + lastName;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }
