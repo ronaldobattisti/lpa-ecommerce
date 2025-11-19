@@ -37,7 +37,6 @@ public class User {
     public User(String firstName, String lastName, String email, String password, String address, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.name = firstName + " " + lastName;
         this.email = email;
         this.password = password;
         this.address = address;
@@ -57,7 +56,7 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return firstName + " " + lastName;
     }
 
     public String getEmail() {

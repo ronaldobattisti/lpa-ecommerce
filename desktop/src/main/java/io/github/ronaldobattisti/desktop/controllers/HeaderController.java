@@ -38,9 +38,12 @@ public class HeaderController {
 
     @FXML
     public void onLoginClicked(MouseEvent mouseEvent) throws IOException {
-        if (mainController != null) {
+        if (SessionManager.getCurrentUser() == null) {
             mainController.showLoginPane();
             System.out.println("Login pressed");
+        } else {
+            mainController.showLoggedPane();
+            System.out.println("User is already logged in: " + SessionManager.getCurrentUser().getName());
         }
     }
 

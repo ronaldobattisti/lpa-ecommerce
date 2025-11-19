@@ -13,8 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.HBox?>
+
 <VBox alignment="TOP_CENTER"
       prefHeight="400.0" prefWidth="600.0"
       xmlns="http://javafx.com/javafx/25"

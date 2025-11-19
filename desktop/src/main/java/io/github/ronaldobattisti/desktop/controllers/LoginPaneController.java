@@ -43,7 +43,6 @@ public class LoginPaneController {
             } else {
                 System.out.println("Invalid credentials.");
             }
-
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace();
@@ -60,4 +59,6 @@ public class LoginPaneController {
     public void showRegisterPane(ActionEvent actionEvent) {
         mainController.showRegisterPane();
     }
+
+
 }

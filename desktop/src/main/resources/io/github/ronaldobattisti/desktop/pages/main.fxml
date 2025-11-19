@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-
 <?import javafx.scene.layout.StackPane?>
 <BorderPane fx:id="root" maxHeight="800.0" maxWidth="800.0"
             minHeight="700.0" minWidth="700.0"
@@ -18,10 +17,12 @@
     </top>
 
     <center>
+       <!-- Remove tiny pref sizes; enable fitToWidth/fitToHeight so inner StackPane can occupy all available space -->
        <ScrollPane fx:id="scrollPane"
                    hbarPolicy="NEVER"
-                   prefHeight="200.0"
-                   prefWidth="200.0"
+                   vbarPolicy="AS_NEEDED"
+                   fitToWidth="true"
+                   fitToHeight="true"
                    BorderPane.alignment="CENTER">
             <StackPane fx:id="contentArea">
                 <!-- Products pane -->
@@ -30,6 +31,8 @@
                 <fx:include fx:id="loginPaneInclude" source="../components/loginPane.fxml"/>
                 <!-- registration pane -->
                 <fx:include fx:id="registerPaneInclude" source="../components/registerPane.fxml"/>
+                <!-- logged pane -->
+                <fx:include fx:id="loggedPaneInclude" source="../components/loggedPane.fxml"/>
             </StackPane>
        </ScrollPane>
     </center>
