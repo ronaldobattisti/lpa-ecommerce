@@ -14,8 +14,6 @@ public class LoggedPaneController {
 
     @FXML private VBox root;
     @FXML private Label welcomeLabel;
-    @FXML private Hyperlink logOut;
-
 
     @FXML private void initialize() {
     }
