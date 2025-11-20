@@ -88,4 +88,8 @@ public class MainController {
         loggedPaneIncludeController.refresh();
     }
 
+    public void updateHeader() {
+        headerIncludeController.update();
+    }
+
 }

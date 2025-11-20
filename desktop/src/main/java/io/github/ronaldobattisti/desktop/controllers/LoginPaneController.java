@@ -50,6 +50,7 @@ public class LoginPaneController {
             System.out.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();
         }
+        mainController.updateHeader();
     }
 
     public Node getRoot() {

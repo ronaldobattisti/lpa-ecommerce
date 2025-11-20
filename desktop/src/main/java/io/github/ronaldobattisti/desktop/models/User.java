@@ -91,7 +91,7 @@ public class User {
         return clientStatus;
     }
 
-    public boolean getClientGroup() {
+    public boolean isAdm() {
         return clientGroup;
     }
 }

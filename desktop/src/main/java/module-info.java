@@ -8,6 +8,7 @@ module io.github.ronaldobattisti.desktop {
     requires java.desktop;
     requires jbcrypt;
     requires javafx.graphics;
+    requires org.kordamp.ikonli.javafx;
 
     //opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.app;

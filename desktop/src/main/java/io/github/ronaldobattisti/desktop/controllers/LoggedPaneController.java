@@ -1,8 +1,10 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -12,14 +14,16 @@ public class LoggedPaneController {
 
     @FXML private VBox root;
     @FXML private Label welcomeLabel;
+    @FXML private Hyperlink logOut;
+
 
     @FXML private void initialize() {
     }
 
     public void refresh() {
         if (SessionManager.getCurrentUser() != null){
-            System.out.println(welcomeLabel.getText() + " " + SessionManager.getCurrentUser().getName());
-            welcomeLabel.setText(welcomeLabel.getText() + " " + SessionManager.getCurrentUser().getName());
+            welcomeLabel.setText("");
+            welcomeLabel.setText("Welcome to your account settings, " + SessionManager.getCurrentUser().getName());
         }
     }
 
@@ -27,11 +31,13 @@ public class LoggedPaneController {
         this.mainController = mainController;
     }
 
-    public void showLoggedPane() {
-        mainController.showLoggedPane();
-    }
-
     public Node getRoot() {
         return root;
+    }
+
+    public void onLogoutClick(ActionEvent actionEvent) {
+        SessionManager.logout();
+        mainController.updateHeader();
+        mainController.showProductsPane();
     }
 }

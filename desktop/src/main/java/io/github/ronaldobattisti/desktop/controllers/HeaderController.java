@@ -4,7 +4,8 @@ import io.github.ronaldobattisti.desktop.models.User;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import java.io.IOException;
 
 public class HeaderController {
@@ -12,15 +13,13 @@ public class HeaderController {
     private User currentUser;
     private MainController mainController;
 
+    @FXML private FontIcon adminButton;
+    @FXML private FontIcon cartButton;
+
     @FXML
     public void initialize() {
         currentUser = SessionManager.getCurrentUser();
-        if (currentUser != null) {
-            System.out.println("HeaderController initialized with user: " + currentUser.getName());
-        } else {
-            System.out.println("HeaderController initialized with no user.");
-        }
-
+        this.update();
     }
 
     public void setMainController(MainController mainController) {
@@ -52,6 +51,28 @@ public class HeaderController {
         if (mainController != null) {
             mainController.showProductsPane();
             System.out.println("Icon pressed");
+        }
+    }
+
+    public void update(){
+        currentUser = SessionManager.getCurrentUser();
+        if (currentUser != null) {
+            if (currentUser.isAdm()){
+                adminButton.setVisible(true);
+                adminButton.setManaged(true);
+            } else {
+                adminButton.setVisible(false);
+                adminButton.setManaged(false);
+            }
+            cartButton.setVisible(true);
+            cartButton.setManaged(true);
+            System.out.println("HeaderController initialized with user: " + currentUser.getName());
+        } else {
+            adminButton.setVisible(false);
+            adminButton.setManaged(false);
+            cartButton.setVisible(false);
+            cartButton.setManaged(false);
+            System.out.println("HeaderController initialized with no user.");
         }
     }
 
