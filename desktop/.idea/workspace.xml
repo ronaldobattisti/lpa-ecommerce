@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/OrdersPaneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/ordersPane.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/dao/OrderDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/models/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/LoggedPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/LoggedPaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/OrdersPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/OrdersPaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/ordersPane.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/ordersPane.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/pages/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/pages/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +165,8 @@
       <workItem from="1763337407956" duration="14239000" />
       <workItem from="1763514460534" duration="110000" />
       <workItem from="1763595804262" duration="182000" />
-      <workItem from="1763611834134" duration="3263000" />
+      <workItem from="1763611834134" duration="3331000" />
+      <workItem from="1763689691904" duration="4607000" />
     </task>
     <servers />
   </component>

@@ -13,6 +13,7 @@ public class MainController {
     @FXML private ProductsPaneController productsPaneIncludeController;
     @FXML private RegisterPaneController registerPaneIncludeController;
     @FXML private LoggedPaneController loggedPaneIncludeController;
+    @FXML private OrdersPaneController ordersPaneIncludeController;
     @FXML private StackPane contentArea;
 
     @FXML
@@ -23,6 +24,7 @@ public class MainController {
         productsPaneIncludeController.setMainController(this);
         registerPaneIncludeController.setMainController(this);
         loggedPaneIncludeController.setMainController(this);
+        ordersPaneIncludeController.setMainController(this);
 
         // Bind each pane to fill the content area
         bindPane(loginPaneIncludeController.getRoot());

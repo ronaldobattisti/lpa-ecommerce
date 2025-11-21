@@ -33,6 +33,8 @@
                 <fx:include fx:id="registerPaneInclude" source="../components/registerPane.fxml"/>
                 <!-- logged pane -->
                 <fx:include fx:id="loggedPaneInclude" source="../components/loggedPane.fxml"/>
+                <!-- orders user pane -->
+                <fx:include fx:id="ordersPaneInclude" source="../components/ordersPane.fxml"/>
             </StackPane>
        </ScrollPane>
     </center>

@@ -21,7 +21,6 @@
         <TableView fx:id="ordersTable" prefHeight="350" prefWidth="800" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="orderIdColumn" text="ID" prefWidth="80"/>
-                <TableColumn fx:id="customerColumn" text="Cliente" prefWidth="220"/>
                 <TableColumn fx:id="dateColumn" text="Data" prefWidth="140"/>
                 <TableColumn fx:id="totalColumn" text="Total" prefWidth="120"/>
                 <TableColumn fx:id="statusColumn" text="Status" prefWidth="120"/>
