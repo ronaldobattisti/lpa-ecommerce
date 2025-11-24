@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Main container -->
+<VBox alignment="TOP_CENTER"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.AdmPaneController"
+      fx:id="root">
+
+    <Label fx:id="welcomeLabel" styleClass="welcome-title" />
+    <Label text="Manage your store efficiently using the tools below." styleClass="welcome-subtitle"/>
+
+    <!-- Cards container -->
+    <VBox spacing="25" alignment="TOP_CENTER" prefWidth="500">
+
+        <!-- Add Products -->
+        <VBox onMouseClicked="#onAddProductsButtonClick"
+              styleClass="admin-card">
+            <Label styleClass="card-icon" text="📦"/>
+            <Label styleClass="card-title" text="Add Products"/>
+            <Label styleClass="card-subtitle"
+                   text="Register new products in your store."/>
+        </VBox>
+
+        <!-- Manage Products -->
+        <VBox onMouseClicked="#onManageProductsButtonClick"
+              styleClass="admin-card">
+            <Label styleClass="card-icon" text="✏️"/>
+            <Label styleClass="card-title" text="Manage Products"/>
+            <Label styleClass="card-subtitle"
+                   text="Edit or remove existing products."/>
+        </VBox>
+
+        <!-- Manage Orders -->
+        <VBox onMouseClicked="#onManageOrdersButtonClick"
+              styleClass="admin-card">
+            <Label styleClass="card-icon" text="📄"/>
+            <Label styleClass="card-title" text="Manage Orders"/>
+            <Label styleClass="card-subtitle"
+                   text="Track and update customer orders."/>
+        </VBox>
+
+        <!-- Manage Clients -->
+        <VBox onMouseClicked="#onManageClientsButtonClick"
+              styleClass="admin-card">
+            <Label styleClass="card-icon" text="👥"/>
+            <Label styleClass="card-title" text="Manage Clients"/>
+            <Label styleClass="card-subtitle"
+                   text="View and manage registered users."/>
+        </VBox>
+
+    </VBox>
+</VBox>

@@ -78,6 +78,7 @@ public class HeaderController {
 
     public void onAdmClicked(MouseEvent mouseEvent) {
         System.out.println("Admin pressed");
+        mainController.showAdmPane();
     }
 
     public void onCartClicked(MouseEvent mouseEvent) {

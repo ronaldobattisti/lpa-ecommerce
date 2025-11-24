@@ -75,3 +75,58 @@
     -fx-background-color: #007bff;
     -fx-text-fill: white;
 }
+
+/* Root background */
+.admin-root {
+    -fx-background-color: #111827;
+    -fx-padding: 40 0 40 0;
+}
+
+/* Welcome title */
+.welcome-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FACC15; /* amber-400 */
+}
+
+/* Welcome subtitle */
+.welcome-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #9CA3AF; /* gray-400 */
+}
+
+/* Card style */
+.admin-card {
+    -fx-background-color: #1F2937; /* dark card */
+    -fx-padding: 30 20 30 20;
+    -fx-background-radius: 16;
+    -fx-alignment: CENTER;
+    -fx-spacing: 6;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0.2, 0, 4);
+}
+
+/* Hover */
+.admin-card:hover {
+    -fx-background-color: #374151; /* lighter dark */
+}
+
+/* Icon */
+.card-icon {
+    -fx-font-size: 40px;
+    -fx-text-fill: #FACC15;
+}
+
+/* Title inside card */
+.card-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Subtitle inside card */
+.card-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #9CA3AF;
+}
+

@@ -4,7 +4,6 @@ import io.github.ronaldobattisti.desktop.dao.OrderDAO;
 import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
@@ -27,6 +26,8 @@ public class OrdersPaneController {
     @FXML private Button refreshButton;
     @FXML private Label rowsCountLabel;
 
+    @FXML
+    private Label welcomeLabel; // deve corresponder exatamente ao fx:id no FXML
 
     private MainController mainController;
 
@@ -35,6 +36,12 @@ public class OrdersPaneController {
         orderDateColumn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("date"));
         orderAmountColumn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("amount"));
         paymentStatusColumn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("status"));
+
+        // Acessar welcomeLabel apenas aqui (após injeção)
+        if (welcomeLabel != null) {
+            // exemplo mínimo: garantir texto inicial
+            welcomeLabel.setText("Pedidos");
+        }
     }
 
     public void updateOrdersTable() {

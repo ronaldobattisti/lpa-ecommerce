@@ -9,7 +9,8 @@
     fx:id="root">
     <!-- ...existing code... -->
     <ToolBar>
-        <Label text="Pedidos"/>
+        <!-- Adicionado fx:id para poder injetar no controller -->
+        <Label fx:id="welcomeLabel" text="Pedidos"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <TextField fx:id="searchField" promptText="Pesquisar..."/>
         <Button text="Atualizar" fx:id="refreshButton"/>
