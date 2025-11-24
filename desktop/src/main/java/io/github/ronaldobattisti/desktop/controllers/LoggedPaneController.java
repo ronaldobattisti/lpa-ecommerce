@@ -38,4 +38,8 @@ public class LoggedPaneController {
         mainController.updateHeader();
         mainController.showProductsPane();
     }
+
+    public void onViewOrdersClick(ActionEvent actionEvent) {
+        mainController.showOrdersPane();
+    }
 }

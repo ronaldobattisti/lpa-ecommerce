@@ -1,10 +1,11 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+
+import java.util.List;
 
 public class MainController {
 
@@ -26,72 +27,64 @@ public class MainController {
         loggedPaneIncludeController.setMainController(this);
         ordersPaneIncludeController.setMainController(this);
 
-        // Bind each pane to fill the content area
-        bindPane(loginPaneIncludeController.getRoot());
-        bindPane(productsPaneIncludeController.getRoot());
-        bindPane(registerPaneIncludeController.getRoot());
-        bindPane(loggedPaneIncludeController.getRoot());
+        //binding all the panes at the same time
+        List<Node> panes = List.of(
+            loginPaneIncludeController.getRoot(),
+            productsPaneIncludeController.getRoot(),
+            registerPaneIncludeController.getRoot(),
+            loggedPaneIncludeController.getRoot(),
+            ordersPaneIncludeController.getRoot()
+        );
 
         // Start with products pane visible (others hidden)
-        showProductsPane();
+        for (Node node : panes) {
+            bindPane(node);
+        }
+
+        showPane(productsPaneIncludeController.getRoot());
     }
 
-    private void bindPane(Node pane) {
-        if (pane instanceof Region r) {
-            r.prefWidthProperty().bind(contentArea.widthProperty());
-            r.prefHeightProperty().bind(contentArea.heightProperty());
-            r.maxWidthProperty().bind(contentArea.widthProperty());
-            r.maxHeightProperty().bind(contentArea.heightProperty());
+    private void bindPane(Node node) {
+        Region region = (Region)node;
+        region.prefWidthProperty().bind(contentArea.widthProperty());
+        region.prefHeightProperty().bind(contentArea.heightProperty());
+    }
+
+    private void showPane(Node root) {
+        for (Node node : contentArea.getChildren()) {
+            if (node == root) {
+                node.setVisible(true);
+                node.setManaged(true);
+            } else {
+                node.setVisible(false);
+                node.setManaged(false);
+            }
         }
     }
 
     public void showLoginPane() {
-        productsPaneIncludeController.getRoot().setManaged(false);
-        productsPaneIncludeController.getRoot().setVisible(false);
-        loginPaneIncludeController.getRoot().setManaged(true);
-        loginPaneIncludeController.getRoot().setVisible(true);
-        registerPaneIncludeController.getRoot().setManaged(false);
-        registerPaneIncludeController.getRoot().setVisible(false);
-        loggedPaneIncludeController.getRoot().setManaged(false);
-        loggedPaneIncludeController.getRoot().setVisible(false);
+        showPane((Node) loginPaneIncludeController.getRoot());
     }
 
     public void showProductsPane() {
-        productsPaneIncludeController.getRoot().setManaged(true);
-        productsPaneIncludeController.getRoot().setVisible(true);
-        loginPaneIncludeController.getRoot().setManaged(false);
-        loginPaneIncludeController.getRoot().setVisible(false);
-        registerPaneIncludeController.getRoot().setManaged(false);
-        registerPaneIncludeController.getRoot().setVisible(false);
-        loggedPaneIncludeController.getRoot().setManaged(false);
-        loggedPaneIncludeController.getRoot().setVisible(false);
+        showPane((Node) productsPaneIncludeController.getRoot());
     }
 
     public void showRegisterPane() {
-        productsPaneIncludeController.getRoot().setManaged(false);
-        productsPaneIncludeController.getRoot().setVisible(false);
-        loginPaneIncludeController.getRoot().setManaged(false);
-        loginPaneIncludeController.getRoot().setVisible(false);
-        registerPaneIncludeController.getRoot().setManaged(true);
-        registerPaneIncludeController.getRoot().setVisible(true);
-        loggedPaneIncludeController.getRoot().setManaged(false);
-        loggedPaneIncludeController.getRoot().setVisible(false);
+        showPane((Node) registerPaneIncludeController.getRoot());
     }
 
     public void showLoggedPane() {
-        productsPaneIncludeController.getRoot().setManaged(false);
-        productsPaneIncludeController.getRoot().setVisible(false);
-        loginPaneIncludeController.getRoot().setManaged(false);
-        loginPaneIncludeController.getRoot().setVisible(false);
-        registerPaneIncludeController.getRoot().setManaged(false);
-        registerPaneIncludeController.getRoot().setVisible(false);
-        loggedPaneIncludeController.getRoot().setManaged(true);
-        loggedPaneIncludeController.getRoot().setVisible(true);
+        showPane((Node) loggedPaneIncludeController.getRoot());
         loggedPaneIncludeController.refresh();
+    }
+
+    public void showOrdersPane() {
+        ordersPaneIncludeController.updateOrdersTable();
+        showPane((Node) ordersPaneIncludeController.getRoot());
     }
 
     public void updateHeader() {
         headerIncludeController.update();
     }
-
 }

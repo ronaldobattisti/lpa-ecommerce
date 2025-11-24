@@ -22,7 +22,7 @@
             <opaqueInsets>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
             </opaqueInsets>
-            <Hyperlink fx:id="viewOrders" text="View your orders">
+            <Hyperlink fx:id="viewOrders" onAction="#onViewOrdersClick" text="View your orders">
                 <VBox.margin>
                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                 </VBox.margin>
