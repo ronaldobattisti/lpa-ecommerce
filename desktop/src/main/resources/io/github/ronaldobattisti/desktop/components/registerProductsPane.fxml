@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import java.lang.String?>
+<VBox fx:id="root" spacing="12" AnchorPane.topAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0"
+      AnchorPane.bottomAnchor="8.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.RegisterProductsPaneController">
+    <padding>
+        <Insets top="8" right="12" bottom="8" left="12"/>
+    </padding>
+    <Label text="Register Product" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="120" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <!-- Product Name -->
+        <Label text="Product name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="productNameField" promptText="Enter product name" GridPane.rowIndex="0"
+                   GridPane.columnIndex="1"/>
+
+        <!-- Product Description -->
+        <Label text="Product description:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextArea fx:id="productDescriptionArea" promptText="Enter product description" prefRowCount="4"
+                  wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Quantity Available -->
+        <Label text="Quantity available:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="quantityField" promptText="0" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Product Price -->
+        <Label text="Product price:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="priceField" promptText="0.00" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Category -->
+        <Label text="Category:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="categoryComboBox" promptText="Select category" GridPane.rowIndex="4"
+                  GridPane.columnIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Desktop"/>
+                    <String fx:value="Laptop"/>
+                    <String fx:value="Component"/>
+                    <String fx:value="Storage"/>
+                    <String fx:value="Peripheral"/>
+                    <String fx:value="Display"/>
+                    <String fx:value="Network"/>
+                    <String fx:value="Printer"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <!-- Product Image (file chooser) -->
+        <Label text="Product image:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <HBox spacing="8" GridPane.rowIndex="5" GridPane.columnIndex="1">
+            <TextField fx:id="imagePathField" editable="false" promptText="No file selected"
+                       HBox.hgrow="ALWAYS"/>
+            <Button fx:id="selectImageButton" text="Choose..." onAction="#onSelectImage"/>
+        </HBox>
+
+    </GridPane>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <HBox alignment="CENTER_RIGHT">
+        <Button fx:id="registerButton" text="Register" onAction="#onRegisterProduct"/>
+    </HBox>
+
+</VBox>
+

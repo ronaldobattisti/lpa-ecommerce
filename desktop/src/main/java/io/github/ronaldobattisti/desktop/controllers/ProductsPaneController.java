@@ -42,6 +42,11 @@ public class ProductsPaneController {
         }
     }
 
+    // This allows MainController to inject itself
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+
     private void displayProducts(List<Product> products) {
         for (Product product : products) {
             try {
@@ -58,16 +63,7 @@ public class ProductsPaneController {
         }
     }
 
-    /*public void updateWrapWidth(double width) {
-        productContainer.setPrefWrapLength(width);
-    }*/
 
-
-
-    // This allows MainController to inject itself
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
 
     // So MainController can bring this pane to front
     public HBox getRoot() {

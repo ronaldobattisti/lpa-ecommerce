@@ -29,6 +29,7 @@ public class AdmPaneController {
 
     public void onAddProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Add Products button clicked");
+        mainController.showAddProductPane();
     }
 
     public void onManageProductsButtonClick(MouseEvent actionEvent) {

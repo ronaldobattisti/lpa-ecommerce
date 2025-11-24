@@ -16,6 +16,7 @@ public class MainController {
     @FXML private LoggedPaneController loggedPaneIncludeController;
     @FXML private OrdersPaneController ordersPaneIncludeController;
     @FXML private AdmPaneController admPaneIncludeController;
+    @FXML private RegisterProductsPaneController registerProductsPaneIncludeController;
     @FXML private StackPane contentArea;
 
     @FXML
@@ -28,6 +29,7 @@ public class MainController {
         loggedPaneIncludeController.setMainController(this);
         ordersPaneIncludeController.setMainController(this);
         admPaneIncludeController.setMainController(this);
+        registerProductsPaneIncludeController.setMainController(this);
 
         //binding all the panes at the same time
         List<Node> panes = List.of(
@@ -36,7 +38,8 @@ public class MainController {
             registerPaneIncludeController.getRoot(),
             loggedPaneIncludeController.getRoot(),
             ordersPaneIncludeController.getRoot(),
-            admPaneIncludeController.getRoot()
+            admPaneIncludeController.getRoot(),
+            registerProductsPaneIncludeController.getRoot()
         );
 
         // Start with products pane visible (others hidden)
@@ -65,6 +68,7 @@ public class MainController {
         }
     }
 
+    //I'm casting to Node to avoid issues with different return types
     public void showLoginPane() {
         showPane((Node) loginPaneIncludeController.getRoot());
     }
@@ -92,7 +96,13 @@ public class MainController {
         showPane((Node) admPaneIncludeController.getRoot());
     }
 
+    public void showAddProductPane() {
+        showPane((Node) registerProductsPaneIncludeController.getRoot());
+    }
+
     public void updateHeader() {
         headerIncludeController.update();
     }
+
+
 }
