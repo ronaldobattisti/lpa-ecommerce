@@ -16,8 +16,7 @@ public class AdmPaneController {
     @FXML private Label welcomeLabel;
 
     @FXML
-    public void initialize() {
-    }
+    public void initialize() { }
 
     public void update(){
         welcomeLabel.setText("Welcome to the Admin Panel, " + SessionManager.getCurrentUser().getName());
