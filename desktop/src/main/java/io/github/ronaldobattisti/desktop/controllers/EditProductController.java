@@ -1,6 +1,5 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import com.sun.tools.javac.Main;
 import io.github.ronaldobattisti.desktop.models.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,15 +16,41 @@ public class EditProductController {
     @FXML ComboBox<String> categoryBox;
     @FXML TextField imagePathField;
 
-
     private Product product;
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public void initialize() {
-        System.out.println("EditProductController initialized with item: " + product.getName());
+        // Populate UI controls if they have been injected
+        try {
+            if (idField != null && product != null) {
+                idField.setText(String.valueOf(product.getId()));
+            }
+            if (nameField != null && product != null) {
+                nameField.setText(product.getName());
+            }
+            if (descriptionField != null && product != null) {
+                descriptionField.setText(product.getDescription());
+            }
+            if (priceField != null && product != null) {
+                priceField.setText(String.valueOf(product.getPrice()));
+            }
+            if (qtyField != null && product != null) {
+                // Product exposes stockOnhand via getStockOnhand()
+                qtyField.setText(String.valueOf(product.getStockOnhand()));
+            }
+            if (categoryBox != null && product != null && product.getCategory() != null) {
+                // try to select the category if present in the combobox
+                categoryBox.getSelectionModel().select(product.getCategory());
+            }
+            if (imagePathField != null && product != null) {
+                // Product stores the image as imageUrl
+                imagePathField.setText(product.getImageUrl());
+            }
+        } catch (Exception e) {
+            // avoid breaking initialization for unexpected nulls or getters
+            System.err.println("EditProductController: failed to populate fields: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void onChooseFile(ActionEvent actionEvent) {

@@ -40,11 +40,13 @@ public class AdmPaneController {
 
     public void onManageOrdersButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Orders button clicked");
+        mainController.showManageOrdersPane();
         //not created yet
     }
 
     public void onManageClientsButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Clients button clicked");
+        mainController.showManageClientsPane();
         //not created yet
     }
 

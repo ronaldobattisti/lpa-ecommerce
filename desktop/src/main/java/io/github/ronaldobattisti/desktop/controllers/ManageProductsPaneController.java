@@ -115,12 +115,13 @@ public class ManageProductsPaneController {
             Parent root = loader.load();
 
             EditProductController controller = loader.getController();
-            controller.setProduct(product);
+            //controller.setProduct(product);
 
             Stage stage = new Stage();
             stage.setTitle("Edit Product - " + product.getName());
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
+            controller.setProduct(product);
             stage.show();
 
         } catch (Exception e) {

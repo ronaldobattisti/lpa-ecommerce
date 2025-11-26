@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/22"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="root"
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.ManageOdersPaneController"
+      style="-fx-background-color: #1e1b2e;"
+      alignment="TOP_CENTER">
+
+    <!-- TITLE -->
+    <Label text="Manage Products"
+           style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #ffcc4d;" />
+
+    <!-- FILTER BAR -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField"
+                   promptText="Search by ID, Name, Price, or Qty..."
+                   prefWidth="400"
+                   style="-fx-background-radius: 10; -fx-padding: 8;" />
+
+        <Button text="Search"
+                onAction="#onSearchClick"
+                style="-fx-background-color: #ffcc4d; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 10;"/>
+        <Button text="Clear"
+                onAction="#onClearClick"
+                style="-fx-background-color: #444; -fx-text-fill: white; -fx-background-radius: 10;"/>
+    </HBox>
+
+    <!-- TABLE -->
+    <TableView fx:id="productTable"
+               prefHeight="500"
+               style="-fx-background-color: transparent;">
+        <columns>
+            <TableColumn fx:id="colInvId" text="Invoice" prefWidth="80"/>
+            <TableColumn fx:id="colCostumerName" text="Costumer" prefWidth="250"/>
+            <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+            <TableColumn fx:id="colAmount" text="Total (AUD)" prefWidth="80"/>
+            <TableColumn fx:id="colPaymentStatus" text="Status" prefWidth="120"/>
+        </columns>
+    </TableView>
+</VBox>

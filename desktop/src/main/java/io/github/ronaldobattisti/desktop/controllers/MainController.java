@@ -18,6 +18,9 @@ public class MainController {
     @FXML private AdmPaneController admPaneIncludeController;
     @FXML private RegisterProductsPaneController registerProductsPaneIncludeController;
     @FXML private ManageProductsPaneController manageProductsPaneIncludeController;
+    @FXML private ManageOdersPaneController manageOrdersPaneIncludeController;
+    @FXML private ManageClientsPaneController manageClientsPaneIncludeController;
+
     @FXML private StackPane contentArea;
 
     @FXML
@@ -32,6 +35,8 @@ public class MainController {
         admPaneIncludeController.setMainController(this);
         registerProductsPaneIncludeController.setMainController(this);
         manageProductsPaneIncludeController.setMainController(this);
+        manageOrdersPaneIncludeController.setMainController(this);
+        manageClientsPaneIncludeController.setMainController(this);
 
         //binding all the panes at the same time
         List<Node> panes = List.of(
@@ -42,7 +47,9 @@ public class MainController {
             ordersPaneIncludeController.getRoot(),
             admPaneIncludeController.getRoot(),
             registerProductsPaneIncludeController.getRoot(),
-            manageProductsPaneIncludeController.getRoot()
+            manageProductsPaneIncludeController.getRoot(),
+            manageOrdersPaneIncludeController.getRoot(),
+            manageClientsPaneIncludeController.getRoot()
         );
 
         // Start with products pane visible (others hidden)
@@ -108,9 +115,20 @@ public class MainController {
         showPane((Node) manageProductsPaneIncludeController.getRoot());
     }
 
+    public void showManageOrdersPane() {
+        manageOrdersPaneIncludeController.updateOrdersList();
+        showPane((Node) manageOrdersPaneIncludeController.getRoot());
+    }
+
+    public void showManageClientsPane() {
+        manageClientsPaneIncludeController.updateClientsList();
+        showPane((Node) manageClientsPaneIncludeController.getRoot());
+    }
+
     public void updateHeader() {
         headerIncludeController.update();
     }
+
 
 
 }
