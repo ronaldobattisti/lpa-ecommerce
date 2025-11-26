@@ -111,10 +111,10 @@ public class ManageProductsPaneController {
         System.out.println("Double-clicked on product: " + product.getName());
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("io/github/ronaldobattisti/desktop/components/editProductPane.fxml"));
-            Parent root = (Parent) loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/io/github/ronaldobattisti/desktop/components/editProductPane.fxml"));
+            Parent root = loader.load();
 
-            EditProductController controller = (EditProductController) loader.getController();
+            EditProductController controller = loader.getController();
             controller.setProduct(product);
 
             Stage stage = new Stage();
