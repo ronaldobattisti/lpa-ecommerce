@@ -12,11 +12,11 @@ import java.util.List;
 
 public class ProductDAO {
 
-    public List<Product> getAllProducts() throws SQLException {
+    public static List<Product> getAllProducts() throws SQLException {
         return getProductsByCategory(null);
     }
 
-    public List<Product> getProductsByCategory(String category) throws SQLException {
+    public static List<Product> getProductsByCategory(String category) throws SQLException {
 
         List<Product> products = new ArrayList<>();
         String sql;

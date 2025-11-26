@@ -39,6 +39,8 @@
                 <fx:include fx:id="admPaneInclude" source="../components/admPane.fxml"/>
                 <!-- register products pane -->
                 <fx:include fx:id="registerProductsPaneInclude" source="../components/registerProductsPane.fxml"/>
+                <!-- manage products pane -->
+                <fx:include fx:id="manageProductsPaneInclude" source="../components/manageProductsPane.fxml"/>
             </StackPane>
        </ScrollPane>
     </center>

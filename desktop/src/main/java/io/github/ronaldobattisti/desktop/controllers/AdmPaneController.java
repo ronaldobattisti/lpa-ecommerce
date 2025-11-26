@@ -28,19 +28,24 @@ public class AdmPaneController {
 
     public void onAddProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Add Products button clicked");
+        //Created not communicating with db yet
         mainController.showAddProductPane();
     }
 
     public void onManageProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Products button clicked");
+        mainController.showManageProductsPane();
+        //not created yet
     }
 
     public void onManageOrdersButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Orders button clicked");
+        //not created yet
     }
 
     public void onManageClientsButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Clients button clicked");
+        //not created yet
     }
 
     public Node getRoot() {
