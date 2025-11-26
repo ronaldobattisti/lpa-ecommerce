@@ -71,16 +71,14 @@
             </HBox.margin>
         </Label>
         <DropdownButton>
-            <items>
-                <MenuItem text="Desktop"/>
-                <MenuItem text="Laptop"/>
-                <MenuItem text="Component"/>
-                <MenuItem mnemonicParsing="false" text="Storage"/>
-                <MenuItem mnemonicParsing="false" text="Pheripheral"/>
-                <MenuItem mnemonicParsing="false" text="Display"/>
-                <MenuItem mnemonicParsing="false" text="Network"/>
-                <MenuItem mnemonicParsing="false" text="Printer"/>
-            </items>
+            <MenuItem text="Desktop"/>
+            <MenuItem text="Laptop"/>
+            <MenuItem text="Component"/>
+            <MenuItem mnemonicParsing="false" text="Storage"/>
+            <MenuItem mnemonicParsing="false" text="Pheripheral"/>
+            <MenuItem mnemonicParsing="false" text="Display"/>
+            <MenuItem mnemonicParsing="false" text="Network"/>
+            <MenuItem mnemonicParsing="false" text="Printer"/>
         </DropdownButton>
     </HBox>
     <HBox alignment="CENTER_LEFT">
