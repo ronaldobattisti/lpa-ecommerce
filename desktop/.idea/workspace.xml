@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageProductsPaneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/manageProductsPane.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/EditProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/editProductPane.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/AdmPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/AdmPaneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/dao/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/pages/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/pages/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/app/database/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/../web/app/database/connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageProductsPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageProductsPaneController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +166,7 @@
       <workItem from="1764027178715" duration="2179000" />
       <workItem from="1764032781069" duration="943000" />
       <workItem from="1764113677990" duration="327000" />
-      <workItem from="1764114046952" duration="4326000" />
+      <workItem from="1764114046952" duration="7737000" />
     </task>
     <servers />
   </component>
