@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageClientsPaneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageOdersPaneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/manageClientsPane.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/manageOrdersPane.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/AdmPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/AdmPaneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/EditProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/EditProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageProductsPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/ManageProductsPaneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/editProductPane.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/components/editProductPane.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/pages/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/ronaldobattisti/desktop/pages/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +165,8 @@
       <workItem from="1764032781069" duration="943000" />
       <workItem from="1764113677990" duration="327000" />
       <workItem from="1764114046952" duration="15298000" />
-      <workItem from="1764195952935" duration="1970000" />
+      <workItem from="1764195952935" duration="2337000" />
+      <workItem from="1764281283233" duration="4517000" />
     </task>
     <servers />
   </component>

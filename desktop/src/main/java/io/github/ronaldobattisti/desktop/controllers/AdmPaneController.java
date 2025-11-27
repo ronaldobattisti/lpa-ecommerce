@@ -1,7 +1,6 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
@@ -35,7 +34,7 @@ public class AdmPaneController {
     public void onManageProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Products button clicked");
         mainController.showManageProductsPane();
-        //not created yet
+        //Create db communication later
     }
 
     public void onManageOrdersButtonClick(MouseEvent actionEvent) {
