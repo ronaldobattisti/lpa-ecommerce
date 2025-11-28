@@ -1,7 +1,7 @@
 <?php
-    define(BASE_URL, "https://yourdomain.com");
-    define(DB_HOST, "sqlXXX.infinityfree.com");
-    define(DB_USER, "if0_XXXXX");
-    define(DB_PASS, "PASSWORD");
-    define(DB_NAME, "if0_XXXXX_db");
+    define("BASE_URL", "https://ecomms.wuaze.com");
+    define("DB_HOST", "sql303.infinityfree.com");
+    define("DB_USER", "if0_40513248");
+    define("DB_PASS", "Rb19962025");
+    define("DB_NAME", "if0_40513248_lpa_ecomms");
 ?>

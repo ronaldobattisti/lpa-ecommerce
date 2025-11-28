@@ -1,7 +1,7 @@
 <?php
     if ($_SERVER['SERVER_NAME'] === 'localhost') {
-        require __DIR__ . "/config.local.php";
+        require_once __DIR__ . "/config.local.php";
     } else {
-        require __DIR__ . "/config.prod.php";
+        require_once __DIR__ . "/config.prod.php";
     }
 ?>
