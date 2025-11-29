@@ -1,4 +1,10 @@
 # TempStore
+
+# To Implement:
+- Check user when loading all pager, if not connect, redirec to index
+- Images on the cloud
+
+
 Online store webpage
 
 This application is being designed to improve my knowledges in ful-stack development.
