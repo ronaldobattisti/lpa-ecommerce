@@ -20,13 +20,15 @@
             echo 'Invalid CSRF token';
             exit;
         }
-            //getting data
+
+        //getting data
         $prod_name = $_POST['name'];
         $prod_desc = $_POST['description'];
         $prod_onhand = $_POST['onhand'];
         $prod_price = $_POST['price'];
         $prod_cat = $_POST['category'];
-        $prod_url = 'assets/images/' . $_POST['image'];
+        //$prod_url = 'assets/images/' . $_POST['image'];
+        $prod_url = $_POST['image_filename'];
         //db sets by default status = 'a' (available)
 
         //prepare to run the query wo filling the values
@@ -66,42 +68,76 @@
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body class="body">
-    <div><?php include __DIR__ . '/includes/header.php'; ?></div>
+        <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
-    <form method='post'>
-            <div>
-                <label for="name">Product name:</label>
-                <input type="text" id="name" class="" name="name" required>
-            </div>
+        <!-- enctype is crucial -->
+        <form method='post' action='product_register.php' enctype="multipart/form-data">
+                <div>
+                    <label for="name">Product name:</label>
+                    <input type="text" id="name" class="" name="name" required>
+                </div>
 
-            <div>
-                <label for="description">Product description:</label>
-                <input type="text" id="description" class="" name="description" required>
-            </div>
+                <div>
+                    <label for="description">Product description:</label>
+                    <input type="text" id="description" class="" name="description" required>
+                </div>
 
-            <div>
-                <label for="onhand">Quantity available:</label>
-                <input type="text" id="onhand" class="" name="onhand" required>
-            </div>
+                <div>
+                    <label for="onhand">Quantity available:</label>
+                    <input type="text" id="onhand" class="" name="onhand" required>
+                </div>
 
-            <div>
-                <label for="price">Product price:</label>
-                <input type="number" id="price" class="" name="price" required>
-            </div>
+                <div>
+                    <label for="price">Product price:</label>
+                    <input type="number" id="price" class="" name="price" required>
+                </div>
 
-            <?php include __DIR__ . '/includes/category_select.php'?>
+                <?php include __DIR__ . '/includes/category_select.php'?>
 
-            <div>
-                <label for="image">Product image:</label>
-                <input type="file" id="image" name="image" accept="image/*">
-            </div>
+                <div>
+                    <label for="image">Product image:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                    <input type="hidden" name="image_filename" id="image_filename">
+                </div>
 
-            <div>
-                <button type="submit" class="button-submit">Register product</button>
-            </div>
-            <?php csrf_field(); ?>
-        </form>
+                <div>
+                    <button type="submit" class="button-submit">Register product</button>
+                </div>
+                <?php csrf_field(); ?>
+            </form>
 
-    <?php include __DIR__ . '/includes/footer.html'; ?>
+        <?php include __DIR__ . '/includes/footer.html'; ?>
+
+        <script>
+        document.getElementById('image').addEventListener('change', async function() {
+
+            const file = this.files[0];
+            if (!file) return;
+
+            const data = new FormData();
+            data.append("image", file);
+
+            try {
+                const response = await fetch("/api/upload.php", {
+                    method: "POST",
+                    body: data
+                });
+
+                const json = await response.json();
+
+                if (!json.success) {
+                    alert("Upload failed");
+                    return;
+                }
+
+                document.getElementById("image_filename").value = json.filename;
+
+            } catch (error) {
+                alert("Upload error");
+                console.error(error);
+            }
+
+        });
+        </script>
     </body>
 </html>
