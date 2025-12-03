@@ -14,12 +14,6 @@
 
     //getting data from forms
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // CSRF validation
-        if (empty($_POST['csrf_token']) || !csrf_check($_POST['csrf_token'])) {
-            // simple error response
-            echo 'Invalid CSRF token';
-            exit;
-        }
 
         //getting data
         $prod_name = $_POST['name'];
@@ -27,8 +21,8 @@
         $prod_onhand = $_POST['onhand'];
         $prod_price = $_POST['price'];
         $prod_cat = $_POST['category'];
-        //$prod_url = 'assets/images/' . $_POST['image'];
         $prod_url = $_POST['image_filename'];
+        //echo "<script>alert('Image URL: ' + " . json_encode($prod_url) . ");</script>";
         //db sets by default status = 'a' (available)
 
         //prepare to run the query wo filling the values
@@ -44,18 +38,17 @@
 
         //Run the query
         if ($stmt->execute()) {
-              include __DIR__ . '/config/site.php';
-              header("Location: " . BASE_URL . "/index.php");
-              exit();
+            include __DIR__ . '/config/site.php';
+            header("Location: " . BASE_URL . "/index.php");
         } else {
-              include __DIR__ . '/config/site.php';
-              header("Location: " . BASE_URL . "/register.php?error=1");
-              exit();
+            include __DIR__ . '/config/site.php';
+            header("Location: " . BASE_URL . "/register.php?error=1");
         }
 
         //Close connection
         $stmt->close();
         $conn->close();
+        exit();
     }
 ?>
 
@@ -145,6 +138,7 @@
                     return;
                 }
 
+                alert("url: " + document.getElementById('image').value);
                 document.getElementById("image_filename").value = value;
 
             } catch (error) {
