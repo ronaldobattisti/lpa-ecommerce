@@ -118,19 +118,34 @@
             data.append("image", file);
 
             try {
-                const response = await fetch("/api/upload.php", {
+                const response = await fetch("api/upload.php", {
                     method: "POST",
                     body: data
                 });
 
-                const json = await response.json();
-
-                if (!json.success) {
-                    alert("Upload failed");
+                const text = await response.text();
+                let json;
+                try {
+                    json = JSON.parse(text);
+                } catch (e) {
+                    alert("Upload failed: invalid response");
+                    console.error("Upload parse error", text);
                     return;
                 }
 
-                document.getElementById("image_filename").value = json.filename;
+                if (!response.ok || !json.success) {
+                    alert("Upload failed: " + (json.error || response.status));
+                    console.error("Upload error detail:", json);
+                    return;
+                }
+
+                const value = json.url || json.filename;
+                if (!value) {
+                    alert("Upload failed: missing filename");
+                    return;
+                }
+
+                document.getElementById("image_filename").value = value;
 
             } catch (error) {
                 alert("Upload error");

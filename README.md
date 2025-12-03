@@ -4,6 +4,9 @@
 - Check user when loading all pager, if not connect, redirec to index
 - Images on the cloud
 
+# To review
+- Upload API and Json file it sends to product_register.php
+
 
 Online store webpage
 
