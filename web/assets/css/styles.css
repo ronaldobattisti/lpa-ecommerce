@@ -1424,6 +1424,85 @@ footer a:hover {
   color: #fff;
 }
 
+/* ===== PRODUCT REGISTER CARD ===== */
+.product-register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem 3.5rem;
+}
+
+.product-register-card {
+  width: 100%;
+  max-width: 720px;
+  background: linear-gradient(145deg, #1f1f2f, #29293f);
+  border-radius: 18px;
+  padding: 2.2rem 2rem;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid #2f2f44;
+}
+
+.product-register-card h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #ffd369;
+}
+
+.product-register-subtitle {
+  text-align: center;
+  margin: 0.3rem 0 1.5rem;
+  color: #bfc2d9;
+  font-size: 0.95rem;
+}
+
+.product-register-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.product-register-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.product-register-form label {
+  color: #d6d8ec;
+  font-weight: 600;
+}
+
+.product-register-form input,
+.product-register-form select {
+  background: #2a2a3b;
+  border: 1px solid #3d3d55;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-register-form input:focus,
+.product-register-form select:focus {
+  outline: none;
+  border-color: #ffd369;
+  box-shadow: 0 0 0 2px rgba(255, 211, 105, 0.25);
+}
+
+.product-register-form .full-width {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .product-register-card {
+    padding: 1.7rem 1.2rem;
+  }
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .form-row {

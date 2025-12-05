@@ -18,7 +18,8 @@ $hasOrder = $result->num_rows > 0;
 '<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Orders</title>
+  <title>TempStore - My Orders</title>
+  <link rel="icon" type="image/x-icon" href="assets/images/logo.ico">
   <link rel="stylesheet" href="<?= BASE_URL . '/assets/css/styles.css'; ?>">
 </head>
 <body class="body">

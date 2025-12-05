@@ -31,17 +31,20 @@
             // ✅ Registration successful → go to index
                 include __DIR__ . '/config/site.php';
                 header("Location: " . BASE_URL . "/login.php");
+                $stmt->close();
+                $conn->close();
             exit();
         } else {
             // ❌ Registration failed → go back to registration
                 include __DIR__ . '/config/site.php';
                 header("Location: " . BASE_URL . "/register.php?error=1");
+                $stmt->close();
+                $conn->close();
             exit();
         }
 
         //Close connection
-        $stmt->close();
-        $conn->close();
+
     }
 
 ?>
@@ -51,7 +54,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>TempStore - Registration</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="body">

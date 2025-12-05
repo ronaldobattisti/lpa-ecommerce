@@ -18,11 +18,9 @@
         exit;
     }
 
-    $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+    $ext = strtolower(pathinfo($_FILES['image']['name'], flags: PATHINFO_EXTENSION));
     $filename = uniqid('img') . '.' . $ext;
     $target = $uploadDir . $filename;
-    //echo "<script>alert('Image URL in upload.php: ' + " . json_encode($target) . ");</script>";
-    echo "<script>alert('Image URL in upload.php:');</script>";
 
     if (!is_uploaded_file($_FILES['image']['tmp_name']) || !move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
         echo json_encode(['success' => false, 'error' => 'Could not save file']);

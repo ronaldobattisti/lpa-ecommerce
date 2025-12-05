@@ -30,7 +30,7 @@
         //Calls the same script used at register_product
         //TODO: Create a script folder to share the same script user to upload image in register product and in update product
         $prod_url = $_POST['image_filename'];
-        echo "<script>alert('Image URL: ' + " . json_encode($prod_url) . ");</script>";
+        //echo "<script>alert('Image URL: ' + " . json_encode($prod_url) . ");</script>";
         
         $stmt = $conn->prepare("UPDATE `lpa_stock` SET lpa_stock_name=?, 
                                                         lpa_stock_desc=?, 
@@ -51,12 +51,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <header>
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Manage Products</title>
-    </header>
+<header>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempStore - Manage Products</title>
+</header>
 
     <body class="body">
         <div><?php include __DIR__ . '/includes/header.php'; ?></div>

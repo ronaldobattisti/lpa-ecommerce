@@ -57,7 +57,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Temp Store</title>
+        <title>TempStore - Product Register</title>
+        <link rel="icon" type="image/x-icon" href="assets/images/logo.ico">
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body class="body">
@@ -65,39 +66,38 @@
 
         <!-- enctype is crucial -->
         <form method='post' action='product_register.php' enctype="multipart/form-data">
-                <div>
-                    <label for="name">Product name:</label>
-                    <input type="text" id="name" class="" name="name" required>
-                </div>
+            <div>
+                <label for="name">Product name:</label>
+                <input type="text" id="name" class="" name="name" required>
+            </div>
 
-                <div>
-                    <label for="description">Product description:</label>
-                    <input type="text" id="description" class="" name="description" required>
-                </div>
+            <div>
+                <label for="description">Product description:</label>
+                <input type="text" id="description" class="" name="description" required>
+            </div>
 
-                <div>
-                    <label for="onhand">Quantity available:</label>
-                    <input type="text" id="onhand" class="" name="onhand" required>
-                </div>
+            <div>
+                <label for="onhand">Quantity available:</label>
+                <input type="text" id="onhand" class="" name="onhand" required>
+            </div>
 
-                <div>
-                    <label for="price">Product price:</label>
-                    <input type="number" id="price" class="" name="price" required>
-                </div>
+            <div>
+                <label for="price">Product price:</label>
+                <input type="number" id="price" class="" name="price" required>
+            </div>
 
-                <?php include __DIR__ . '/includes/category_select.php'?>
+            <?php include __DIR__ . '/includes/category_select.php'?>
 
-                <div>
-                    <label for="image">Product image:</label>
-                    <input type="file" id="image" name="image" accept="image/*" required>
-                    <input type="hidden" name="image_filename" id="image_filename">
-                </div>
+            <div>
+                <label for="image">Product image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                <input type="hidden" name="image_filename" id="image_filename">
+            </div>
 
-                <div>
-                    <button type="submit" class="button-submit">Register product</button>
-                </div>
-                <?php csrf_field(); ?>
-            </form>
+            <div>
+                <button type="submit" class="button-submit">Register product</button>
+            </div>
+        </form>
 
         <?php include __DIR__ . '/includes/footer.html'; ?>
 
