@@ -96,7 +96,6 @@
             <version>6.2.3</version> <!-- Latest stable -->
         </dependency>
 
-
     </dependencies>
 
     <build>

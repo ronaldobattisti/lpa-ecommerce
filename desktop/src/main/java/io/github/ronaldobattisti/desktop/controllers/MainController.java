@@ -1,5 +1,7 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.dao.ProductDAO;
+import io.github.ronaldobattisti.desktop.dao.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
@@ -25,6 +27,8 @@ public class MainController {
 
     @FXML
     private void initialize() {
+        UserDAO.getAllUsers();
+
         // Inject back reference
         headerIncludeController.setMainController(this);
         loginPaneIncludeController.setMainController(this);

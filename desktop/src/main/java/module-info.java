@@ -10,6 +10,7 @@ module io.github.ronaldobattisti.desktop {
     requires javafx.graphics;
     requires org.kordamp.ikonli.javafx;
     requires jdk.compiler;
+    requires com.google.gson;
     exports io.github.ronaldobattisti.desktop.app;
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;
