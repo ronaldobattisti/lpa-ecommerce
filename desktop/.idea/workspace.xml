@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="" />
+    <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/database/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/database/ConnectionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/web.zip" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,6 +129,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="" />
@@ -158,6 +170,7 @@
       <workItem from="1764281283233" duration="5739000" />
       <workItem from="1764503689082" duration="1374000" />
       <workItem from="1764628125058" duration="1346000" />
+      <workItem from="1764984079014" duration="11000" />
     </task>
     <servers />
   </component>
