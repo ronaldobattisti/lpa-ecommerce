@@ -90,12 +90,10 @@ public class UserDAO {
             con.setRequestMethod("GET");
 
             // Read JSON response
-            String json =
-                    new String(con.getInputStream().readAllBytes());
+            String json = new String(con.getInputStream().readAllBytes());
 
             // Convert JSON → Java Objects
-            Type listType =
-                    new TypeToken<List<User>>() {}.getType();
+            Type listType = new TypeToken<List<User>>() {}.getType();
 
             List<User> users = new Gson().fromJson(json, listType);
 

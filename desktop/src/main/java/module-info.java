@@ -15,5 +15,6 @@ module io.github.ronaldobattisti.desktop {
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;
     opens io.github.ronaldobattisti.desktop.controllers to javafx.fxml;
+    opens io.github.ronaldobattisti.desktop.models to com.google.gson;
     exports io.github.ronaldobattisti.desktop.models;
 }
