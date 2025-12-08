@@ -1,7 +1,7 @@
 <?php
-    define("BASE_URL", "https://ecomms.wuaze.com");
-    define("DB_HOST", "sql303.infinityfree.com");
-    define("DB_USER", "if0_40513248");
-    define("DB_PASS", "Rb19962025");
-    define("DB_NAME", "if0_40513248_lpa_ecomms");
+    define("BASE_URL", "https://www.ronaldobattisti.space");
+    define("DB_HOST", "localhost");
+    define("DB_USER", "ronaldob");
+    define("DB_PASS", "6q9(9QBin*fGL3");
+    define("DB_NAME", "ronaldob_lpa_ecomms");
 ?>

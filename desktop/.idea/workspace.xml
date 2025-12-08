@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7958f4a2-4730-4abc-b6eb-333c54b0dff2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/database/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/app/database/ConnectionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/config/config.prod.php" beforeDir="false" afterPath="$PROJECT_DIR$/../web/config/config.prod.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +201,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/dao/UserDAO.java</url>
           <line>92</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/io/github/ronaldobattisti/desktop/controllers/MainController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class UserDAO {
 
-    private static final String API_URL = "https://ecomms.wuaze.com/api/users.php";
+    private static final String API_URL = "https://www.ronaldobattisti.space/api/upload.php";
 
 
     public User loginCheck(String email, String password) throws SQLException {
