@@ -1,6 +1,5 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.dao.UserDAO;
 import io.github.ronaldobattisti.desktop.models.User;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
@@ -52,14 +51,14 @@ public class RegisterPaneController {
 
     private User registerUser(String firstName, String lastName, String email, String password, String address, String phone) {
         try{
-            User user = new User(firstName, lastName, email, password, address, phone);
+            /*User user = new User(firstName, lastName, email, password, address, phone);
             UserDAO userDAO = new UserDAO();
             if (!userDAO.checkEmailExists(user)){
                 userDAO.registerNewUser(user);
                 return user;
             } else {
                 throw new SQLException("User already exists");
-            }
+            }*/
         } catch (Exception e) {
             System.out.println("Error during registration: " + e.getMessage());
             e.printStackTrace();

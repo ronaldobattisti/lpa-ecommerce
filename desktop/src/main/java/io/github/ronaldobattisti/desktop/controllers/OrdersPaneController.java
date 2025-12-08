@@ -1,14 +1,11 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.dao.OrderDAO;
 import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -45,20 +42,20 @@ public class OrdersPaneController {
     }
 
     public void updateOrdersTable() {
-        try {
+        /*try {
             ordersTable.getItems().clear();
             if (SessionManager.getCurrentUser() == null) {
                 System.out.println("OrdersPaneController accessed without a logged-in user.");
                 mainController.showProductsPane();
             } else {
                 int userId = SessionManager.getCurrentUser().getId();
-                List<Order> orders = OrderDAO.getOrdersByUserId(userId);
+                //List<Order> orders = OrderDAO.getOrdersByUserId(userId);
                 //Convert List to ObservableList to display in TableView
-                ordersTable.setItems(FXCollections.observableArrayList(orders));
+                //ordersTable.setItems(FXCollections.observableArrayList(orders));
             }
         } catch (SQLException e){
             System.out.println("Error fetching orders: " + e.getMessage());
-        }
+        }*/
     }
 
     public VBox getRoot() {

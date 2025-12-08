@@ -1,6 +1,5 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.dao.ProductDAO;
 import io.github.ronaldobattisti.desktop.models.Product;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
@@ -64,7 +63,7 @@ public class ManageProductsPaneController {
     }
 
     public void updateProductsList() {
-        try{
+        /*try{
             productTable.getItems().clear();
             if (SessionManager.getCurrentUser().isAdm()){
                 List<Product> products = ProductDAO.getAllProducts();
@@ -75,7 +74,7 @@ public class ManageProductsPaneController {
             }
         } catch (SQLException e) {
             System.out.println("Error fetching products: " + e.getMessage());
-        }
+        }*/
     }
 
     private void setupDoubleClick() {

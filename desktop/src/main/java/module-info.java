@@ -11,6 +11,9 @@ module io.github.ronaldobattisti.desktop {
     requires org.kordamp.ikonli.javafx;
     requires jdk.compiler;
     requires com.google.gson;
+    requires java.net.http;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.core;
     exports io.github.ronaldobattisti.desktop.app;
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;

@@ -1,16 +1,12 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.dao.ProductDAO;
 import io.github.ronaldobattisti.desktop.models.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public class ProductsPaneController {
@@ -19,8 +15,6 @@ public class ProductsPaneController {
     @FXML private FlowPane productContainer;
 
     private MainController mainController;
-
-    private final ProductDAO productDAO = new ProductDAO();
 
     // Called automatically after FXML loads
     @FXML
@@ -34,12 +28,14 @@ public class ProductsPaneController {
             }
         });
 
-        try {
-            List<Product> products = productDAO.getAllProducts();
+        /*try {
+            List<Product> products = new ArrayList<Product>() {
+            };
+            //List<Product> products = productDAO.getAllProducts();
             displayProducts(products);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     // This allows MainController to inject itself

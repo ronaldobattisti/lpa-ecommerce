@@ -1,7 +1,9 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.dao.ProductDAO;
-import io.github.ronaldobattisti.desktop.dao.UserDAO;
+import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
+import io.github.ronaldobattisti.desktop.api.UsersApiClient;
+import io.github.ronaldobattisti.desktop.models.Product;
+import io.github.ronaldobattisti.desktop.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
@@ -27,7 +29,6 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        UserDAO.getAllUsers();
 
         // Inject back reference
         headerIncludeController.setMainController(this);
@@ -61,7 +62,11 @@ public class MainController {
             bindPane(node);
         }
 
+        List<User> users = UsersApiClient.getAllUsers();
+
         showPane(productsPaneIncludeController.getRoot());
+
+
     }
 
     private void bindPane(Node node) {
