@@ -54,8 +54,6 @@ public class ProductsPaneController {
         }
     }
 
-
-
     // So MainController can bring this pane to front
     public HBox getRoot() {
         return root;

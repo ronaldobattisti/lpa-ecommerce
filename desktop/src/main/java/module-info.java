@@ -16,6 +16,7 @@ module io.github.ronaldobattisti.desktop {
     requires com.fasterxml.jackson.core;
     requires mysql.connector.j;
     requires com.fasterxml.jackson.annotation;
+    requires javafx.base;
     exports io.github.ronaldobattisti.desktop.app;
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;
