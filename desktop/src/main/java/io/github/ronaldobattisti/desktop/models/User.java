@@ -44,8 +44,6 @@ public class User {
     @JsonProperty("lpa_client_group")
     private boolean clientGroup;
 
-
-
     public User(int id, String firstName, String lastName, String email, String password, String address, String phone, String paymentType, int cardLastFour, Date registrationDate, String clientStatus, boolean clientGroup) {
         this.id = id;
         this.firstName = firstName;
@@ -73,7 +71,7 @@ public class User {
     }
 
     public User() {
-        //Constructor required by Jackson
+        //Default constructor required by Jackson
     }
 
     public int getId() {

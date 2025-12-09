@@ -1,5 +1,6 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
 import io.github.ronaldobattisti.desktop.models.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,14 +29,8 @@ public class ProductsPaneController {
             }
         });
 
-        /*try {
-            List<Product> products = new ArrayList<Product>() {
-            };
-            //List<Product> products = productDAO.getAllProducts();
-            displayProducts(products);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
+        List<Product> products = ProductsApiClient.getAllProducts();
+        displayProducts(products);
     }
 
     // This allows MainController to inject itself

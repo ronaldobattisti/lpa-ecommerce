@@ -1,9 +1,16 @@
 package io.github.ronaldobattisti.desktop.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class Order {
+    //@JsonProperty("lpa_stock_id")
     private final int id;
+
+    //@JsonProperty("")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final Date date;
     private final int clientId;
     private final double amount;

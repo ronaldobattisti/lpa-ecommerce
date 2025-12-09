@@ -1,13 +1,30 @@
 package io.github.ronaldobattisti.desktop.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Product {
+    @JsonProperty("lpa_stock_id")
     private int id;
+
+    @JsonProperty("lpa_stock_name")
     private String name;
+
+    @JsonProperty("lpa_stock_desc")
     private String description;
+
+    @JsonProperty("lpa_stock_onhand")
     private int stockOnhand;
+
+    @JsonProperty("lpa_stock_price")
     private double price;
+
+    @JsonProperty("lpa_stock_cat")
     private String category;
+
+    @JsonProperty("lpa_stock_image")
     private String imageUrl;
+
+    @JsonProperty("lpa_stock_status")
     private String status;
 
     public Product(int id, String name, String description, int stockOnhand, double price, String category, String imageUrl, String status) {
@@ -17,10 +34,12 @@ public class Product {
         this.stockOnhand = stockOnhand;
         this.price = price;
         this.category = category;
-        imageUrl = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);//get only the file name
-        imageUrl = "/resources/images/" + imageUrl;
         this.imageUrl = imageUrl;
         this.status = status;
+    }
+
+    public Product() {
+        //Default constructor required by Jackson
     }
 
     public int getId() {
