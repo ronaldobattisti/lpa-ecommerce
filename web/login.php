@@ -83,57 +83,55 @@
         <div><?php include __DIR__ . '/includes/header.php'; ?></div>
 
         <div class="auth-container">
-        <form method="post" action="login.php" class="auth-form">
+            <form method="post" action="login.php" class="auth-form">
 
-            <?php if (!$correct_input): ?>
-            <div class="alert">
-                <p><i class="bi bi-exclamation-triangle-fill"></i> Incorrect e-mail or password. Please try again.</p>
-            </div>
-            <?php endif; ?>
+                <?php if (!$correct_input): ?>
+                    <div class="alert">
+                        <p><i class="bi bi-exclamation-triangle-fill"></i> Incorrect e-mail or password. Please try again.</p>
+                    </div>
+                <?php endif; ?>
 
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Log in to access your account</p>
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Log in to access your account</p>
 
-            <div class="input-group">
-            <label for="email">E-mail</label>
-            <input
-                type="text"
-                id="email"
-                class="input-field"
-                name="email"
-                autocomplete="email"
-                placeholder="Enter your e-mail"
-                required
-            >
-            </div>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="text"
+                        id="email"
+                        class="input-field"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="Enter your e-mail"
+                        required
+                    >
+                </div>
 
-            <div class="input-group">
-            <label for="password">Password</label>
-            <input
-                type="password"
-                id="password"
-                class="input-field"
-                name="password"
-                placeholder="Enter your password"
-                required
-            >
-            </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        class="input-field"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
 
-            <div class="auth-links">
-            <p>
-                <a href="recover-password.html">Forgot your password?</a>
-            </p>
-            <p>
-                Don't have an account?
-                <a href="register.php">Sign up</a>
-            </p>
-            </div>
+                <div class="auth-links">
+                <p>
+                    <a href="recover-password.html">Forgot your password?</a>
+                </p>
+                <p>
+                    Don't have an account?
+                    <a href="register.php">Sign up</a>
+                </p>
+                </div>
 
-            <button type="submit" class="button-submit">Login</button>
-        </form>
+                <button type="submit" class="button-submit">Login</button>
+            </form>
         </div>
-
-
     </body>
     <?php include __DIR__ . '/includes/footer.html'; ?>
 </html>

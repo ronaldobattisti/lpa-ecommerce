@@ -1,20 +1,45 @@
 package io.github.ronaldobattisti.desktop.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class User {
+    @JsonProperty("lpa_client_id")
     private int id;
+
+    @JsonProperty("lpa_client_firstname")
     private String firstName;
+
+    @JsonProperty("lpa_client_lastname")
     private String lastName;
     private String name;
+
+    @JsonProperty("lpa_client_email")
     private String email;
+
+    @JsonProperty("lpa_client_password")
     private String password;
+
+    @JsonProperty("lpa_client_address")
     private String address;
+
+    @JsonProperty("lpa_client_phone")
     private String phone;
+
+    @JsonProperty("lpa_client_payment_type")
     private String paymentType;
+
+    @JsonProperty("lpa_client_card_last4")
     private int cardLastFour;
+
+    @JsonProperty("lpa_client_registered")
     private Date registrationDate;
+
+    @JsonProperty("lpa_client_status")
     private String clientStatus;
+
+    @JsonProperty("lpa_client_group")
     private boolean clientGroup;
 
     public User(int id, String firstName, String lastName, String email, String password, String address, String phone, String paymentType, int cardLastFour, Date registrationDate, String clientStatus, boolean clientGroup) {
@@ -41,6 +66,10 @@ public class User {
         this.password = password;
         this.address = address;
         this.phone = phone;
+    }
+
+    public User() {
+        // required by Jackson
     }
 
     public int getId() {

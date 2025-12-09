@@ -1,7 +1,7 @@
 module io.github.ronaldobattisti.desktop {
     requires javafx.controls;
     requires javafx.fxml;
-
+    opens io.github.ronaldobattisti.desktop.models to com.fasterxml.jackson.databind;
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
@@ -18,6 +18,5 @@ module io.github.ronaldobattisti.desktop {
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;
     opens io.github.ronaldobattisti.desktop.controllers to javafx.fxml;
-    opens io.github.ronaldobattisti.desktop.models to com.google.gson;
     exports io.github.ronaldobattisti.desktop.models;
 }

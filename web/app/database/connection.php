@@ -6,4 +6,7 @@
     if($conn->connect_error){
         die("Connection failed: " . $conn->connect_error);
     }
+
+    //to deal with accents
+    $conn->set_charset("utf8mb4");
 ?>
