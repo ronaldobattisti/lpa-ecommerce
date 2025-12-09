@@ -1,5 +1,10 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import com.mysql.cj.Session;
+import io.github.ronaldobattisti.desktop.api.UsersApiClient;
+import io.github.ronaldobattisti.desktop.models.User;
+import io.github.ronaldobattisti.desktop.utils.PasswordUtils;
+import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,16 +25,17 @@ public class LoginPaneController {
     }
 
     public void onLoginButtonClick(ActionEvent actionEvent) {
-        /*try {
-            //TRY TO REQUEST FROM API
-        } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Unexpected error: " + e.getMessage());
-            e.printStackTrace();
-        }*/
-        mainController.updateHeader();
+        User user = new User();
+        user = UsersApiClient.getUserByEmail(emailField.getText());
+        boolean correctPassword = PasswordUtils.checkPassword(user.getPassword(), passwordField.getText());
+        if (correctPassword) {
+            System.out.println("Login successful for user: " + user.getFirstName());
+            SessionManager.setCurrentUser(user);
+            mainController.updateHeader();
+            mainController.showProductsPane();
+        } else {
+            System.out.println("Login failed for email: " + emailField.getText());
+        }
     }
 
     public Node getRoot() {

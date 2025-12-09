@@ -14,6 +14,7 @@ module io.github.ronaldobattisti.desktop {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
+    requires mysql.connector.j;
     exports io.github.ronaldobattisti.desktop.app;
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;

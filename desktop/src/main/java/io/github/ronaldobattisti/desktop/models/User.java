@@ -1,7 +1,8 @@
 package io.github.ronaldobattisti.desktop.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+//used to parse date format from JSON
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 public class User {
@@ -34,6 +35,7 @@ public class User {
     private int cardLastFour;
 
     @JsonProperty("lpa_client_registered")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registrationDate;
 
     @JsonProperty("lpa_client_status")
@@ -41,6 +43,8 @@ public class User {
 
     @JsonProperty("lpa_client_group")
     private boolean clientGroup;
+
+
 
     public User(int id, String firstName, String lastName, String email, String password, String address, String phone, String paymentType, int cardLastFour, Date registrationDate, String clientStatus, boolean clientGroup) {
         this.id = id;
@@ -69,7 +73,7 @@ public class User {
     }
 
     public User() {
-        // required by Jackson
+        //Constructor required by Jackson
     }
 
     public int getId() {

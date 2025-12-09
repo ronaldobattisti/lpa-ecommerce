@@ -1,7 +1,5 @@
 package io.github.ronaldobattisti.desktop.api;
 
-import io.github.ronaldobattisti.desktop.models.Product;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -14,7 +12,7 @@ import io.github.ronaldobattisti.desktop.models.User;
 
 public class UsersApiClient {
     private static final String API_URL =
-            "https://www.ronaldobattisti.space/api/users.php";
+            "https://www.ronaldobattisti.space/api/user.php";
 
     public static List<User> getAllUsers() {
 
@@ -33,6 +31,32 @@ public class UsersApiClient {
                     .readValue(
                             response.body(),
                             new TypeReference<List<User>>() {}
+                    );
+
+        } catch (Exception e) {
+            throw new RuntimeException("API call failed", e);
+        }
+    }
+
+    public static User getUserByEmail(String email) {
+
+        final String API_URL_EMAIL = API_URL + "?email=" + email.replace("@", "%40");
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(API_URL_EMAIL))
+                .GET()
+                .build();
+
+        try {
+            HttpResponse<String> response =
+                    client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            return new ObjectMapper()
+                    .readValue(
+                            response.body(),
+                            new TypeReference<User>() {}
                     );
 
         } catch (Exception e) {

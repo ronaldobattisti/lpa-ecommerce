@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 public class ProductsApiClient {
     private static final String API_URL =
-            "https://www.ronaldobattisti.space/api/products.php";
+            "https://www.ronaldobattisti.space/api/product.php";
 
     public static List<Product> getAllProducts() {
 

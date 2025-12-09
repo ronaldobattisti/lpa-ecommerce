@@ -62,7 +62,7 @@ public class MainController {
             bindPane(node);
         }
 
-        List<User> users = UsersApiClient.getAllUsers();
+
 
         showPane(productsPaneIncludeController.getRoot());
 
