@@ -17,6 +17,7 @@ module io.github.ronaldobattisti.desktop {
     requires mysql.connector.j;
     requires com.fasterxml.jackson.annotation;
     requires javafx.base;
+    requires com.gluonhq.charm.glisten;
     exports io.github.ronaldobattisti.desktop.app;
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;

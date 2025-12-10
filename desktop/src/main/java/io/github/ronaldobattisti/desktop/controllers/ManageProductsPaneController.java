@@ -1,7 +1,6 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.models.Product;
-import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,9 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.sql.SQLException;
-import java.util.List;
 
 public class ManageProductsPaneController {
 

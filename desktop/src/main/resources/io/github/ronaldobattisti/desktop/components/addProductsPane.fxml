@@ -10,8 +10,12 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.ImageView?>
+<VBox fx:id="root"
+      alignment="TOP_CENTER"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="io.github.ronaldobattisti.desktop.controllers.AddProductsPaneController">
     <Label text="Register products">
         <VBox.margin>
           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
@@ -70,15 +74,16 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <DropdownButton>
+        <DropdownButton fx:id="productCategory">
+
             <MenuItem text="Desktop"/>
             <MenuItem text="Laptop"/>
             <MenuItem text="Component"/>
-            <MenuItem mnemonicParsing="false" text="Storage"/>
-            <MenuItem mnemonicParsing="false" text="Pheripheral"/>
-            <MenuItem mnemonicParsing="false" text="Display"/>
-            <MenuItem mnemonicParsing="false" text="Network"/>
-            <MenuItem mnemonicParsing="false" text="Printer"/>
+            <MenuItem text="Storage"/>
+            <MenuItem text="Pheripheral"/>
+            <MenuItem text="Display"/>
+            <MenuItem text="Network"/>
+            <MenuItem text="Printer"/>
         </DropdownButton>
     </HBox>
     <HBox alignment="CENTER_LEFT">
@@ -90,6 +95,13 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
+        <ImageView fx:id="previewImage"
+                   fitWidth="200"
+                   fitHeight="200"
+                   preserveRatio="true"/>
+
+        <Button text="Choose Image"
+                onAction="#chooseImage"/>
     </HBox>
     <Button mnemonicParsing="false" text="Register Product">
         <VBox.margin>

@@ -11,11 +11,11 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         handleGet($conn);
         break;
 
-    /*case "POST":
+    case "POST":
         handleCreate($conn);
         break;
 
-    case "PUT":
+    /*case "PUT":
         handleUpdate($conn);
         break;
 
@@ -76,6 +76,8 @@ function getAllProducts($conn) {
 }
 
 //////If API receives a POST request\\\\\\
+function handleCreate($conn){
+}
 
 //////If API receives a PUT request\\\\\\
 

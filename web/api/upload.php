@@ -3,10 +3,12 @@
     header('Content-Type: application/json');
 
     $uploadDir = dirname(__DIR__) . '/images/';
+    //if file "images" doesn't exists
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
 
+    //if no file is received
     if (empty($_FILES['image'])) {
         echo json_encode(['success' => false, 'error' => 'No file']);
         exit;
@@ -18,6 +20,7 @@
         exit;
     }
 
+    //Get only the img extension
     $ext = strtolower(pathinfo($_FILES['image']['name'], flags: PATHINFO_EXTENSION));
     $filename = uniqid('img') . '.' . $ext;
     $target = $uploadDir . $filename;

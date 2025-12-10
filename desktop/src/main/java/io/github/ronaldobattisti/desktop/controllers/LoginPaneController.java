@@ -1,6 +1,5 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import com.mysql.cj.Session;
 import io.github.ronaldobattisti.desktop.api.UsersApiClient;
 import io.github.ronaldobattisti.desktop.models.User;
 import io.github.ronaldobattisti.desktop.utils.PasswordUtils;
@@ -45,6 +44,4 @@ public class LoginPaneController {
     public void showRegisterPane(ActionEvent actionEvent) {
         mainController.showRegisterPane();
     }
-
-
 }

@@ -20,7 +20,7 @@ public class MainController {
     @FXML private ManageProductsPaneController manageProductsPaneIncludeController;
     @FXML private ManageOdersPaneController manageOrdersPaneIncludeController;
     @FXML private ManageClientsPaneController manageClientsPaneIncludeController;
-    @FXML private ProductDisplayController displayProductsPaneIncludeController;
+    //@FXML private ProductDisplayController displayProductsPaneIncludeController;
 
     @FXML private StackPane contentArea;
 
@@ -39,7 +39,7 @@ public class MainController {
         manageProductsPaneIncludeController.setMainController(this);
         manageOrdersPaneIncludeController.setMainController(this);
         manageClientsPaneIncludeController.setMainController(this);
-        displayProductsPaneIncludeController.setMainController(this);
+        //displayProductsPaneIncludeController.setMainController(this);
 
         //binding all the panes at the same time
         List<Node> panes = List.of(
@@ -52,8 +52,8 @@ public class MainController {
             registerProductsPaneIncludeController.getRoot(),
             manageProductsPaneIncludeController.getRoot(),
             manageOrdersPaneIncludeController.getRoot(),
-            manageClientsPaneIncludeController.getRoot(),
-            displayProductsPaneIncludeController.getRoot()
+            manageClientsPaneIncludeController.getRoot()
+            //displayProductsPaneIncludeController.getRoot()
         );
 
         // Start with products pane visible (others hidden)
@@ -61,7 +61,7 @@ public class MainController {
             bindPane(node);
         }
 
-        disableAddToCart();
+        //disableAddToCart();
         showPane(productsPaneIncludeController.getRoot());
     }
 
@@ -134,10 +134,7 @@ public class MainController {
         headerIncludeController.update();
     }
 
-    public void disableAddToCart(){
-        displayProductsPaneIncludeController.disableAddToCartButton();
-    }
-
-
-
+    /*public void disableAddToCart(){
+        displayProductsPaneIncludeController.setButtonUsable();
+    }*/
 }
