@@ -1,6 +1,8 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
 import io.github.ronaldobattisti.desktop.models.Product;
+import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +18,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.util.List;
 
 public class ManageProductsPaneController {
 
@@ -59,18 +63,15 @@ public class ManageProductsPaneController {
     }
 
     public void updateProductsList() {
-        /*try{
-            productTable.getItems().clear();
-            if (SessionManager.getCurrentUser().isAdm()){
-                List<Product> products = ProductDAO.getAllProducts();
-                productTable.setItems(javafx.collections.FXCollections.observableArrayList(products));
-            } else {
-                System.out.println("ManageProductsPaneController accessed without admin privileges.");
-                mainController.showProductsPane();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error fetching products: " + e.getMessage());
-        }*/
+        productTable.getItems().clear();
+        if (SessionManager.getCurrentUser().isAdm()){
+            List<Product> products = ProductsApiClient.getAllProducts();
+            productTable.setItems(javafx.collections.FXCollections.observableArrayList(products));
+        } else {
+            System.out.println("ManageProductsPaneController accessed without admin privileges.");
+            mainController.showProductsPane();
+        }
+
     }
 
     private void setupDoubleClick() {

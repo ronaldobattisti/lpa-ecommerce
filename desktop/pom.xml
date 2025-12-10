@@ -109,6 +109,12 @@
             <version>6.2.3</version> <!-- Latest stable -->
         </dependency>
 
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>util</artifactId>
+            <version>4.0.17</version>
+        </dependency>
+
     </dependencies>
 
     <build>
