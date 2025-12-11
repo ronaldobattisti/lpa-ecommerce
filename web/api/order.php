@@ -71,7 +71,7 @@ function getAllOrders($conn) {
     $orders = [];
 
     while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
+        $orders[] = $row;
     }
 
     echo json_encode($orders);

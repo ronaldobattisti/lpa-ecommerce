@@ -6,24 +6,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 public class Order {
-    //@JsonProperty("lpa_stock_id")
-    private final int id;
-
-    //@JsonProperty("")
+    @JsonProperty("lpa_inv_no")
+    private int id;
+    @JsonProperty("lpa_inv_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private final Date date;
-    private final int clientId;
-    private final double amount;
-    private final String status;
-    private final String invStatus;
+    private Date date;
+    @JsonProperty("lpa_inv_client_id")
+    private int clientId;
+    @JsonProperty("lpa_inv_amount")
+    private double amount;
+    @JsonProperty("lpa_inv_payment_type")
+    private String status;
+    @JsonProperty("lpa_inv_status")
+    private String invStatus;
+    @JsonProperty("lpa_client_firstname")
+    private String clientFirstName;
+    @JsonProperty("lpa_client_lastname")
+    private String clientLastName;
 
-    public Order(int id, Date date, int clientId, double amount, String status, String invStatus) {
+    private String clientName;
+
+    public Order(int id, Date date, int clientId, double amount, String status, String invStatus, String clientFirstName, String clientLastName) {
         this.id = id;
         this.date = date;
         this.clientId = clientId;
         this.amount = amount;
         this.status = status;
         this.invStatus = invStatus;
+        this.clientFirstName = clientFirstName;
+        this.clientLastName = clientLastName;
     }
 
     public Order(int id, Date date, int clientId, double amount) {
@@ -33,6 +44,10 @@ public class Order {
         this.amount = amount;
         this.status = "pending";
         this.invStatus = "U";
+    }
+
+    public Order() {
+        //Default constructor required for JSON parsing
     }
 
     public int getId() {
@@ -59,4 +74,47 @@ public class Order {
         return invStatus;
     }
 
+    public String getClientName(){
+        return clientFirstName + " " + clientLastName;
+    }
+
+    public void setClientLastName(String clientLastName) {
+        this.clientLastName = clientLastName;
+    }
+
+    public void setClientFirstName(String clientFirstName) {
+        this.clientFirstName = clientFirstName;
+    }
+
+    public void setInvStatus(String invStatus) {
+        this.invStatus = invStatus;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getClientFirstName() {
+        return clientFirstName;
+    }
+
+    public String getClientLastName() {
+        return clientLastName;
+    }
 }

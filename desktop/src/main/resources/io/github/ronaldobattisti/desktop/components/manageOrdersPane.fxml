@@ -30,7 +30,7 @@
     </HBox>
 
     <!-- TABLE -->
-    <TableView fx:id="productTable"
+    <TableView fx:id="orderTable"
                prefHeight="500"
                style="-fx-background-color: transparent;">
         <columns>
