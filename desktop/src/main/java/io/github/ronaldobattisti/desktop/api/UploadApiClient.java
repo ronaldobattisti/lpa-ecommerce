@@ -1,5 +1,8 @@
 package io.github.ronaldobattisti.desktop.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -18,7 +21,8 @@ public class UploadApiClient {
 
 
     //TODO: replace all code below by http injection with apache
-    public static boolean uploadImage(File file) {
+    public static String uploadImage(File file) {
+        String imageUrl = null;
         try {
             String boundary = "----JavaFXBoundary" + System.nanoTime();
 
@@ -39,13 +43,27 @@ public class UploadApiClient {
                             request,
                             HttpResponse.BodyHandlers.ofString()
                     );
+            String json = response.body();
+            System.out.println("API response: " + json);
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(json);
+
+            boolean success = root.get("success").asBoolean();
+
+            if (!success) {
+                System.err.println("Upload failed: " + root.get("error").asText());
+                return null;
+            }
+
+            imageUrl = root.get("url").asText();
 
             // Return PHP JSON response
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return imageUrl;
     }
 
 //I have no idea what's going on here

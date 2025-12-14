@@ -30,7 +30,7 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <TextField fx:id="productName"/>
+        <TextField fx:id="productNameField"/>
     </HBox>
     <HBox alignment="CENTER_LEFT">
         <padding>
@@ -41,7 +41,7 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <TextField fx:id="productDescription"/>
+        <TextField fx:id="productDescriptionField"/>
     </HBox>
     <HBox alignment="CENTER_LEFT">
         <padding>
@@ -52,7 +52,7 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <TextField fx:id="quantAvailable"/>
+        <TextField fx:id="quantAvailableField"/>
     </HBox>
     <HBox alignment="CENTER_LEFT">
         <padding>
@@ -63,7 +63,7 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <TextField fx:id="productPrice"/>
+        <TextField fx:id="productPriceField"/>
     </HBox>
     <HBox alignment="CENTER_LEFT">
         <padding>
@@ -74,7 +74,7 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <DropdownButton fx:id="productCategory">
+        <DropdownButton fx:id="productCategoryButton">
 
             <MenuItem text="Desktop"/>
             <MenuItem text="Laptop"/>
@@ -99,11 +99,12 @@
                    fitWidth="200"
                    fitHeight="200"
                    preserveRatio="true"/>
-
         <Button text="Choose Image"
                 onAction="#chooseImage"/>
     </HBox>
-    <Button mnemonicParsing="false" text="Register Product">
+    <Button mnemonicParsing="false"
+            text="Register Product"
+            onAction="#registerProduct">
         <VBox.margin>
           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </VBox.margin>
