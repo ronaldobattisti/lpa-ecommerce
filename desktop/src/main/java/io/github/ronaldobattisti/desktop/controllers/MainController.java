@@ -111,10 +111,6 @@ public class MainController {
         showPane((Node) admPaneIncludeController.getRoot());
     }
 
-    public void showAddProductPane() {
-        showPane((Node) registerProductsPaneIncludeController.getRoot());
-    }
-
     public void showManageProductsPane() {
         manageProductsPaneIncludeController.updateProductsList();
         showPane((Node) manageProductsPaneIncludeController.getRoot());
@@ -132,6 +128,10 @@ public class MainController {
 
     public void updateHeader() {
         headerIncludeController.update();
+    }
+
+    public void showRegisterProductsPane() {
+        showPane((Node) registerProductsPaneIncludeController.getRoot());
     }
 
     /*public void disableAddToCart(){

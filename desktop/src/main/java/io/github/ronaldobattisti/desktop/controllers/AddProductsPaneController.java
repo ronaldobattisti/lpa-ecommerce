@@ -1,4 +1,4 @@
-package io.github.ronaldobattisti.desktop.controllers;
+/*package io.github.ronaldobattisti.desktop.controllers;
 
 import com.gluonhq.charm.glisten.control.DropdownButton;
 import io.github.ronaldobattisti.desktop.api.UploadApiClient;
@@ -72,4 +72,4 @@ public class AddProductsPaneController {
         //}
 
     }
-}
+}*/

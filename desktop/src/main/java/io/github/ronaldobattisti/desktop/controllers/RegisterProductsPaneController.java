@@ -1,8 +1,12 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
+import io.github.ronaldobattisti.desktop.api.UploadApiClient;
+import io.github.ronaldobattisti.desktop.models.Product;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -23,6 +27,8 @@ public class RegisterProductsPaneController {
 
     private MainController mainController;
 
+    Product prod = new Product();
+
     @FXML
     public void initialize() {
     }
@@ -34,14 +40,33 @@ public class RegisterProductsPaneController {
     @FXML
     private void onSelectImage() {
         FileChooser chooser = new FileChooser();
-        chooser.setTitle("Select product image");
-        chooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+
+        chooser.setTitle("Select image");
+
+        chooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter(
+                        "Images", "*.png", "*.jpg", "*.jpeg", "*.webp"
+                )
         );
-        Window window = selectImageButton.getScene().getWindow();
-        File file = chooser.showOpenDialog(window);
-        if (file != null) {
-            imagePathField.setText(file.toURI().toString());
+
+        File selectedFile = chooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            Image img = new Image(selectedFile.toURI().toString());
+            //previewImage.setImage(img);
+
+            // Call upload right after selection
+            String url = UploadApiClient.uploadImage(selectedFile);
+
+            imagePathField.setText(url);
+
+            if (url == null || url.isBlank()) {
+                // show alert
+                System.err.println("Image upload failed");
+                return;
+            }
+
+            prod.setImageUrl(url);
         }
     }
 
@@ -52,7 +77,7 @@ public class RegisterProductsPaneController {
         String qtyText = quantityField.getText();
         String priceText = priceField.getText();
         String category = categoryComboBox.getValue();
-        String image = imagePathField.getText();
+
 
         // Very simple validation
         if (name == null || name.isBlank()) {
@@ -83,8 +108,20 @@ public class RegisterProductsPaneController {
             return;
         }
 
+        prod.setName(productNameField.getText());
+        prod.setDescription(productDescriptionArea.getText());
+        prod.setCategory(categoryComboBox.getValue());
+        prod.setStockOnhand(Integer.parseInt(quantityField.getText()));
+        prod.setPrice(Double.parseDouble(priceField.getText()));
+
+        try{
+            ProductsApiClient.registerProduct(prod);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         // TODO: persist the product via DAO
-        showAlert("Success", "Product registered successfully (not really persisted in this example).");
+        showAlert("Success", "Product registered successfully");
         clearForm();
     }
 

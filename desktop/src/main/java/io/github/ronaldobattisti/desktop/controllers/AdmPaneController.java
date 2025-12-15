@@ -28,7 +28,7 @@ public class AdmPaneController {
     public void onAddProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Add Products button clicked");
         //Created not communicating with db yet
-        mainController.showAddProductPane();
+        mainController.showRegisterProductsPane();
     }
 
     public void onManageProductsButtonClick(MouseEvent actionEvent) {

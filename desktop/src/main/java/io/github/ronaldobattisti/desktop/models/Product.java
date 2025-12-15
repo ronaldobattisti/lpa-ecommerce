@@ -3,31 +3,38 @@ package io.github.ronaldobattisti.desktop.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Product {
-    @JsonProperty("lpa_stock_id")
+    @JsonProperty("id")
     private int id;
 
-    @JsonProperty("lpa_stock_name")
+    @JsonProperty("name")
     private String name;
 
-    @JsonProperty("lpa_stock_desc")
+    @JsonProperty("description")
     private String description;
 
-    @JsonProperty("lpa_stock_onhand")
+    @JsonProperty("onhand")
     private int stockOnhand;
 
-    @JsonProperty("lpa_stock_price")
+    @JsonProperty("price")
     private double price;
 
-    @JsonProperty("lpa_stock_cat")
+    @JsonProperty("category")
     private String category;
 
-    @JsonProperty("lpa_stock_image")
+    @JsonProperty("image")
     private String imageUrl;
 
-    @JsonProperty("lpa_stock_status")
+    @JsonProperty("status")
     private String status;
 
-    public Product(int id, String name, String description, int stockOnhand, double price, String category, String imageUrl, String status) {
+    public Product(int id,
+                   String name,
+                   String description,
+                   int stockOnhand,
+                   double price,
+                   String category,
+                   String imageUrl,
+                   String status) {
         this.id = id;
         this.name = name;
         this.description = description;
