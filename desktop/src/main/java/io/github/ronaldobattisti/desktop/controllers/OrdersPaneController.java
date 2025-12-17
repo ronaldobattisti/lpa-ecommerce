@@ -1,5 +1,6 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.api.OrdersApiClient;
 import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.collections.FXCollections;
@@ -24,7 +25,7 @@ public class OrdersPaneController {
     @FXML private Label rowsCountLabel;
 
     @FXML
-    private Label welcomeLabel; // deve corresponder exatamente ao fx:id no FXML
+    private Label welcomeLabel;
 
     private MainController mainController;
 
@@ -42,20 +43,28 @@ public class OrdersPaneController {
     }
 
     public void updateOrdersTable() {
-        /*try {
+        try {
             ordersTable.getItems().clear();
-            if (SessionManager.getCurrentUser() == null) {
+            Boolean userIsAdm = SessionManager.getCurrentUser().isAdm();
+            int userId = SessionManager.getCurrentUser().getId();
+
+            if (SessionManager.getCurrentUser() != null) {
+                if (userIsAdm) {
+                    List<Order> orders = OrdersApiClient.getAllOrders();
+                    //Convert List to ObservableList to display in TableView
+                    ordersTable.setItems(FXCollections.observableArrayList(orders));
+                } else {
+                    List<Order> orders = OrdersApiClient.getOrdersById(userId);
+                    //Convert List to ObservableList to display in TableView
+                    ordersTable.setItems(FXCollections.observableArrayList(orders));
+                }
+            } else {
                 System.out.println("OrdersPaneController accessed without a logged-in user.");
                 mainController.showProductsPane();
-            } else {
-                int userId = SessionManager.getCurrentUser().getId();
-                //List<Order> orders = OrderDAO.getOrdersByUserId(userId);
-                //Convert List to ObservableList to display in TableView
-                //ordersTable.setItems(FXCollections.observableArrayList(orders));
             }
-        } catch (SQLException e){
+        } catch (RuntimeException e){
             System.out.println("Error fetching orders: " + e.getMessage());
-        }*/
+        }
     }
 
     public VBox getRoot() {
