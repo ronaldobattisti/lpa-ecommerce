@@ -89,6 +89,7 @@ public class MainController {
     }
 
     public void showProductsPane() {
+        productsPaneIncludeController.updateProductsDisplay();
         showPane((Node) productsPaneIncludeController.getRoot());
     }
 

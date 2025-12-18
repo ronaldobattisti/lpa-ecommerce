@@ -1,6 +1,8 @@
 package io.github.ronaldobattisti.desktop.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Product {
     @JsonProperty("id")
@@ -26,6 +28,8 @@ public class Product {
 
     @JsonProperty("status")
     private String status;
+
+
 
     public Product(int id,
                    String name,

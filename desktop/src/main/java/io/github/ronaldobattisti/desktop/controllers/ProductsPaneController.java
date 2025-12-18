@@ -38,6 +38,12 @@ public class ProductsPaneController {
         this.mainController = mainController;
     }
 
+    public void updateProductsDisplay(){
+        productContainer.getChildren().clear();
+        List<Product> products = ProductsApiClient.getAllProducts();
+        displayProducts(products);
+    }
+
     private void displayProducts(List<Product> products) {
         for (Product product : products) {
             try {
@@ -57,17 +63,5 @@ public class ProductsPaneController {
     // So MainController can bring this pane to front
     public HBox getRoot() {
         return root;
-    }
-
-    // Example: dynamically populate products
-    public void loadProducts() {
-        productContainer.getChildren().clear();
-
-        // Example placeholder content
-        for (int i = 1; i <= 10; i++) {
-            javafx.scene.control.Label label = new javafx.scene.control.Label("Product " + i);
-            label.setStyle("-fx-border-color: gray; -fx-padding: 10;");
-            productContainer.getChildren().add(label);
-        }
     }
 }

@@ -1,10 +1,18 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.ronaldobattisti.desktop.models.Product;
+import io.github.ronaldobattisti.desktop.utils.ProductImageSelector;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class EditProductController {
 
@@ -16,10 +24,14 @@ public class EditProductController {
     @FXML ComboBox<String> categoryBox;
     @FXML TextField imagePathField;
 
-    private Product product;
+    private Product prod;
+
+    public void initialize(){
+
+    }
 
     public void setProduct(Product product) {
-        this.product = product;
+        this.prod = product;
         // Populate UI controls if they have been injected
         try {
             if (idField != null && product != null) {
@@ -54,11 +66,28 @@ public class EditProductController {
     }
 
     public void onChooseFile(ActionEvent actionEvent) {
+        String url = ProductImageSelector.SelectImage();
+        imagePathField.setText(url);
     }
 
     public void onCancel(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     public void onUpdate(ActionEvent actionEvent) {
+        //TODO:triggers the API products with put request
+        try{
+            prod.setName(nameField.getText());
+            prod.setDescription(descriptionField.getText());
+            prod.setPrice(Double.parseDouble(priceField.getText()));
+            prod.setStockOnhand(Integer.parseInt(qtyField.getText()));
+            prod.setCategory(categoryBox.getValue());
+            prod.setImageUrl(imagePathField.getText());
+        } catch (RuntimeException e){
+            System.out.println("Error: " + e);
+        }
+
+        System.out.println("end");
     }
 }

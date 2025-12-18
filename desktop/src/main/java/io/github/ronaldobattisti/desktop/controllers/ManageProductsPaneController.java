@@ -71,7 +71,6 @@ public class ManageProductsPaneController {
             System.out.println("ManageProductsPaneController accessed without admin privileges.");
             mainController.showProductsPane();
         }
-
     }
 
     private void setupDoubleClick() {

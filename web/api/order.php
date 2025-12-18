@@ -26,11 +26,6 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 
 //////If API receives a GET request\\\\\\
 function handleGet($conn) {
-    /*if (isset($_GET['id'])) {
-        getUserById($conn, $_GET['id']);
-        return;
-    }*/
-
     if (isset($_GET['id'])) {
         getOrdersById($conn, $_GET['id']);
         return;
@@ -46,7 +41,8 @@ function getOrdersById($conn, $id) {
     $stmt = $conn->prepare(
         "SELECT i.*, c.lpa_client_firstname, c.lpa_client_lastname 
             FROM lpa_invoices i
-            JOIN lpa_clients c on i.lpa_inv_client_id = c.lpa_client_id");
+            JOIN lpa_clients c ON i.lpa_inv_client_id = c.lpa_client_id
+            WHERE id = ?");
 
     $stmt->bind_param("d", $id);
     $stmt->execute();
@@ -79,6 +75,7 @@ function getAllOrders($conn) {
 
 //////If API receives a POST request\\\\\\
 function handleCreate($conn){
+    return;
 }
 
 //////If API receives a PUT request\\\\\\

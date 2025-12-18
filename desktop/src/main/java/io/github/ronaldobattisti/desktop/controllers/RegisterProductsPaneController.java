@@ -1,16 +1,11 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
-import io.github.ronaldobattisti.desktop.api.UploadApiClient;
 import io.github.ronaldobattisti.desktop.models.Product;
+import io.github.ronaldobattisti.desktop.utils.ProductImageSelector;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.FileChooser;
-import javafx.stage.Window;
-
-import java.io.File;
 import java.math.BigDecimal;
 
 public class RegisterProductsPaneController {
@@ -22,8 +17,6 @@ public class RegisterProductsPaneController {
     @FXML private TextField priceField;
     @FXML private ComboBox<String> categoryComboBox;
     @FXML private TextField imagePathField;
-    @FXML private Button selectImageButton;
-    @FXML private Button registerButton;
 
     private MainController mainController;
 
@@ -39,35 +32,9 @@ public class RegisterProductsPaneController {
 
     @FXML
     private void onSelectImage() {
-        FileChooser chooser = new FileChooser();
-
-        chooser.setTitle("Select image");
-
-        chooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter(
-                        "Images", "*.png", "*.jpg", "*.jpeg", "*.webp"
-                )
-        );
-
-        File selectedFile = chooser.showOpenDialog(null);
-
-        if (selectedFile != null) {
-            Image img = new Image(selectedFile.toURI().toString());
-            //previewImage.setImage(img);
-
-            // Call upload right after selection
-            String url = UploadApiClient.uploadImage(selectedFile);
-
-            imagePathField.setText(url);
-
-            if (url == null || url.isBlank()) {
-                // show alert
-                System.err.println("Image upload failed");
-                return;
-            }
-
-            prod.setImageUrl(url);
-        }
+        String url = ProductImageSelector.SelectImage();
+        prod.setImageUrl(url);
+        imagePathField.setText(url);
     }
 
     @FXML
