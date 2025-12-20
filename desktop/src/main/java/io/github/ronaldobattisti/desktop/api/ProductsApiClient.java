@@ -1,5 +1,6 @@
 package io.github.ronaldobattisti.desktop.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.ronaldobattisti.desktop.models.Product;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -45,6 +46,24 @@ public class ProductsApiClient {
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response =
                 client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("Status: " + response.statusCode());
+        System.out.println("Body: " + response.body());
+    }
+
+    public static void updateProducts(Product product) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(product);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(API_URL))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response =
+                    client.send(request, HttpResponse.BodyHandlers.ofString());
 
         System.out.println("Status: " + response.statusCode());
         System.out.println("Body: " + response.body());

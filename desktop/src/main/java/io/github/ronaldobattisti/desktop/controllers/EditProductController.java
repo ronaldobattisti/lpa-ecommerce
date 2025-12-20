@@ -1,6 +1,7 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
 import io.github.ronaldobattisti.desktop.models.Product;
 import io.github.ronaldobattisti.desktop.utils.ProductImageSelector;
 import javafx.beans.property.IntegerProperty;
@@ -84,8 +85,12 @@ public class EditProductController {
             prod.setStockOnhand(Integer.parseInt(qtyField.getText()));
             prod.setCategory(categoryBox.getValue());
             prod.setImageUrl(imagePathField.getText());
+
+            ProductsApiClient.updateProducts(prod);
         } catch (RuntimeException e){
             System.out.println("Error: " + e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("end");

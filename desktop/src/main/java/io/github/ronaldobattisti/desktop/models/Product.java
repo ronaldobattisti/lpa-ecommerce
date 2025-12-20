@@ -5,31 +5,29 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Product {
-    @JsonProperty("id")
+    @JsonProperty("prodId")
     private int id;
 
-    @JsonProperty("name")
+    @JsonProperty("prodName")
     private String name;
 
-    @JsonProperty("description")
+    @JsonProperty("prodDesc")
     private String description;
 
-    @JsonProperty("onhand")
+    @JsonProperty("prodStock")
     private int stockOnhand;
 
-    @JsonProperty("price")
+    @JsonProperty("prodPrice")
     private double price;
 
-    @JsonProperty("category")
+    @JsonProperty("prodCat")
     private String category;
 
-    @JsonProperty("image")
+    @JsonProperty("prodImage")
     private String imageUrl;
 
-    @JsonProperty("status")
+    @JsonProperty("prodStatus")
     private String status;
-
-
 
     public Product(int id,
                    String name,
