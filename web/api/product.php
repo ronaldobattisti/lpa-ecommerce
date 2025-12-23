@@ -154,7 +154,7 @@ function handleUpdate($conn){
     }
 
     // Validate required fields
-    $required = ['id', 'name', 'description', 'stockOnhand', 'price', 'category', 'imageUrl'];
+    $required = ['prodId', 'prodName', 'prodDesc', 'prodStock', 'prodPrice', 'prodCat', 'prodImage'];
     foreach ($required as $field) {
         if (!isset($data[$field])) {
             http_response_code(400);
@@ -170,25 +170,25 @@ function handleUpdate($conn){
                                 lpa_stock_onhand=?, 
                                 lpa_stock_price=?, 
                                 lpa_stock_cat=?, 
-                                lpa_stock_image=?)
+                                lpa_stock_image=?
         WHERE `lpa_stock`.`lpa_stock_id`=?"
         );
 
     $stmt->bind_param(
-        "ssidssi",
-        $data['name'],
-        $data['description'],
-        $data['stockOnhand'],
-        $data['price'],
-        $data['category'],
-        $data['imageUrl'],
-        $data['id']
+        "ssifssi",
+        $data['prodName'],
+        $data['prodDesc'],
+        $data['prodStock'],
+        $data['prodPrice'],
+        $data['prodCat'],
+        $data['prodImage'],
+        $data['prodId']
     );
 
     if ($stmt->execute()) {
         echo json_encode([
-            "success" => true,
-            "id" => $stmt->insert_id
+            "success" => true
+            //"id" => $stmt->insert_id
         ]);
     } else {
         http_response_code(500);

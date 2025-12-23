@@ -47,7 +47,6 @@
     }
     $stmt->close();
     $conn->close();
-
 ?>
 
 <!DOCTYPE html>

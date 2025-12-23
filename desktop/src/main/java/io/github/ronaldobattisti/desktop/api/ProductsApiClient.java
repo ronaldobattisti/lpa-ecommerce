@@ -1,6 +1,5 @@
 package io.github.ronaldobattisti.desktop.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.ronaldobattisti.desktop.models.Product;
 import java.net.URI;
 import java.net.http.HttpClient;

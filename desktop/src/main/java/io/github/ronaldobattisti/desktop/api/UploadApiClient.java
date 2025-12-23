@@ -19,8 +19,6 @@ public class UploadApiClient {
     private static final String API_URL =
             "https://ronaldobattisti.space/api/upload.php";
 
-
-    //TODO: replace all code below by http injection with apache
     public static String uploadImage(File file) {
         String imageUrl = null;
         try {

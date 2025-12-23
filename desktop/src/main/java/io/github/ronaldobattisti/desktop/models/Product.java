@@ -1,8 +1,6 @@
 package io.github.ronaldobattisti.desktop.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class Product {
     @JsonProperty("prodId")
