@@ -39,12 +39,14 @@ function handleGet($conn) {
 function getOrdersById($conn, $id) {
 
     $stmt = $conn->prepare(
-        "SELECT i.*, c.lpa_client_firstname, c.lpa_client_lastname 
+        /*"SELECT i.*, c.lpa_client_firstname, c.lpa_client_lastname 
             FROM lpa_invoices i
             JOIN lpa_clients c ON i.lpa_inv_client_id = c.lpa_client_id
-            WHERE id = ?");
+            WHERE id = ?"*/
+            "SELECT * FROM lpa_invoices WHERE lpa_inv_client_id = ?"
+    );
 
-    $stmt->bind_param("d", $id);
+    $stmt->bind_param("i", $id);
     $stmt->execute();
 
     $result = $stmt->get_result();

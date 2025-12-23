@@ -3,6 +3,8 @@ package io.github.ronaldobattisti.desktop.api;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.ronaldobattisti.desktop.models.Order;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -32,24 +34,31 @@ public class OrdersApiClient {
         }
     }
 
-    public static List<Order> getOrdersById(int id){
+    public static List<Order> getOrdersById(int id) {
 
         final String API_URL_ID = API_URL + "?id=" + id;
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL_ID))
                 .GET()
                 .build();
+
         try {
             HttpResponse<String> response =
                     client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            System.out.println("Status: " + response.statusCode());
+            System.out.println("Body: " + response.body());
+
             return new ObjectMapper()
                     .readValue(
                             response.body(),
-                            new TypeReference<List<Order>>() {}
+                            new TypeReference<List<Order>>() {
+                            }
                     );
         } catch (Exception e) {
-            throw new RuntimeException("API call failed", e);
+            throw new RuntimeException("API OrdersApiClient fail on function getOrdersById()");
         }
     }
 }

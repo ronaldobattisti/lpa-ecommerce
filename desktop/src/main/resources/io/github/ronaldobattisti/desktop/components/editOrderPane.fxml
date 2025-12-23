@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="600.0" spacing="20.0" style="-fx-background-color: #1e1b2e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ronaldobattisti.desktop.controllers.EditProductController">
+<VBox alignment="CENTER" prefHeight="600.0" spacing="20.0" style="-fx-background-color: #1e1b2e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ronaldobattisti.desktop.controllers.EditOrderPaneController">
 
     <!-- PAGE TITLE -->
     <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffcc4d;" text="Edit Product" />
 
     <!-- MAIN FORM CONTAINER -->
-    <VBox alignment="TOP_CENTER" spacing="18" style="">
+    <VBox alignment="TOP_CENTER" spacing="18">
         <HBox prefWidth="70.0">
             <!-- ID -->
             <VBox prefWidth="200.0" spacing="5">
@@ -71,18 +71,6 @@
                 </items>
             </ComboBox>
         </VBox>
-
-        <!-- IMAGE PATH -->
-        <VBox prefWidth="500" spacing="5">
-            <Label style="-fx-text-fill: #cfcde0;" text="Image Path" />
-            <TextField fx:id="imagePathField" style="-fx-background-radius: 10;" />
-        </VBox>
-
-        <!-- FILE CHOOSER -->
-        <HBox alignment="CENTER_LEFT" prefWidth="500" spacing="10">
-            <Button fx:id="chooseFileBtn" onAction="#onChooseFile" style="-fx-background-color: #ffcc4d; -fx-text-fill: black; -fx-background-radius: 10;" text="Choose file" />
-            <Label fx:id="fileLabel" style="-fx-text-fill: #ccc;" text="No file chosen" />
-        </HBox>
     </VBox>
 
     <!-- BUTTONS -->

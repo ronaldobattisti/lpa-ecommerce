@@ -20,6 +20,7 @@ public class MainController {
     @FXML private ManageProductsPaneController manageProductsPaneIncludeController;
     @FXML private ManageOdersPaneController manageOrdersPaneIncludeController;
     @FXML private ManageClientsPaneController manageClientsPaneIncludeController;
+    @FXML private EditOrderPaneController editOrderPaneIncludeController;
     //@FXML private ProductDisplayController displayProductsPaneIncludeController;
 
     @FXML private StackPane contentArea;
