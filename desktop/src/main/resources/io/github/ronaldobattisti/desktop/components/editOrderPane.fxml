@@ -18,59 +18,63 @@
     <!-- MAIN FORM CONTAINER -->
     <VBox alignment="TOP_CENTER" spacing="18">
         <HBox prefWidth="70.0">
-            <!-- ID -->
+            <!-- Invoice number -->
             <VBox prefWidth="200.0" spacing="5">
-                <Label style="-fx-text-fill: #cfcde0;" text="ID"/>
-                <TextField fx:id="idField" editable="false" prefHeight="25.0" style="-fx-background-radius: 10;"/>
+                <Label style="-fx-text-fill: #cfcde0;" text="Invoice Number"/>
+                <TextField fx:id="invoicenumberField" editable="false" prefHeight="25.0" style="-fx-background-radius: 10;"/>
             </VBox>
 
-            <!-- NAME -->
+            <!-- Client Name -->
             <VBox prefWidth="500" spacing="5">
-                <Label style="-fx-text-fill: #cfcde0;" text="Name"/>
-                <TextField fx:id="nameField" style="-fx-background-radius: 10;"/>
+                <Label style="-fx-text-fill: #cfcde0;" text="Client"/>
+                <TextField fx:id="clientNameField" editable="false" style="-fx-background-radius: 10;"/>
                 <HBox.margin>
                     <Insets left="20.0"/>
                 </HBox.margin>
             </VBox>
         </HBox>
 
-        <!-- DESCRIPTION -->
-        <VBox prefWidth="500" spacing="5">
-            <Label style="-fx-text-fill: #cfcde0;" text="Description" />
-            <TextField fx:id="descriptionField" style="-fx-background-radius: 10;" />
-        </VBox>
-
-        <!-- PRICE + QTY (side by side) -->
-        <HBox alignment="CENTER" spacing="20">
-            <VBox spacing="5">
-                <Label style="-fx-text-fill: #cfcde0;" text="Price (AUD)" />
-                <TextField fx:id="priceField" prefWidth="200" style="-fx-background-radius: 10;" />
+        <HBox>
+            <!-- Date -->
+            <VBox prefWidth="200" spacing="5">
+                <Label style="-fx-text-fill: #cfcde0;" text="Invoice Date" />
+                <TextField fx:id="invoiceDateField" editable="false" prefWidth="200" style="-fx-background-radius: 10;" />
             </VBox>
 
-            <VBox spacing="5">
-                <Label style="-fx-text-fill: #cfcde0;" text="Quantity" />
-                <TextField fx:id="qtyField" prefWidth="200" style="-fx-background-radius: 10;" />
+            <!-- Invoice Total Value -->
+            <VBox spacing="5" prefHeight="200" alignment="CENTER">
+                <Label style="-fx-text-fill: #cfcde0;" text="Price (AUD)" />
+                <TextField fx:id="invoiceTotaValueField" editable="false" prefWidth="200" style="-fx-background-radius: 10;" />
             </VBox>
         </HBox>
 
         <!-- CATEGORY -->
-        <VBox alignment="CENTER" prefWidth="500" spacing="5">
-            <Label style="-fx-text-fill: #cfcde0;" text="Category" />
-            <ComboBox fx:id="categoryBox" prefWidth="200" style="-fx-background-radius: 10;">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Desktop" />
-                        <String fx:value="Laptop" />
-                        <String fx:value="Component" />
-                        <String fx:value="Storage" />
-                        <String fx:value="Peripheral" />
-                        <String fx:value="Display" />
-                        <String fx:value="Network" />
-                        <String fx:value="Printer" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-        </VBox>
+        <HBox>
+            <VBox alignment="CENTER_LEFT" spacing="5">
+                <Label style="-fx-text-fill: #cfcde0;" text="Category" />
+                <ComboBox fx:id="PaymentComboBox" prefWidth="200" style="-fx-background-radius: 10;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Paid" />
+                            <String fx:value="Pending" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+
+            <VBox alignment="CENTER_RIGHT" spacing="5">
+                <Label style="-fx-text-fill: #cfcde0;" text="Category" />
+                <ComboBox fx:id="OrderStatusComboBox" prefWidth="200" style="-fx-background-radius: 10;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Packaging" />
+                            <String fx:value="Shipped" />
+                            <String fx:value="Processed" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+        </HBox>
     </VBox>
 
     <!-- BUTTONS -->
