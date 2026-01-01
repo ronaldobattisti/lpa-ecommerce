@@ -2,6 +2,7 @@ package io.github.ronaldobattisti.desktop.controllers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
+import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.models.Product;
 import io.github.ronaldobattisti.desktop.utils.ProductImageSelector;
 import javafx.beans.property.IntegerProperty;
@@ -94,5 +95,9 @@ public class EditProductController {
         }
 
         System.out.println("end");
+    }
+
+    public void setOrder(Order order) {
+
     }
 }

@@ -3,6 +3,8 @@ package io.github.ronaldobattisti.desktop.api;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.ronaldobattisti.desktop.models.Order;
+import io.github.ronaldobattisti.desktop.models.Product;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -58,5 +60,23 @@ public class OrdersApiClient {
         } catch (Exception e) {
             throw new RuntimeException("API OrdersApiClient fail on function getOrdersById()");
         }
+    }
+
+    public static void updateOrders(Order order) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(order);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(API_URL))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response =
+                client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("Status: " + response.statusCode());
+        System.out.println("Body: " + response.body());
     }
 }

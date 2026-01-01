@@ -39,6 +39,6 @@ public class LoggedPaneController {
     }
 
     public void onViewOrdersClick(ActionEvent actionEvent) {
-        mainController.showOrdersPane();
+        mainController.showManageOrdersPane();
     }
 }

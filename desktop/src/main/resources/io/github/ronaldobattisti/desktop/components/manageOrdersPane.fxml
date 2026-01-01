@@ -11,7 +11,7 @@
       alignment="TOP_CENTER">
 
     <!-- TITLE -->
-    <Label text="Manage Products"
+    <Label text="Manage Orders"
            style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #ffcc4d;" />
 
     <!-- FILTER BAR -->
