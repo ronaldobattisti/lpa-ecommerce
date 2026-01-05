@@ -1,14 +1,8 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.ronaldobattisti.desktop.api.ProductsApiClient;
-import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.models.Product;
 import io.github.ronaldobattisti.desktop.utils.ProductImageSelector;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -17,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditProductController {
-
     @FXML TextField idField;
     @FXML TextField nameField;
     @FXML TextField descriptionField;
@@ -27,10 +20,6 @@ public class EditProductController {
     @FXML TextField imagePathField;
 
     private Product prod;
-
-    public void initialize(){
-
-    }
 
     public void setProduct(Product product) {
         this.prod = product;
@@ -95,9 +84,5 @@ public class EditProductController {
         }
 
         System.out.println("end");
-    }
-
-    public void setOrder(Order order) {
-
     }
 }

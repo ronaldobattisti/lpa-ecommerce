@@ -50,7 +50,11 @@ function getOrdersById($conn, $id) {
     $stmt->execute();
 
     $result = $stmt->get_result();
-    $orders = $result->fetch_assoc();
+    $orders = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $orders[] = $row;
+    }
 
     echo json_encode($orders);
 }
@@ -81,6 +85,57 @@ function handleCreate($conn){
 }
 
 //////If API receives a PUT request\\\\\\
+function handleUpdate($conn){
+    
+    // Read raw JSON body
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
+
+    // Validate JSON
+    if (!$data) {
+        http_response_code(400);
+        echo json_encode(["error" => "Invalid JSON"]);
+        return;
+    }
+
+    // Validate required fields
+    $required = ['id', 'amount', 'status', 'invStatus'];
+    foreach ($required as $field) {
+        if (!isset($data[$field])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Missing field: $field"]);
+            return;
+        }
+    }
+
+    // Prepare SQL
+    $stmt = $conn->prepare(
+        "UPDATE lpa_invoices SET lpa_inv_amount=?,
+                                lpa_inv_payment_type=?, 
+                                lpa_inv_status=?
+        WHERE `lpa_invoices`.`lpa_inv_no`=?"
+        );
+
+    $stmt->bind_param(
+        "fssi",
+        $data['amount'],
+        $data['status'],
+        $data['invStatus'],
+        $data['id']
+    );
+
+    if ($stmt->execute()) {
+        echo json_encode([
+            "success" => true
+        ]);
+    } else {
+        http_response_code(500);
+        echo json_encode([
+            "success" => false,
+            "error" => $stmt->error
+        ]);
+    }
+}
 
 //////If API receives a DELETE request\\\\\\
 
