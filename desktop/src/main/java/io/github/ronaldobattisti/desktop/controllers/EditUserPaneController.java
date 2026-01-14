@@ -1,8 +1,5 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
-import io.github.ronaldobattisti.desktop.api.OrdersApiClient;
-import io.github.ronaldobattisti.desktop.dto.InvoiceUpdateRequest;
-import io.github.ronaldobattisti.desktop.models.Order;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class EditOrderPaneController {
+public class EditUserPaneController {
     @FXML private VBox root;
     @FXML private TextField invoiceNumberField;
     @FXML private TextField clientNameField;
@@ -21,7 +18,6 @@ public class EditOrderPaneController {
     @FXML private ComboBox orderStatusComboBox;
 
     MainController mainController;
-    private Order order;
 
     public Node getRoot (){
         return root;
@@ -38,7 +34,7 @@ public class EditOrderPaneController {
         stage.close();
     }
 
-    public void setOrder(Order order) {
+    public void setUser(Order order) {
         try {
             this.order = order;
             invoiceNumberField.setText(String.valueOf(order.getId()));

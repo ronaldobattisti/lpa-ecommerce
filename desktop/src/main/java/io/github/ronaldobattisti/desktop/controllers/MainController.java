@@ -40,6 +40,7 @@ public class MainController {
         manageProductsPaneIncludeController.setMainController(this);
         manageOrdersPaneIncludeController.setMainController(this);
         manageClientsPaneIncludeController.setMainController(this);
+        editOrderPaneIncludeController.setMainController(this);
         //displayProductsPaneIncludeController.setMainController(this);
 
         //binding all the panes at the same time
@@ -53,7 +54,8 @@ public class MainController {
             registerProductsPaneIncludeController.getRoot(),
             manageProductsPaneIncludeController.getRoot(),
             manageOrdersPaneIncludeController.getRoot(),
-            manageClientsPaneIncludeController.getRoot()
+            manageClientsPaneIncludeController.getRoot(),
+            editOrderPaneIncludeController.getRoot()
             //displayProductsPaneIncludeController.getRoot()
         );
 
@@ -124,7 +126,7 @@ public class MainController {
     }
 
     public void showManageClientsPane() {
-        manageClientsPaneIncludeController.updateClientsList();
+        manageClientsPaneIncludeController.updateUserList();
         showPane((Node) manageClientsPaneIncludeController.getRoot());
     }
 
@@ -134,6 +136,10 @@ public class MainController {
 
     public void showRegisterProductsPane() {
         showPane((Node) registerProductsPaneIncludeController.getRoot());
+    }
+
+    public void updateOrdersAdmTable() {
+        manageOrdersPaneIncludeController.updateOrdersList();
     }
 
     /*public void disableAddToCart(){

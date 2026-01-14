@@ -15,13 +15,19 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         handleCreate($conn);
         break;
 
-    /*case "PUT":
+    case "PUT":
         handleUpdate($conn);
         break;
 
-    case "DELETE":
+    /*case "DELETE":
         handleDelete($conn);
         break;*/
+
+    default:
+        http_response_code(405);
+        echo json_encode(["error" => "Method not allowed"]);
+        break;
+
 }
 
 //////If API receives a GET request\\\\\\

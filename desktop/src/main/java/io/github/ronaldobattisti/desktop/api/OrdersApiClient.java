@@ -2,6 +2,7 @@ package io.github.ronaldobattisti.desktop.api;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.ronaldobattisti.desktop.dto.InvoiceUpdateRequest;
 import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.models.Product;
 
@@ -62,7 +63,7 @@ public class OrdersApiClient {
         }
     }
 
-    public static void updateOrders(Order order) throws Exception {
+    public static void updateOrders(InvoiceUpdateRequest order) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(order);
 

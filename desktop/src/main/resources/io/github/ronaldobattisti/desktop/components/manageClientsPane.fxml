@@ -11,7 +11,7 @@
       alignment="TOP_CENTER">
 
     <!-- TITLE -->
-    <Label text="Manage Products"
+    <Label text="Manage Clients"
            style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #ffcc4d;" />
 
     <!-- FILTER BAR -->
@@ -30,15 +30,18 @@
     </HBox>
 
     <!-- TABLE -->
-    <TableView fx:id="productTable"
+    <TableView fx:id="userTable"
                prefHeight="500"
                style="-fx-background-color: transparent;">
         <columns>
-            <TableColumn fx:id="colInvId" text="Invoice" prefWidth="80"/>
-            <TableColumn fx:id="colCostumerName" text="Costumer" prefWidth="250"/>
-            <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
-            <TableColumn fx:id="colAmount" text="Total (AUD)" prefWidth="80"/>
-            <TableColumn fx:id="colPaymentStatus" text="Status" prefWidth="120"/>
+            <TableColumn fx:id="colClientId" text="Id" prefWidth="80"/>
+            <TableColumn fx:id="colClientFirstName" text="First name" prefWidth="250"/>
+            <TableColumn fx:id="colClientLastName" text="Last name" prefWidth="250"/>
+            <TableColumn fx:id="colClientEmail" text="Email" prefWidth="250"/>
+            <TableColumn fx:id="colClientAddress" text="Address" prefWidth="250"/>
+            <TableColumn fx:id="colClientPhone" text="Phone number" prefWidth="250"/>
+            <TableColumn fx:id="colClientStatus" text="First name" prefWidth="250"/>
+            <TableColumn fx:id="colClientGroup" text="Adm" prefWidth="250"/>
         </columns>
     </TableView>
 </VBox>

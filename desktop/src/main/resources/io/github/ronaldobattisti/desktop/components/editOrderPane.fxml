@@ -17,7 +17,8 @@
         alignment="TOP_CENTER"
         prefHeight="600.0"
         spacing="22.0"
-        style="-fx-background-color: #1e1b2e;">
+        style="-fx-background-color: #1e1b2e;"
+        fx:id="root">
 
     <padding>
         <Insets top="25.0" right="50.0" bottom="20.0" left="50.0"/>

@@ -23,4 +23,5 @@ module io.github.ronaldobattisti.desktop {
     exports io.github.ronaldobattisti.desktop.controllers;
     opens io.github.ronaldobattisti.desktop.controllers to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.models;
+    opens io.github.ronaldobattisti.desktop.dto;
 }

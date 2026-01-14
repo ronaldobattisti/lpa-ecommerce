@@ -45,6 +45,8 @@
                 <fx:include fx:id="manageClientsPaneInclude" source="../components/manageClientsPane.fxml"/>
                 <!-- display products pane -->
                 <fx:include fx:id="displayProductsPaneInclude" source="../components/productDisplay.fxml"/>
+                <!-- edit invoice adm pane -->
+                <fx:include fx:id="editOrderPaneInclude" source="../components/editOrderPane.fxml"/>
             </StackPane>
        </ScrollPane>
     </center>
