@@ -14,14 +14,13 @@ public class MainController {
     @FXML private ProductsPaneController productsPaneIncludeController;
     @FXML private RegisterPaneController registerPaneIncludeController;
     @FXML private LoggedPaneController loggedPaneIncludeController;
-    //@FXML private OrdersPaneController ordersPaneIncludeController;
     @FXML private AdmPaneController admPaneIncludeController;
     @FXML private RegisterProductsPaneController registerProductsPaneIncludeController;
     @FXML private ManageProductsPaneController manageProductsPaneIncludeController;
     @FXML private ManageOdersPaneController manageOrdersPaneIncludeController;
     @FXML private ManageClientsPaneController manageClientsPaneIncludeController;
     @FXML private EditOrderPaneController editOrderPaneIncludeController;
-    //@FXML private ProductDisplayController displayProductsPaneIncludeController;
+    @FXML private EditUserPaneController editUserPaneIncludeController;
 
     @FXML private StackPane contentArea;
 
@@ -34,14 +33,13 @@ public class MainController {
         productsPaneIncludeController.setMainController(this);
         registerPaneIncludeController.setMainController(this);
         loggedPaneIncludeController.setMainController(this);
-        //ordersPaneIncludeController.setMainController(this);
         admPaneIncludeController.setMainController(this);
         registerProductsPaneIncludeController.setMainController(this);
         manageProductsPaneIncludeController.setMainController(this);
         manageOrdersPaneIncludeController.setMainController(this);
         manageClientsPaneIncludeController.setMainController(this);
         editOrderPaneIncludeController.setMainController(this);
-        //displayProductsPaneIncludeController.setMainController(this);
+        editUserPaneIncludeController.setMainController(this);
 
         //binding all the panes at the same time
         List<Node> panes = List.of(
@@ -49,14 +47,13 @@ public class MainController {
             productsPaneIncludeController.getRoot(),
             registerPaneIncludeController.getRoot(),
             loggedPaneIncludeController.getRoot(),
-            //ordersPaneIncludeController.getRoot(),
             admPaneIncludeController.getRoot(),
             registerProductsPaneIncludeController.getRoot(),
             manageProductsPaneIncludeController.getRoot(),
             manageOrdersPaneIncludeController.getRoot(),
             manageClientsPaneIncludeController.getRoot(),
-            editOrderPaneIncludeController.getRoot()
-            //displayProductsPaneIncludeController.getRoot()
+            editOrderPaneIncludeController.getRoot(),
+            editUserPaneIncludeController.getRoot()
         );
 
         // Start with products pane visible (others hidden)

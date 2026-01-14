@@ -1,5 +1,6 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,12 +11,15 @@ import javafx.stage.Stage;
 
 public class EditUserPaneController {
     @FXML private VBox root;
-    @FXML private TextField invoiceNumberField;
-    @FXML private TextField clientNameField;
-    @FXML private TextField invoiceDateField;
-    @FXML private TextField invoiceTotaValueField;
-    @FXML private ComboBox paymentComboBox;
-    @FXML private ComboBox orderStatusComboBox;
+    @FXML private TextField clientIdField;
+    @FXML private TextField clientGroupField;
+    @FXML private TextField clientFirstNameField;
+    @FXML private TextField clientLastNameField;
+    @FXML private TextField clientEmailField;
+    @FXML private TextField clientAddressField;
+    @FXML private ComboBox clientStatusComboBox;
+
+    private User user;
 
     MainController mainController;
 
@@ -27,22 +31,23 @@ public class EditUserPaneController {
         this.mainController = mainController;
     }
 
-
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        mainController.updateOrdersAdmTable();
         stage.close();
     }
 
-    public void setUser(Order order) {
+    public void setUser(User user) {
         try {
-            this.order = order;
-            invoiceNumberField.setText(String.valueOf(order.getId()));
-            clientNameField.setText(String.valueOf(order.getClientName()));
-            invoiceDateField.setText(String.valueOf(order.getDate()));
-            invoiceTotaValueField.setText(String.valueOf(order.getAmount()));
-            paymentComboBox.getSelectionModel().select(order.getStatus());
-            orderStatusComboBox.getSelectionModel().select(order.getInvStatus());
+            this.user = user;
+            clientIdField.setText(String.valueOf(user.getId()));
+            clientGroupField.setText(String.valueOf(String.valueOf(user.isAdm())));
+            clientFirstNameField.setText(String.valueOf(user.getFirstName()));
+            clientLastNameField.setText(String.valueOf(user.getLastName()));
+            clientEmailField.setText(String.valueOf(user.getEmail()));
+            clientAddressField.setText(String.valueOf(user.getAddress()));
+
+            clientStatusComboBox.getSelectionModel().select(user.getClientStatus());
+
         } catch (Exception e) {
             System.err.println("EditOrderPaneController: failed to populate fields");
             e.printStackTrace();
@@ -50,12 +55,15 @@ public class EditUserPaneController {
     }
 
     public void onUpdate(ActionEvent actionEvent) throws Exception {
-        int id = Integer.parseInt(invoiceNumberField.getText());
-        double amount = Double.parseDouble(invoiceTotaValueField.getText());
-        String status = paymentComboBox.getSelectionModel().getSelectedItem().toString();
-        String invStatus = orderStatusComboBox.getSelectionModel().getSelectedItem().toString();
+        System.out.println("updating users table");
+        int id = Integer.parseInt(clientIdField.getText());
+        String group = clientGroupField.getText();
+        String firstName = clientFirstNameField.getText();
+        String lastName = clientLastNameField.getText();
+        String adress = clientAddressField.getText();
+        String clientStatus = clientStatusComboBox.getSelectionModel().getSelectedItem().toString();
 
-        InvoiceUpdateRequest order = new InvoiceUpdateRequest(id, amount, status, invStatus);
+        UserUpdateRequest user = new UserUpdateRequest(id, group, firstName, lastName, adress, clientStatus);
 
         OrdersApiClient.updateOrders(order);
     }

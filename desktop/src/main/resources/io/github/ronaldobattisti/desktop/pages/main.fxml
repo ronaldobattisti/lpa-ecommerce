@@ -43,6 +43,8 @@
                 <fx:include fx:id="manageOrdersPaneInclude" source="../components/manageOrdersPane.fxml"/>
                 <!-- manage clients pane -->
                 <fx:include fx:id="manageClientsPaneInclude" source="../components/manageClientsPane.fxml"/>
+                <!-- edit clients pane -->
+                <fx:include fx:id="editUserPaneInclude" source="../components/editUserPane.fxml"/>
                 <!-- display products pane -->
                 <fx:include fx:id="displayProductsPaneInclude" source="../components/productDisplay.fxml"/>
                 <!-- edit invoice adm pane -->

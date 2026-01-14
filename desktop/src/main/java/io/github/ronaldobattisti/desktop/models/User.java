@@ -114,4 +114,8 @@ public class User {
     public boolean isAdm() {
         return clientGroup;
     }
+
+    public boolean getClientGroup() {
+        return clientGroup;
+    }
 }

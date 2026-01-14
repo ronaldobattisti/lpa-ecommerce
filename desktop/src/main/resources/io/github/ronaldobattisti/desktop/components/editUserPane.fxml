@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" alignment="TOP_CENTER" prefHeight="600.0" spacing="22.0" style="-fx-background-color: #1e1b2e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ronaldobattisti.desktop.controllers.EditUserPaneController">
+
+    <padding>
+        <Insets bottom="20.0" left="50.0" right="50.0" top="25.0" />
+    </padding>
+
+    <!-- PAGE TITLE -->
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffcc4d;" text="Edit User" />
+
+    <!-- MAIN FORM CONTAINER -->
+    <VBox alignment="TOP_CENTER" maxWidth="740.0" spacing="18.0">
+
+        <!-- Row 1 -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <!-- Invoice number -->
+            <VBox prefWidth="200.0" spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="User ID" />
+                <TextField fx:id="clientIdField" editable="false" prefHeight="28.0" style="-fx-background-radius: 10;" />
+            </VBox>
+
+            <!-- Client Name -->
+            <VBox spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="Group" />
+                <TextField fx:id="clientGroupField" editable="false" prefHeight="28.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <VBox prefWidth="200.0" spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="First name"/>
+                <TextField fx:id="clientFirstNameField" editable="false" prefHeight="28.0"
+                           style="-fx-background-radius: 10;"/>
+            </VBox>
+            <VBox prefWidth="200.0" spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="Last name"/>
+                <TextField fx:id="clientLastNameField" editable="false" prefHeight="28.0"
+                           style="-fx-background-radius: 10;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Row 2 -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <!-- Date -->
+            <VBox prefWidth="200.0" spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="Email" />
+                <TextField fx:id="clientEmailField" editable="false" prefHeight="28.0" style="-fx-background-radius: 10;" />
+            </VBox>
+
+            <!-- Invoice Total Value -->
+            <VBox prefWidth="200.0" spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="Address" />
+                <TextField fx:id="clientAddressField" editable="false" prefHeight="28.0" style="-fx-background-radius: 10;" />
+            </VBox>
+        </HBox>
+
+        <!-- Row 3 -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <!-- Payment -->
+            <VBox prefWidth="200.0" spacing="6.0">
+                <Label style="-fx-text-fill: #cfcde0;" text="Status" />
+                <ComboBox fx:id="clientStatusComboBox" prefWidth="200.0" style="-fx-background-radius: 10;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="a" />
+                            <String fx:value="i" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+
+        </HBox>
+
+    </VBox>
+
+    <!-- BUTTONS -->
+    <HBox alignment="CENTER" spacing="30.0">
+        <Button onAction="#onCancel" style="-fx-background-color: #444; -fx-text-fill: white; -fx-background-radius: 12; -fx-pref-width: 140;" text="Cancel" />
+        <Button fx:id="updateButton" onAction="#onUpdate" style="-fx-background-color: #ffcc4d; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 12; -fx-pref-width: 300;" text="Update" />
+    </HBox>
+</VBox>
