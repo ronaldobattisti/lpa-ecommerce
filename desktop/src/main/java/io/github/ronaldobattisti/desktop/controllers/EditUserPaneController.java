@@ -1,5 +1,7 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
+import io.github.ronaldobattisti.desktop.api.UsersApiClient;
+import io.github.ronaldobattisti.desktop.dto.UserUpdateRequest;
 import io.github.ronaldobattisti.desktop.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,6 +67,6 @@ public class EditUserPaneController {
 
         UserUpdateRequest user = new UserUpdateRequest(id, group, firstName, lastName, adress, clientStatus);
 
-        OrdersApiClient.updateOrders(order);
+        UsersApiClient.updateUser(user);
     }
 }

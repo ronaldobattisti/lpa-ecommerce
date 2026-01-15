@@ -7,6 +7,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import io.github.ronaldobattisti.desktop.dto.UserUpdateRequest;
 import io.github.ronaldobattisti.desktop.models.Product;
 import io.github.ronaldobattisti.desktop.models.User;
 
@@ -54,7 +55,7 @@ public class UsersApiClient {
         }
     }
 
-    public static void updateUser(User user) throws Exception {
+    public static void updateUser(UserUpdateRequest user) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(user);
 

@@ -15,7 +15,7 @@ public class UserUpdateRequest {
     @JsonProperty("invStatus")
     private String invoiceStatus;
 
-    public UserUpdateRequest(int id, String firstName, String lastName, String address, String clientStatus) {
+    public UserUpdateRequest(int id, String firstName, String lastName, String address, String clientStatus, String status) {
         this.id = id;
         this.amount = amount;
         this.paymentType = paymentType;
