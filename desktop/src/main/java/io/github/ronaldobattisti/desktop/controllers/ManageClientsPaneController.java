@@ -1,7 +1,6 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.api.UsersApiClient;
-import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.models.User;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.event.ActionEvent;
@@ -19,8 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.lang.classfile.constantpool.IntegerEntry;
 import java.util.List;
 
 public class ManageClientsPaneController {

@@ -9,20 +9,35 @@ import java.util.List;
 
 public class MainController {
 
-    @FXML private HeaderController headerIncludeController;
-    @FXML private LoginPaneController loginPaneIncludeController;
-    @FXML private ProductsPaneController productsPaneIncludeController;
-    @FXML private RegisterPaneController registerPaneIncludeController;
-    @FXML private LoggedPaneController loggedPaneIncludeController;
-    @FXML private AdmPaneController admPaneIncludeController;
-    @FXML private RegisterProductsPaneController registerProductsPaneIncludeController;
-    @FXML private ManageProductsPaneController manageProductsPaneIncludeController;
-    @FXML private ManageOdersPaneController manageOrdersPaneIncludeController;
-    @FXML private ManageClientsPaneController manageClientsPaneIncludeController;
-    @FXML private EditOrderPaneController editOrderPaneIncludeController;
-    @FXML private EditUserPaneController editUserPaneIncludeController;
+    @FXML
+    private HeaderController headerIncludeController;
+    @FXML
+    private LoginPaneController loginPaneIncludeController;
+    @FXML
+    private ProductsPaneController productsPaneIncludeController;
+    @FXML
+    private RegisterPaneController registerPaneIncludeController;
+    @FXML
+    private LoggedPaneController loggedPaneIncludeController;
+    @FXML
+    private AdmPaneController admPaneIncludeController;
+    @FXML
+    private RegisterProductsPaneController registerProductsPaneIncludeController;
+    @FXML
+    private ManageProductsPaneController manageProductsPaneIncludeController;
+    @FXML
+    private ManageOdersPaneController manageOrdersPaneIncludeController;
+    @FXML
+    private ManageClientsPaneController manageClientsPaneIncludeController;
+    @FXML
+    private EditOrderPaneController editOrderPaneIncludeController;
+    @FXML
+    private EditUserPaneController editUserPaneIncludeController;
+    @FXML
+    private CartPaneController cartPaneIncludeController;
 
-    @FXML private StackPane contentArea;
+    @FXML
+    private StackPane contentArea;
 
     @FXML
     private void initialize() {
@@ -40,20 +55,22 @@ public class MainController {
         manageClientsPaneIncludeController.setMainController(this);
         editOrderPaneIncludeController.setMainController(this);
         editUserPaneIncludeController.setMainController(this);
+        cartPaneIncludeController.setMainController(this);
 
         //binding all the panes at the same time
         List<Node> panes = List.of(
-            loginPaneIncludeController.getRoot(),
-            productsPaneIncludeController.getRoot(),
-            registerPaneIncludeController.getRoot(),
-            loggedPaneIncludeController.getRoot(),
-            admPaneIncludeController.getRoot(),
-            registerProductsPaneIncludeController.getRoot(),
-            manageProductsPaneIncludeController.getRoot(),
-            manageOrdersPaneIncludeController.getRoot(),
-            manageClientsPaneIncludeController.getRoot(),
-            editOrderPaneIncludeController.getRoot(),
-            editUserPaneIncludeController.getRoot()
+                loginPaneIncludeController.getRoot(),
+                productsPaneIncludeController.getRoot(),
+                registerPaneIncludeController.getRoot(),
+                loggedPaneIncludeController.getRoot(),
+                admPaneIncludeController.getRoot(),
+                registerProductsPaneIncludeController.getRoot(),
+                manageProductsPaneIncludeController.getRoot(),
+                manageOrdersPaneIncludeController.getRoot(),
+                manageClientsPaneIncludeController.getRoot(),
+                editOrderPaneIncludeController.getRoot(),
+                editUserPaneIncludeController.getRoot(),
+                cartPaneIncludeController.getRoot()
         );
 
         // Start with products pane visible (others hidden)
@@ -66,7 +83,7 @@ public class MainController {
     }
 
     private void bindPane(Node node) {
-        Region region = (Region)node;
+        Region region = (Region) node;
         region.prefWidthProperty().bind(contentArea.widthProperty());
         region.prefHeightProperty().bind(contentArea.heightProperty());
     }
@@ -102,11 +119,6 @@ public class MainController {
         loggedPaneIncludeController.refresh();
     }
 
-    /*public void showOrdersPane() {
-        ordersPaneIncludeController.updateOrdersTable();
-        showPane((Node) ordersPaneIncludeController.getRoot());
-    }*/
-
     public void showAdmPane() {
         admPaneIncludeController.update();
         showPane((Node) admPaneIncludeController.getRoot());
@@ -138,6 +150,16 @@ public class MainController {
     public void updateOrdersAdmTable() {
         manageOrdersPaneIncludeController.updateOrdersList();
     }
+
+    private void updateCart() {
+        CartPaneController.updateCart();
+    }
+
+    public void showCartPane() {
+        this.updateCart();
+        showPane((Node) cartPaneIncludeController.getRoot());
+    }
+
 
     /*public void disableAddToCart(){
         displayProductsPaneIncludeController.setButtonUsable();

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="root" alignment="CENTER" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ronaldobattisti.desktop.controllers.CartPaneController">
+
+    <FlowPane columnHalignment="CENTER" prefHeight="566.0" prefWidth="400.0">
+        <TableView prefHeight="400.0" prefWidth="323.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Product ID"/>
+                <TableColumn prefWidth="138.0" text="Product Name"/>
+                <TableColumn minWidth="2.0" prefWidth="87.0" text="Quantity"/>
+            </columns>
+        </TableView>
+    </FlowPane>
+</HBox>
