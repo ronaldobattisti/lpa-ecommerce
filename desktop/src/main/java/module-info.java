@@ -18,7 +18,6 @@ module io.github.ronaldobattisti.desktop {
     requires com.fasterxml.jackson.annotation;
     requires javafx.base;
     requires com.gluonhq.charm.glisten;
-    requires io.github.ronaldobattisti.desktop;
     exports io.github.ronaldobattisti.desktop.app;
     opens io.github.ronaldobattisti.desktop.app to javafx.fxml;
     exports io.github.ronaldobattisti.desktop.controllers;

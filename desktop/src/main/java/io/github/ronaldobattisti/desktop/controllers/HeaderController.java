@@ -83,5 +83,6 @@ public class HeaderController {
 
     public void onCartClicked(MouseEvent mouseEvent) {
         System.out.println("Cart pressed");
+        mainController.showCartPane();
     }
 }

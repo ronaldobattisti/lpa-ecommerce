@@ -35,7 +35,6 @@ public class MainController {
     private EditUserPaneController editUserPaneIncludeController;
     @FXML
     private CartPaneController cartPaneIncludeController;
-
     @FXML
     private StackPane contentArea;
 

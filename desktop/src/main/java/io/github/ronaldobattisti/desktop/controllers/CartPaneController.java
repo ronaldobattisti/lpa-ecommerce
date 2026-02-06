@@ -20,6 +20,7 @@ public class CartPaneController {
 
         if (SessionManager.getCurrentUser() != null){
             products = CartApiClient.getItemsCart();
+            System.out.println(products.toString());
         } else {
             throw new RuntimeException("User might be logged to access the cart");
         }

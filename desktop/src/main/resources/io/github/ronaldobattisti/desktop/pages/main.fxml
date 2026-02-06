@@ -50,7 +50,7 @@
                 <!-- edit invoice adm pane -->
                 <fx:include fx:id="editOrderPaneInclude" source="../components/editOrderPane.fxml"/>
                 <!-- cart pane-->
-                <fx:include fx:id="cartPaneinclude" source="../components/cartPane.fxml"/>
+                <fx:include fx:id="cartPaneInclude" source="../components/cartPane.fxml"/>
             </StackPane>
        </ScrollPane>
     </center>

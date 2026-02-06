@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.ronaldobattisti.desktop.models.Order;
 import io.github.ronaldobattisti.desktop.models.Product;
+import io.github.ronaldobattisti.desktop.utils.SessionManager;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,7 +16,8 @@ public class CartApiClient {
     private static final String API_URL = "https://www.ronaldobattisti.space/api/cart.php";
 
     public static List<Product> getItemsCart() {
-        final String API_URL_ID = API_URL + "?id=" + id;
+        //TODO: change id call to a better logged verification
+        final String API_URL_ID = API_URL + "?id=" + SessionManager.getCurrentUser().getId();
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -33,7 +35,7 @@ public class CartApiClient {
             return new ObjectMapper()
                     .readValue(
                             response.body(),
-                            new TypeReference<List<Order>>() {
+                            new TypeReference<List<Product>>() {
                             }
                     );
         } catch (Exception e) {
