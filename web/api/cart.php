@@ -44,14 +44,14 @@ function getCartItemsByUserId($conn, $id) {
             //"SELECT * FROM lpa_cart WHERE lpa_cart_user_id = ?"
             "SELECT
           c.lpa_cart_item_qty AS quantity,
-          s.lpa_stock_id AS product_id,
-          s.lpa_stock_name AS product_name,
-          s.lpa_stock_desc AS product_description,
-          s.lpa_stock_onhand AS product_on_hand,
-          s.lpa_stock_price AS product_price,
-          s.lpa_stock_cat AS product_category,
-          s.lpa_stock_image AS product_image,
-          s.lpa_stock_status AS product_status
+          s.lpa_stock_id AS prodId,
+          s.lpa_stock_name AS prodName,
+          s.lpa_stock_desc AS prodDesc,
+          s.lpa_stock_onhand AS prodStock,
+          s.lpa_stock_price AS prodPrice,
+          s.lpa_stock_cat AS prodCat,
+          s.lpa_stock_image AS prodImage,
+          s.lpa_stock_status AS prodStatus
         FROM lpa_cart c
         JOIN lpa_stock s
           ON s.lpa_stock_id = c.lpa_cart_item_id
@@ -65,7 +65,19 @@ function getCartItemsByUserId($conn, $id) {
     $items = [];
 
     while ($row = $result->fetch_assoc()) {
-        $items[] = $row;
+        $items[] = [
+            "quantity" => (int)$row["quantity"],
+            "product" => [
+                "prodId"     => (int)$row["prodId"],
+                "prodName"   => $row["prodName"],
+                "prodDesc"   => $row["prodDesc"],
+                "prodStock"  => (int)$row["prodStock"],
+                "prodPrice"  => (float)$row["prodPrice"],
+                "prodCat"    => $row["prodCat"],
+                "prodImage"  => $row["prodImage"],
+                "prodStatus" => $row["prodStatus"]
+            ]
+        ];
     }
 
     echo json_encode($items);
