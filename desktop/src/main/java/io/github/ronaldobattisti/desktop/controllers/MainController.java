@@ -159,7 +159,6 @@ public class MainController {
         showPane((Node) cartPaneIncludeController.getRoot());
     }
 
-
     /*public void disableAddToCart(){
         displayProductsPaneIncludeController.setButtonUsable();
     }*/

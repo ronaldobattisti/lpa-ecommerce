@@ -1,6 +1,7 @@
 package io.github.ronaldobattisti.desktop.controllers;
 
 import io.github.ronaldobattisti.desktop.api.CartApiClient;
+import io.github.ronaldobattisti.desktop.dto.CartLine;
 import io.github.ronaldobattisti.desktop.models.Product;
 import io.github.ronaldobattisti.desktop.utils.SessionManager;
 import javafx.fxml.FXML;
@@ -16,11 +17,11 @@ public class CartPaneController {
     private MainController mainController;
 
     public static void updateCart() {
-        List<Product> products = new ArrayList<Product>();
+        List<CartLine> cartItems = new ArrayList<CartLine>();
 
         if (SessionManager.getCurrentUser() != null){
-            products = CartApiClient.getItemsCart();
-            System.out.println(products.toString());
+            cartItems = CartApiClient.getItemsCart();
+            System.out.println(cartItems.toString());
         } else {
             throw new RuntimeException("User might be logged to access the cart");
         }
