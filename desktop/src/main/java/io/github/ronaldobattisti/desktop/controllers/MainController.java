@@ -77,7 +77,11 @@ public class MainController {
             bindPane(node);
         }
 
-        //disableAddToCart();
+        //Crate the link between scene and style
+        contentArea.getStylesheets().add(
+                getClass().getResource("/css/styles.css").toExternalForm()
+        );
+
         showPane(productsPaneIncludeController.getRoot());
     }
 
@@ -151,7 +155,7 @@ public class MainController {
     }
 
     private void updateCart() {
-        CartPaneController.updateCart();
+        cartPaneIncludeController.updateCart();
     }
 
     public void showCartPane() {
