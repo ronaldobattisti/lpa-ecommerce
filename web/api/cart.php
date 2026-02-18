@@ -17,11 +17,12 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 
     case "PUT":
         handleUpdate($conn);
-        break;
+        break;*/
 
     case "DELETE":
-        handleDelete($conn);
-        break;*/
+        echo "delete";
+        handleDelete($conn, $_GET['user_id'], $_GET['item_id']);
+        break;
 
     default:
         http_response_code(405);
@@ -38,10 +39,10 @@ function handleGet($conn) {
 }
 
 //Return of GET items from cart by user id
+#region handle GET 
 function getCartItemsByUserId($conn, $id) {
 
     $stmt = $conn->prepare(
-            //"SELECT * FROM lpa_cart WHERE lpa_cart_user_id = ?"
             "SELECT
           c.lpa_cart_item_qty AS quantity,
           s.lpa_stock_id AS prodId,
@@ -79,6 +80,37 @@ function getCartItemsByUserId($conn, $id) {
             ]
         ];
     }
-
     echo json_encode($items);
 }
+#endregion
+
+#region handle DELETE
+function handleDelete($conn, $user_id, $item_id){
+    $stmt = $conn->prepare(
+        "DELETE FROM lpa_cart WHERE lpa_cart_user_id = ? AND lpa_cart_item_id = ?"
+    );
+
+    if (!$stmt) {
+        http_response_code(500);
+        echo json_encode(["error" => "Prepare failed"]);
+        return;
+    }
+
+    $stmt->bind_param("ii", $user_id, $item_id);
+   
+    if (!$stmt->execute()) {
+        http_response_code(500);
+        echo json_encode(["error" => "Execution failed"]);
+        return;
+    }
+
+    if ($stmt->affected_rows > 0) {
+        echo json_encode(["success" => true]);
+    } else {
+        echo json_encode(["success" => false, "message" => "Item not found"]);
+    }
+
+    $stmt->close();
+
+}
+#endregion

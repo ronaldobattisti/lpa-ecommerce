@@ -14,7 +14,6 @@ public class AdmPaneController {
     @FXML private VBox root;
     @FXML private Label welcomeLabel;
 
-    @FXML
     public void initialize() { }
 
     public void update(){
@@ -27,26 +26,22 @@ public class AdmPaneController {
 
     public void onAddProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Add Products button clicked");
-        //Created not communicating with db yet
         mainController.showRegisterProductsPane();
     }
 
     public void onManageProductsButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Products button clicked");
         mainController.showManageProductsPane();
-        //Create db communication later
     }
 
     public void onManageOrdersButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Orders button clicked");
         mainController.showManageOrdersPane();
-        //not created yet
     }
 
     public void onManageClientsButtonClick(MouseEvent actionEvent) {
         System.out.println("Manage Clients button clicked");
         mainController.showManageClientsPane();
-        //not created yet
     }
 
     public Node getRoot() {

@@ -40,4 +40,25 @@
                 throw new RuntimeException("API OrdersApiClient fail on function getItemsCart()", e);
             }
         }
+
+        public static void deleteItemCart(int productId){
+            final String API_URL_ID = API_URL + "?user_id=" +
+                    SessionManager.getCurrentUser().getId() + "&item_id=" + productId;
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(API_URL_ID))
+                    .DELETE()
+                    .build();
+
+            try {
+                HttpResponse<String> response =
+                        client.send(request, HttpResponse.BodyHandlers.ofString());
+
+                System.out.println("Status: " + response.statusCode());
+                System.out.println("Body: " + response.body());
+
+            } catch (Exception e) {
+                throw new RuntimeException("API OrdersApiClient fail on function getItemsCart()", e);
+            }
+        }
     }

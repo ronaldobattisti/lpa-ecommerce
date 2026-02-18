@@ -13,7 +13,6 @@ import java.util.List;
 
 public class CartPaneController {
     @FXML HBox root;
-
     @FXML private TableView<CartLine> cartTable;
     @FXML private TableColumn<CartLine, Number> colId;
     @FXML private TableColumn<CartLine, String> colName;
@@ -69,10 +68,13 @@ public class CartPaneController {
                 CartLine line = getTableView().getItems().get(getIndex());
                 qtyLabel.setText(String.valueOf(line.getQuantity()));
 
-                minus.setDisable(line.getQuantity() <= 1);
+                minus.setDisable(line.getQuantity() <= 0);
 
                 minus.setOnAction(e -> {
                     line.setQuantity(line.getQuantity() - 1);
+                    if (line.getQuantity() == 0){
+                        CartApiClient.deleteItemCart(line.getProduct().getId());
+                    }
                     getTableView().refresh();
                     // TODO: call API to update quantity (optional for now)
                 });
