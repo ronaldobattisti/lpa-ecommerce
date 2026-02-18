@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class CartPaneController {
                 )
         );
 
-        ///
+        //region Add or remove from cart
         colQty.setCellFactory(col -> new TableCell<CartLine, Number>() {
             private final Button minus = new Button("-");
             private final Label qtyLabel = new Label();
@@ -87,7 +86,7 @@ public class CartPaneController {
                 setGraphic(box);
             }
         });
-        ///
+        //endregion
 
     }
 
@@ -96,7 +95,6 @@ public class CartPaneController {
 
         if (SessionManager.getCurrentUser() != null){
             cartItems = CartApiClient.getItemsCart();
-            System.out.println(cartItems.toString());
             cartTable.getItems().setAll(cartItems);
         } else {
             throw new RuntimeException("User might be logged to access the cart");

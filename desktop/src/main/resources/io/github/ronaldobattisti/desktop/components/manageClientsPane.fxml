@@ -14,21 +14,6 @@
     <Label text="Manage Clients"
            style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #ffcc4d;" />
 
-    <!-- FILTER BAR -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <TextField fx:id="searchField"
-                   promptText="Search by ID, Name, Price, or Qty..."
-                   prefWidth="400"
-                   style="-fx-background-radius: 10; -fx-padding: 8;" />
-
-        <Button text="Search"
-                onAction="#onSearchClick"
-                style="-fx-background-color: #ffcc4d; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 10;"/>
-        <Button text="Clear"
-                onAction="#onClearClick"
-                style="-fx-background-color: #444; -fx-text-fill: white; -fx-background-radius: 10;"/>
-    </HBox>
-
     <!-- TABLE -->
     <TableView fx:id="userTable"
                prefHeight="500"
