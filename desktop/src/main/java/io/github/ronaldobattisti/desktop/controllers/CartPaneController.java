@@ -86,13 +86,13 @@ public class CartPaneController {
                         // remove from UI
                         getTableView().getItems().remove(line);
                         return;
-                    }
-
-                    // update in DB
-                    try {
-                        CartApiClient.updateQuantityItem(line.getProduct().getId(), newQty);
-                    } catch (IOException | InterruptedException ex) {
-                        throw new RuntimeException(ex);
+                    } else {
+                        // update in DB
+                        try {
+                            CartApiClient.updateQuantityItem(line.getProduct().getId(), newQty);
+                        } catch (IOException | InterruptedException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
 
                     // update UI

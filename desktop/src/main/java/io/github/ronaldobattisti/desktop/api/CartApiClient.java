@@ -66,12 +66,13 @@
 
         public static void updateQuantityItem(int productId, int productQty) throws IOException, InterruptedException {
             //I'm sending the request with a pre-made body because otherwise I'd have to create another DTO, and I thought that unnecessary
-            final String body = "user_id=" + currentUser + "&item_id=" + productId + "&product_qty=" + productQty;
+            final String API_URL_ID = API_URL + "?user_id=" + currentUser + "&item_id=" + productId + "&product_qty=" + productQty;
+
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_URL))
-                    .header("Content-Type", "application/x-www-form-urlencoded")
-                    .PUT(HttpRequest.BodyPublishers.ofString(body))
+                    .uri(URI.create(API_URL_ID))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.noBody())
                     .build();
 
             HttpClient client = HttpClient.newHttpClient();

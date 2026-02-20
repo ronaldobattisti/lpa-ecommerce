@@ -84,7 +84,7 @@ function getCartItemsByUserId($conn, $id) {
 #endregion
 
 #region handle DELETE
-function handleDelete($conn, $user_id, $item_id){
+function handleDelete($conn, $user_id, $item_id): void{
     $stmt = $conn->prepare(
         "DELETE FROM lpa_cart WHERE lpa_cart_user_id = ? AND lpa_cart_item_id = ?"
     );
@@ -114,6 +114,36 @@ function handleDelete($conn, $user_id, $item_id){
 }
 #endregion
 
+
+#region handle PUT
 function handleUpdate($conn, $user_id, $product_id, $product_qty){
-        
+    $required = [$user_id, $product_id, $product_qty];
+    foreach ($required as $field) {
+        if ($field === null || $field === '') {
+            http_response_code(400);
+            echo json_encode(["error" => "Missing field: $field, user=$user_id, product=$product_id, qty=$product_qty"]);
+            return;
+        }
+    }
+
+    // Prepare SQL
+    $stmt = $conn->prepare(
+        "UPDATE lpa_cart SET lpa_cart_item_qty=?
+        WHERE `lpa_cart`.`lpa_cart_user_id`=? 
+        AND `lpa_cart`.`lpa_cart_item_id`=?");
+
+    $stmt->bind_param("iii", $product_qty, $user_id, $product_id);
+
+    if ($stmt->execute()) {
+        echo json_encode([
+            "success" => true
+        ]);
+    } else {
+        http_response_code(500);
+        echo json_encode([
+            "success" => false,
+            "error" => $stmt->error
+        ]);
+    }
 }
+#endregion
