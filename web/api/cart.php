@@ -13,14 +13,13 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 
     /*case "POST":
         handleCreate($conn);
-        break;
-
-    case "PUT":
-        handleUpdate($conn);
         break;*/
 
+    case "PUT":
+        handleUpdate($conn, $_GET['user_id'], $_GET['product_id'], $_GET['product_qty']);
+        break;
+
     case "DELETE":
-        echo "delete";
         handleDelete($conn, $_GET['user_id'], $_GET['item_id']);
         break;
 
@@ -114,3 +113,7 @@ function handleDelete($conn, $user_id, $item_id){
 
 }
 #endregion
+
+function handleUpdate($conn, $user_id, $product_id, $product_qty){
+        
+}

@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,25 +73,50 @@ public class CartPaneController {
                 minus.setDisable(line.getQuantity() <= 0);
 
                 minus.setOnAction(e -> {
-                    line.setQuantity(line.getQuantity() - 1);
-                    if (line.getQuantity() == 0){
-                        CartApiClient.deleteItemCart(line.getProduct().getId());
+                    int newQty = line.getQuantity() - 1;
+
+                    if (newQty <= 0) {
+                        // delete in DB
+                        try {
+                            CartApiClient.deleteItemCart(line.getProduct().getId());
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+                        // remove from UI
+                        getTableView().getItems().remove(line);
+                        return;
                     }
+
+                    // update in DB
+                    try {
+                        CartApiClient.updateQuantityItem(line.getProduct().getId(), newQty);
+                    } catch (IOException | InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    // update UI
+                    line.setQuantity(newQty);
                     getTableView().refresh();
-                    // TODO: call API to update quantity (optional for now)
                 });
 
                 plus.setOnAction(e -> {
-                    line.setQuantity(line.getQuantity() + 1);
+                    int newQty = line.getQuantity() + 1;
+
+                    try {
+                        CartApiClient.updateQuantityItem(line.getProduct().getId(), newQty);
+                    } catch (IOException | InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    line.setQuantity(newQty);
                     getTableView().refresh();
-                    // TODO: call API to update quantity
                 });
 
                 setGraphic(box);
             }
         });
         //endregion
-
     }
 
     public void updateCart() {
